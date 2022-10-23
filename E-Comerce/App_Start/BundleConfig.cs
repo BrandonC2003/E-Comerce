@@ -22,9 +22,13 @@ namespace E_Comerce
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.bundle.js"));
 
+            bundles.Add(new Bundle("~/bundles/complementos").Include(
+                      "~/Scripts/scripts.js",
+                      "~/Scripts/fontawesome/all.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
         }
     }
 }
