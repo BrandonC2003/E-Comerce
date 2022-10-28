@@ -79,7 +79,7 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 @Html.ActionLink("Registrar Venta","","",new { @class = "nav-link" })
-                                <a class="nav-link" href="#">Modificar Ventas</a>
+                                @Html.ActionLink("Modificar Ventas", "Index", "ModificarVentas",null,new { @class = "nav-link" })
                             </nav>
                         </div>
                     </div>
