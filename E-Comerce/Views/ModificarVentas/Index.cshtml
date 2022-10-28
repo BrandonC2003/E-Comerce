@@ -4,11 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Detalles de Ventas</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -27,16 +24,7 @@
             @Html.DisplayNameFor(model => model.descuento)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Usuario_Inserta)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Fecha_Inserta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario_Actualiza)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Actualiza)
         </th>
         <th></th>
     </tr>
@@ -59,21 +47,18 @@
             @Html.DisplayFor(modelItem => item.descuento)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Usuario_Inserta)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Fecha_Inserta)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Usuario_Actualiza)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_Actualiza)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_DetalleVenta }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_DetalleVenta }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_DetalleVenta })
+            <a href="@Url.Action("Edit","ModificarVentas",new { id=item.ID_DetalleVenta })">
+                <i class="fas fa-edit"></i>
+            </a> | 
+            <a href="@Url.Action("Details","ModificarVentas",new { id=item.ID_DetalleVenta })">
+                <i class="fas fa-file"></i>
+            </a> | 
+            <a href="@Url.Action("Delete","ModificarVentas",new { id=item.ID_DetalleVenta })">
+                <i class="fas fa-trash"></i>
+            </a>
         </td>
     </tr>
 }
