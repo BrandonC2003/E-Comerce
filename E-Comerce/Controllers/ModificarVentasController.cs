@@ -20,7 +20,8 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            DetalleVenta obj = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta==id select dv).First();
+            return View(obj);
         }
 
         // GET: ModificarVentas/Create
@@ -48,7 +49,8 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            DetalleVenta obj = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta == id select dv).First();
+            return View(obj);
         }
 
         // POST: ModificarVentas/Edit/5
