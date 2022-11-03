@@ -1,5 +1,4 @@
-﻿@model IEnumerable<E_Comerce.DetalleVenta>
-
+﻿@model IEnumerable<E_Comerce.vw_DetalleVenta>
 @{
     ViewBag.Title = "Index";
 }
@@ -7,76 +6,72 @@
 <div class="modal fade" id="ModalDetalleVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header text-bg-dark">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles de Ventas</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                
+                Cargando...
             </div>
-
         </div>
     </div>
 </div>
 <h2>Detalles de Ventas</h2>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_Venta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_Producto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Precio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descuento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Inserta)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-responsive">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID_Venta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID_Producto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cantidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descuento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_Inserta)
-            </td>
-            <td>
-                <a class="btn btn-outline-success" id="btnEdit" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a class="btn btn-outline-info" id="btnDetails" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
-                    <i class="fas fa-file"></i>
-                </a>
-                <a class="btn btn-outline-danger" href="@Url.Action("Delete","ModificarVentas",new { id=item.ID_DetalleVenta })">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_Venta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descuento)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_Venta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descuento)
+                </td>
+                <td>
+                    <a class="btnEditar btn btn-outline-success" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="btnDetailles btn btn-outline-primary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                        <i class="fas fa-file"></i>
+                    </a>
+                    <a class="btn btn-outline-danger btnEliminar" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
 

@@ -12,7 +12,7 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas
         public ActionResult Index()
         {
-            List<DetalleVenta> lista = (from dv in ventas.DetalleVenta select dv).ToList();
+            List<vw_DetalleVenta> lista = (from dv in ventas.vw_DetalleVenta select dv).ToList();
 
             return View(lista);
         }
@@ -20,7 +20,7 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas/Details/5
         public ActionResult Details(int id)
         {
-            DetalleVenta obj = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta==id select dv).First();
+            vw_DetalleVenta obj = (from dv in ventas.vw_DetalleVenta where dv.ID_DetalleVenta==id select dv).First();
             return View(obj);
         }
 
@@ -48,18 +48,24 @@ namespace E_Comerce.Controllers
 
         // GET: ModificarVentas/Edit/5
         public ActionResult Edit(int id)
-        {
+        {   
             DetalleVenta obj = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta == id select dv).First();
+
+            List<Productos> lista = (from p in ventas.Productos select p).ToList();
+
+            ViewBag.lista = lista;
             return View(obj);
         }
 
         // POST: ModificarVentas/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, DetalleVenta dtVenta)
         {
             try
             {
-                // TODO: Add update logic here
+                string usuario = "BrandonCC";
+                ventas.sp_EditarDetalleVenta(id, dtVenta.ID_Venta, dtVenta.ID_Producto, dtVenta.Cantidad, usuario);
+                ventas.SubmitChanges();
 
                 return RedirectToAction("Index");
             }
@@ -72,7 +78,8 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            DetalleVenta obj = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta == id select dv).First();
+            return View(obj);
         }
 
         // POST: ModificarVentas/Delete/5
@@ -81,7 +88,8 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                ventas.SP_EliminarDetalleVenta(id);
+                ventas.SubmitChanges();
 
                 return RedirectToAction("Index");
             }

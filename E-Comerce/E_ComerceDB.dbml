@@ -185,4 +185,35 @@
       <Association Name="Lugares_Entrega_Ventas" Member="Lugares_Entrega" ThisKey="ID_Entrega" OtherKey="ID_Entrega" Type="Lugares_Entrega" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vw_DetalleVenta" Member="vw_DetalleVenta">
+    <Type Name="vw_DetalleVenta">
+      <Column Name="ID_DetalleVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Venta" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Producto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreProducto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_EditarDetalleVenta" Method="sp_EditarDetalleVenta">
+    <Parameter Name="ID_DetalleVenta" Parameter="iD_DetalleVenta" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Venta" Parameter="iD_Venta" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Producto" Parameter="iD_Producto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UsuarioActualiza" Parameter="usuarioActualiza" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="sp_EditarDetalleVentaResult">
+      <Column Name="Error" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_EliminarDetalleVenta" Method="SP_EliminarDetalleVenta">
+    <Parameter Name="ID_DetalleVenta" Parameter="iD_DetalleVenta" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_EliminarDetalleVentaResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

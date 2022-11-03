@@ -1,4 +1,4 @@
-﻿@model E_Comerce.DetalleVenta
+﻿@model E_Comerce.vw_DetalleVenta
 
 @{
     ViewBag.Title = "Details";
@@ -6,81 +6,81 @@
 }
 
 <div>
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="row">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.ID_Venta)
         </dt>
 
-        <dd>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.ID_Venta)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ID_Producto)
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </dt>
+           
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.NombreProducto)
+        </dd>
+           
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.cantidad)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ID_Producto)
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.cantidad)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cantidad)
-        </dd>
-
-        <dt>
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Precio)
         </dt>
 
-        <dd>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Precio)
         </dd>
 
-        <dt>
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.descuento)
         </dt>
 
-        <dd>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.descuento)
         </dd>
 
-        <dt>
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Usuario_Inserta)
         </dt>
 
-        <dd>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Usuario_Inserta)
         </dd>
 
-        <dt>
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Fecha_Inserta)
         </dt>
 
-        <dd>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Fecha_Inserta)
         </dd>
 
-        <dt>
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Usuario_Actualiza)
         </dt>
 
-        <dd>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Usuario_Actualiza)
         </dd>
 
-        <dt>
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Fecha_Actualiza)
         </dt>
 
-        <dd>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Fecha_Actualiza)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "Index", null, new {@class="btn btn-primary"})
 </p>

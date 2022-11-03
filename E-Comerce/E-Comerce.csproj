@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="E_ComerceDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -263,6 +264,9 @@
     <Content Include="Views\ModificarVentas\Index.cshtml" />
     <Content Include="Views\ModificarVentas\Details.cshtml" />
     <Content Include="Views\ModificarVentas\Edit.cshtml" />
+    <Content Include="Views\ModificarVentas\Delete.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
+    <Content Include="Views\Ventas\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
