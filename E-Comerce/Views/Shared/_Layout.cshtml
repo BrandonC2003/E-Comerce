@@ -60,8 +60,9 @@
                             <div class="sb-nav-link-icon"><i class="fa fa-store"></i></div>
                             Productos
                         </a>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-basket"></i></div>
+                        @* Opciones de compras en menu *@
+                        <a class="nav-link collapsed" href="@Url.Action("Index", "Compras")" >
+                            <div class="sb-nav-link-icon"><i class="fa fa-shopping-basket"></i></div>
                             Compras
                         </a>
                         <a class="nav-link" href="#">
@@ -78,8 +79,8 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                @Html.ActionLink("Registrar Venta","","",new { @class = "nav-link" })
-                                @Html.ActionLink("Modificar Ventas", "Index", "ModificarVentas",null,new { @class = "nav-link"})
+                                @Html.ActionLink("Registrar Venta", "", "", new { @class = "nav-link" })
+                                @Html.ActionLink("Modificar Ventas", "Index", "ModificarVentas", null, new { @class = "nav-link" })
                             </nav>
                         </div>
                     </div>
