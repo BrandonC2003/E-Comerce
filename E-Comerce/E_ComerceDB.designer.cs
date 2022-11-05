@@ -213,6 +213,14 @@ namespace E_Comerce
 			}
 		}
 		
+		public System.Data.Linq.Table<V_Compras> V_Compras
+		{
+			get
+			{
+				return this.GetTable<V_Compras>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_EditarDetalleVenta")]
 		public ISingleResult<sp_EditarDetalleVentaResult> sp_EditarDetalleVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_DetalleVenta", DbType="Int")] System.Nullable<int> iD_DetalleVenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Venta", DbType="Int")] System.Nullable<int> iD_Venta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Producto", DbType="Int")] System.Nullable<int> iD_Producto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioActualiza", DbType="VarChar(100)")] string usuarioActualiza)
 		{
@@ -562,7 +570,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioTotal", DbType="Money")]
-		public System.Nullable<decimal> PrecioTotal
+        [DisplayName("Total")]
+        public System.Nullable<decimal> PrecioTotal
 		{
 			get
 			{
@@ -4389,6 +4398,125 @@ namespace E_Comerce
 				if ((this._Fecha_Actualiza != value))
 				{
 					this._Fecha_Actualiza = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.V_Compras")]
+	public partial class V_Compras
+	{
+		
+		private int _Id;
+		
+		private string _Usuario;
+		
+		private System.Nullable<decimal> _Total;
+		
+		private System.Nullable<System.DateTime> _Fecha;
+		
+		private string _UltimoUsuarioActualiza;
+		
+		private System.Nullable<System.DateTime> _UltimaFechaActualiza;
+		
+		public V_Compras()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(101)")]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this._Fecha = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoUsuarioActualiza", DbType="VarChar(50)")]
+		[DisplayName("Usuario actualizo")]
+		public string UltimoUsuarioActualiza
+		{
+			get
+			{
+				return this._UltimoUsuarioActualiza;
+			}
+			set
+			{
+				if ((this._UltimoUsuarioActualiza != value))
+				{
+					this._UltimoUsuarioActualiza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimaFechaActualiza", DbType="DateTime")]
+        [DisplayName("Fecha actualizo")]
+		public System.Nullable<System.DateTime> UltimaFechaActualiza
+		{
+			get
+			{
+				return this._UltimaFechaActualiza;
+			}
+			set
+			{
+				if ((this._UltimaFechaActualiza != value))
+				{
+					this._UltimaFechaActualiza = value;
 				}
 			}
 		}

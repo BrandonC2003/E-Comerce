@@ -13,7 +13,7 @@ namespace E_Comerce.Controllers
         // GET: Compras
         public ActionResult Index()
         {
-            List<Compras> listaCompras = (from p in E_ComerceDB.Compras
+            List<V_Compras> listaCompras = (from p in E_ComerceDB.V_Compras
                                           select p).ToList(); 
             return View(listaCompras);
         }

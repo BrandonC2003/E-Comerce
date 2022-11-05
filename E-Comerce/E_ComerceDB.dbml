@@ -200,6 +200,16 @@
       <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.V_Compras" Member="V_Compras">
+    <Type Name="V_Compras">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UltimoUsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UltimaFechaActualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.sp_EditarDetalleVenta" Method="sp_EditarDetalleVenta">
     <Parameter Name="ID_DetalleVenta" Parameter="iD_DetalleVenta" Type="System.Int32" DbType="Int" />
     <Parameter Name="ID_Venta" Parameter="iD_Venta" Type="System.Int32" DbType="Int" />
