@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-<h2>Editar</h2>
+<h2>Modificar</h2>
 
 
 @using (Html.BeginForm())
@@ -15,23 +15,15 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID_DetalleVenta)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ID_Venta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Producto</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ID_Venta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ID_Venta, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class = "control-label col-md-2">Producto</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ID_Producto, new SelectList(ViewBag.lista, "ID_Producto", "NombreProducto"), new {@class="form-select"})
+                @Html.DropDownListFor(model => model.ID_Producto, new SelectList(ViewBag.Lista, "ID_Producto", "NombreProducto"), new { @class = "form-select" })
                 @Html.ValidationMessageFor(model => model.ID_Producto, "", new { @class = "text-danger" })
             </div>
         </div>
-       
+
         <div class="form-group">
             @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -47,6 +39,7 @@
         </div>
     </div>
 }
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
