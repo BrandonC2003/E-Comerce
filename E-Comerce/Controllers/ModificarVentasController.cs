@@ -12,7 +12,7 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas
         public ActionResult Index()
         {
-            List<vw_DetalleVenta> lista = (from dv in ventas.vw_DetalleVenta select dv).ToList();
+            List<vw_DetalleVenta> lista = (from dv in ventas.vw_DetalleVenta orderby dv.ID_Venta descending select dv ).ToList();
 
             return View(lista);
         }

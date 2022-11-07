@@ -12,16 +12,18 @@ AS
 	Select * from V_Compras
 
 	Select * from Usuarios
+--------------------------------------------------------
+-- Vistas y procedimientos almacenados para las Ventas--
+--------------------------------------------------------
 
---VEntas
-
+--Vista para visualizar el detalle de venta
 create view vw_DetalleVenta
 as
 Select ID_DetalleVenta,ID_Venta,v.ID_Producto,p.NombreProducto, cantidad,Precio, v.descuento, 
 v.Usuario_Inserta,v.Fecha_Inserta,v.Usuario_Actualiza,v.Fecha_Actualiza 
 from DetalleVenta v inner join Productos p on p.ID_Producto=v.ID_Producto
 go
-	
+
 --Procedimiento almacenado para editar el detalle de venta
 create proc sp_EditarDetalleVenta(
 @ID_DetalleVenta int,
@@ -34,8 +36,8 @@ as
 begin
 	declare @Precio money, @Descuento money, @CantidadDisponible int, @CantidadActual int
 	begin try 
-		select @Precio=(PrecioVenta*@Cantidad) from Productos
-		select @Descuento=Descuento from Productos
+		select @Precio=(PrecioVenta*@Cantidad) from Productos where ID_Producto=@ID_Producto
+		select @Descuento=Descuento from Productos where ID_Producto=@ID_Producto
 		select @CantidadActual=Cantidad from DetalleVenta where ID_DetalleVenta=@ID_DetalleVenta
 		select @CantidadDisponible=cantidadDisponible from Productos where ID_Producto=@ID_Producto
 		if (@Cantidad > @CantidadDisponible )
@@ -53,7 +55,7 @@ begin
 		ID_Producto=@ID_Producto,
 		Cantidad=@Cantidad,
 		Precio=@Precio,
-		Descuento=@Descuento,
+		Descuento=@Descuento*@Cantidad,
 		Usuario_Actualiza=@UsuarioActualiza,
 		Fecha_Actualiza=getdate()
 		where ID_DetalleVenta=@ID_DetalleVenta
@@ -65,7 +67,7 @@ end
 go
 
 --Procedimiento almacenado para eliminar el detalle de venta
-alter proc SP_EliminarDetalleVenta(
+create proc SP_EliminarDetalleVenta(
 @ID_DetalleVenta int
 )
 as
@@ -90,18 +92,10 @@ begin
 end
 go
 
-
---Procedimiento almaceado para registrar Venta
-create type tp_Ventas as table(
-ID_product int,
-cantidad int
-)
-go
-
+--Procedimiento almacenado para registrar una venta
 create proc sp_RegistrarVenta(
 @ID_Usuario int,
-@Usuario_Inserta varchar(50),
-@DetalleVenta tp_Ventas readonly
+@Usuario_Inserta varchar(50)
 )
 as
 begin
@@ -113,11 +107,11 @@ begin
 
 			set @ID_Venta=scope_identity()
 
-			insert into DetalleVenta(ID_Venta,ID_Producto,Cantidad,Precio,descuento,Usuario_Inserta,Fecha_Inserta)
-			select @ID_Venta, ID_product, cantidad,
-			(select PrecioVenta from Productos where ID_Producto=ID_Product)*cantidad,
-			(select Descuento from Productos where ID_Producto=ID_Product)*cantidad,
-			@Usuario_Inserta, getdate() from @DetalleVenta
+			update DetalleVenta
+			set ID_Venta=@ID_Venta,
+				Usuario_Inserta=@Usuario_Inserta,
+				Fecha_Inserta=GETDATE()
+			where ID_Venta is null
 
 			select @PrecioTotal=sum(Precio-descuento) from DetalleVenta where ID_Venta=@ID_Venta
 			select @DescuentoTotal=sum(descuento) from DetalleVenta where ID_Venta=@ID_Venta
@@ -131,10 +125,6 @@ begin
 			Fecha_Inserta=getdate()
 			where ID_Venta=@ID_Venta
 
-			update p --Hay que validar que el producto no este repetido
-			set p.cantidadDisponible=p.cantidadDisponible-d.cantidad
-			from Productos p inner join @DetalleVenta d on p.ID_Producto=d.ID_product
-
 		commit tran
 	end try
 	begin catch
@@ -143,3 +133,26 @@ begin
 end
 go
 
+--Procedimiento almacenado para registrar el detalle de una venta
+create proc sp_RegistrarDetalleVenta(
+@ID_Producto int,
+@Cantidad int
+)
+as
+begin
+	declare @CantProd int, @Precio money, @Descuento money
+	begin try
+		select @CantProd=CantidadDisponible from Productos where ID_Producto=@ID_Producto
+		select @Precio=PrecioVenta from Productos where ID_Producto=@ID_Producto
+		select @Descuento = Descuento from Productos where ID_Producto=@ID_Producto
+		if (@Cantidad>@CantProd)
+		begin
+			raiserror('No se cuenta con la cantidad de productos requerida',16,1)
+		end
+		insert into DetalleVenta(ID_Producto,Cantidad,Precio,descuento)
+		values(@ID_Producto,@Cantidad,@Precio*@Cantidad,@Descuento*@Cantidad)
+	end try
+	begin catch
+	end catch
+end
+go
