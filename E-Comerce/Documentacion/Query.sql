@@ -158,3 +158,12 @@ begin
 	end catch
 end
 go
+
+--Vista para mostrar las ventas
+create view vw_Venta
+as
+select v.ID_Venta, v.ID_Usuario, u.Usuario, r.Rol,v.PrecioTotal,v.DescuentoTotal,v.Fecha,
+v.Usuario_Inserta,v.Fecha_Inserta, v.Usuario_Actualiza, v.Fecha_Actualiza
+from Ventas v inner join Usuarios u on v.ID_Usuario=u.ID_Usuario 
+inner join Rol r on u.ID_Rol=r.ID_Rol
+go
