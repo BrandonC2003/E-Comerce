@@ -284,4 +284,10 @@
     <Parameter Name="Usuario_Inserta" Parameter="usuario_Inserta" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.sp_EliminarVenta" Method="sp_EliminarVenta">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_EliminarVentaResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

@@ -274,6 +274,13 @@ namespace E_Comerce
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Usuario, usuario_Inserta);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_EliminarVenta")]
+		public ISingleResult<sp_EliminarVentaResult> sp_EliminarVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+			return ((ISingleResult<sp_EliminarVentaResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
@@ -5225,6 +5232,32 @@ namespace E_Comerce
 				if ((this._Fecha_Actualiza != value))
 				{
 					this._Fecha_Actualiza = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_EliminarVentaResult
+	{
+		
+		private string _Mensaje;
+		
+		public sp_EliminarVentaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(37) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
 				}
 			}
 		}
