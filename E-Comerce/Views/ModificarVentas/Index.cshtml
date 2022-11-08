@@ -1,4 +1,4 @@
-﻿@model IEnumerable<E_Comerce.vw_DetalleVenta>
+﻿@model IEnumerable<E_Comerce.vw_Venta>
 @{
     ViewBag.Title = "Index";
 }
@@ -7,7 +7,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-bg-dark">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles de Ventas</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Ventas</h1>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-6">
                 <i class="fa fa-cash-register"></i>
-                Detalles de venta
+                Resumen de Ventas
             </div>
         </div>
     </div>
@@ -34,16 +34,19 @@
                         @Html.DisplayNameFor(model => model.ID_Venta)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.NombreProducto)
+                        @Html.DisplayNameFor(model => model.Usuario)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.cantidad)
+                        @Html.DisplayNameFor(model => model.Rol)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Precio)
+                        @Html.DisplayNameFor(model => model.PrecioTotal)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.descuento)
+                        @Html.DisplayNameFor(model => model.DescuentoTotal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha)
                     </th>
                     <th>Acciones</th>
                 </tr>
@@ -56,25 +59,28 @@
                             @Html.DisplayFor(modelItem => item.ID_Venta)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NombreProducto)
+                            @Html.DisplayFor(modelItem => item.Usuario)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.cantidad)
+                            @Html.DisplayFor(modelItem => item.Rol)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Precio)
+                            @Html.DisplayFor(modelItem => item.PrecioTotal)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.descuento)
+                            @Html.DisplayFor(modelItem => item.DescuentoTotal)
                         </td>
                         <td>
-                            <a class="btnEditar btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                            @Html.DisplayFor(modelItem => item.Fecha)
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-secondary" href="@Url.Action("Edit","ModificarVentas",new {id = item.ID_Venta})">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="btnDetailles btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                            <a class="btn btn-outline-secondary" href="@Url.Action("Edit","ModificarVentas",new {id = item.ID_Venta})">
                                 <i class="fas fa-file"></i>
                             </a>
-                            <a class="btn btn-outline-secondary btnEliminar" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                            <a class="btn btn-outline-secondary btnEliminarVenta" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_Venta">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -85,7 +91,7 @@
     </div>
 </div>
 @section scripts{
-    <script src="~/Scripts/JSPersonalizados/DEtalleVentas.js"></script>
+    <script src="~/Scripts/JSPersonalizados/DetalleVenta.js"></script>
     <script>
         $('.Tabla').DataTable({
             responsive: true,

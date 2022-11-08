@@ -22,7 +22,7 @@ from DetalleVenta v inner join Productos p on p.ID_Producto=v.ID_Producto
 go
 
 --Procedimiento almacenado para editar el detalle de venta
-create proc sp_EditarDetalleVenta(
+alter proc sp_EditarDetalleVenta(
 @ID_DetalleVenta int,
 @ID_Venta int,
 @ID_Producto int, 
@@ -31,7 +31,8 @@ create proc sp_EditarDetalleVenta(
 )
 as
 begin
-	declare @Precio money, @Descuento money, @CantidadDisponible int, @CantidadActual int
+	declare @Precio money, @Descuento money, @CantidadDisponible int, @CantidadActual int, @PrecioTotal money, 
+	@DescuentoTotal money, @MontoEntrega money
 	begin try 
 		select @Precio=(PrecioVenta*@Cantidad) from Productos where ID_Producto=@ID_Producto
 		select @Descuento=Descuento from Productos where ID_Producto=@ID_Producto
@@ -56,6 +57,19 @@ begin
 		Usuario_Actualiza=@UsuarioActualiza,
 		Fecha_Actualiza=getdate()
 		where ID_DetalleVenta=@ID_DetalleVenta
+
+		select @PrecioTotal=sum(Precio-descuento) from DetalleVenta where ID_Venta=@ID_Venta
+			select @DescuentoTotal=sum(descuento) from DetalleVenta where ID_Venta=@ID_Venta
+			select @MontoEntrega =MontoEntrega from Lugares_Entrega where ID_Entrega=1
+
+		update Ventas
+			set
+			PrecioTotal=@PrecioTotal+@MontoEntrega,
+			DescuentoTotal=@DescuentoTotal,
+			Usuario_Actualiza=@UsuarioActualiza,
+			Fecha_Actualiza=GETDATE()
+			where ID_Venta=@ID_Venta
+
 	end try
 	begin catch
 		select ERROR_MESSAGE() Error
@@ -69,17 +83,30 @@ create proc SP_EliminarDetalleVenta(
 )
 as
 begin
-	declare @Cantidad int, @IDPRod int
+	declare @Cantidad int, @IDPRod int, @PrecioTotal money, @DescuentoTotal money, @MontoEntrega money, @ID_Venta int
 	begin try
-		Delete from DetalleVenta where ID_DetalleVenta=@ID_DetalleVenta
-
 		Select @Cantidad=Cantidad from DetalleVenta where ID_DetalleVenta=@ID_DetalleVenta
 		Select @IDPRod=ID_Producto from DetalleVenta where ID_DetalleVenta=@ID_DetalleVenta
+		select @ID_Venta=ID_Venta from DetalleVenta where ID_DetalleVenta = @ID_DetalleVenta
+
+		Delete from DetalleVenta where ID_DetalleVenta=@ID_DetalleVenta
 
 		update Productos
 		set
 		 cantidadDisponible=cantidadDisponible+@Cantidad
 		where ID_Producto=@IDPRod
+
+		select @PrecioTotal=sum(Precio-descuento) from DetalleVenta where ID_Venta=@ID_Venta
+			select @DescuentoTotal=sum(descuento) from DetalleVenta where ID_Venta=@ID_Venta
+			select @MontoEntrega =MontoEntrega from Lugares_Entrega where ID_Entrega=1
+
+			update Ventas
+			set
+			PrecioTotal=@PrecioTotal+@MontoEntrega,
+			DescuentoTotal=@DescuentoTotal,
+			Fecha=getdate(),
+			Fecha_Inserta=getdate()
+			where ID_Venta=@ID_Venta
 
 		select 'El detalle de venta ha sido eliminado' as Mensaje
 	end try
@@ -88,7 +115,6 @@ begin
 	end catch
 end
 go
-
 --Procedimiento almacenado para registrar una venta
 create proc sp_RegistrarVenta(
 @ID_Usuario int,
@@ -166,4 +192,33 @@ select v.ID_Venta, v.ID_Usuario, u.Usuario, r.Rol,v.PrecioTotal,v.DescuentoTotal
 v.Usuario_Inserta,v.Fecha_Inserta, v.Usuario_Actualiza, v.Fecha_Actualiza
 from Ventas v inner join Usuarios u on v.ID_Usuario=u.ID_Usuario 
 inner join Rol r on u.ID_Rol=r.ID_Rol
+go
+
+--Pocedimiento almacenado para eliminar ventas
+alter proc sp_EliminarVenta(
+@ID int
+)
+as
+begin
+	declare @i int, @ID_Detalle int, @cantDt int
+	set @i = 1
+	begin try
+		begin tran
+			select @cantDt=count(ID_DetalleVenta) from DetalleVenta where ID_Venta=@ID
+
+			while (@i<=@cantDt)
+			begin
+				select Top 1 @ID_Detalle=ID_DetalleVenta from DetalleVenta where ID_Venta=@ID
+				exec SP_EliminarDetalleVenta @ID_Detalle
+				set @i=@i+1
+			end
+
+			delete from Ventas where ID_Venta=@ID
+			
+		commit tran
+	end try
+	begin catch
+		rollback tran
+	end catch
+end
 go

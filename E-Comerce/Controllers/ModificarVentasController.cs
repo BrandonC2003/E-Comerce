@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,11 +13,16 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas
         public ActionResult Index()
         {
-            List<vw_DetalleVenta> lista = (from dv in ventas.vw_DetalleVenta orderby dv.ID_Venta descending select dv ).ToList();
+            List<vw_Venta> lista = (from dv in ventas.vw_Venta select dv ).ToList();
 
             return View(lista);
         }
 
+        public ActionResult DetaislVenta()
+        {
+
+            return View();
+        }
         // GET: ModificarVentas/Details/5
         public ActionResult Details(int id)
         {
@@ -49,17 +55,21 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas/Edit/5
         public ActionResult Edit(int id)
         {   
-            DetalleVenta obj = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta == id select dv).First();
+            List<vw_DetalleVenta> obj = (from dv in ventas.vw_DetalleVenta where dv.ID_Venta == id select dv).ToList();
+            return View(obj);
+        }
 
+        public ActionResult EditarDetalle(int id)
+        {
+            DetalleVenta obj = (from dt in ventas.DetalleVenta where dt.ID_DetalleVenta == id select dt).Single();
             List<Productos> lista = (from p in ventas.Productos select p).ToList();
 
             ViewBag.lista = lista;
             return View(obj);
         }
-
         // POST: ModificarVentas/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, DetalleVenta dtVenta)
+        public ActionResult EditarDetalle(int id, DetalleVenta dtVenta)
         {
             try
             {
@@ -67,7 +77,7 @@ namespace E_Comerce.Controllers
                 ventas.sp_EditarDetalleVenta(id, dtVenta.ID_Venta, dtVenta.ID_Producto, dtVenta.Cantidad, usuario);
                 ventas.SubmitChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new {id = dtVenta.ID_Venta});
             }
             catch
             {
@@ -75,6 +85,26 @@ namespace E_Comerce.Controllers
             }
         }
 
+        public ActionResult EliminarVenta(int id)
+        {
+            Ventas obj = (from v in ventas.Ventas where v.ID_Venta == id select v).First();
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        public ActionResult EliminarVenta(int id, Ventas obj)
+        {
+            try
+            {
+
+               return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         // GET: ModificarVentas/Delete/5
         public ActionResult Delete(int id)
         {

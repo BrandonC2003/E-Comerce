@@ -467,7 +467,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\JSPersonalizados\DetalleVentas.js" />
+    <Content Include="Scripts\JSPersonalizados\DetalleVenta.js" />
     <Content Include="Scripts\JSPersonalizados\Ventas.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\scripts.js" />
@@ -502,7 +502,6 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\ModificarVentas\Index.cshtml" />
     <Content Include="Views\ModificarVentas\Details.cshtml" />
-    <Content Include="Views\ModificarVentas\Edit.cshtml" />
     <Content Include="Views\ModificarVentas\Delete.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\Create.cshtml" />
@@ -511,6 +510,9 @@
     <Content Include="Views\Ventas\Edit.cshtml" />
     <Content Include="Views\Ventas\Delete.cshtml" />
     <Content Include="Views\Ventas\Finalizar.cshtml" />
+    <Content Include="Views\ModificarVentas\Edit.cshtml" />
+    <Content Include="Views\ModificarVentas\EditarDetalle.cshtml" />
+    <Content Include="Views\ModificarVentas\EliminarVenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
