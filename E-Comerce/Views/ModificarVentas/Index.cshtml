@@ -16,68 +16,78 @@
         </div>
     </div>
 </div>
-<h2>Detalles de Ventas</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ID_Venta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreProducto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cantidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.descuento)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
 
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID_Venta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreProducto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cantidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.descuento)
-                </td>
-                <td>
-                    <a class="btnEditar btn btn-outline-success" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a class="btnDetailles btn btn-outline-primary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
-                        <i class="fas fa-file"></i>
-                    </a>
-                    <a class="btn btn-outline-danger btnEliminar" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-
-</table>
+<div class="card mt-2">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <i class="fa fa-cash-register"></i>
+                Detalles de venta
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="Tabla" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID_Venta)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreProducto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cantidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Precio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.descuento)
+                    </th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID_Venta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descuento)
+                        </td>
+                        <td>
+                            <a class="btnEditar btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btnDetailles btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                                <i class="fas fa-file"></i>
+                            </a>
+                            <a class="btn btn-outline-secondary btnEliminar" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 @section scripts{
     <script src="~/Scripts/JSPersonalizados/DEtalleVentas.js"></script>
     <script>
-        $('.table').DataTable({
+        $('.Tabla').DataTable({
             responsive: true,
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"

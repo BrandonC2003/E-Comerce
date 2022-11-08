@@ -148,6 +148,11 @@ begin
 		end
 		insert into DetalleVenta(ID_Producto,Cantidad,Precio,descuento)
 		values(@ID_Producto,@Cantidad,@Precio*@Cantidad,@Descuento*@Cantidad)
+
+		update Productos
+		set cantidadDisponible=cantidadDisponible-@Cantidad
+		where ID_Producto=@ID_Producto
+
 	end try
 	begin catch
 	end catch
