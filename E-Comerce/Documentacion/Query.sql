@@ -8,10 +8,7 @@ AS
     ISNULL(c.Fecha_Actualiza,c.Fecha_Inserta) UltimaFechaActualiza
 	from compras c
 	inner join Usuarios u on c.ID_Usuario = u.ID_Usuario
-	
-	Select * from V_Compras
-
-	Select * from Usuarios
+GO
 --------------------------------------------------------
 -- Vistas y procedimientos almacenados para las Ventas--
 --------------------------------------------------------

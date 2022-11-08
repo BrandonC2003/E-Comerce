@@ -29,6 +29,11 @@ namespace E_Comerce.Controllers
         {
             return View();
         }
+        // GET: Compras/Create
+        public ActionResult Prueba()
+        {
+            return View();
+        }
 
         // POST: Compras/Create
         [HttpPost]
