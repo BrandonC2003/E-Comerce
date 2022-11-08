@@ -108,7 +108,7 @@ namespace E_Comerce.Controllers
         }
 
         [HttpPost]
-        public ActionResult Finalizar(Ventas vent, decimal pago)
+        public ActionResult Finalizar(Ventas vent)
         {
             try
             {
