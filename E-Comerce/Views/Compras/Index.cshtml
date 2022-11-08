@@ -11,7 +11,7 @@
                 Lista de compras
             </div>
             <div class="col-6 d-md-flex justify-content-md-end">
-                <a class="btn btn-secondary" href="@Url.Action("Create", "Compras")">
+                <a class="btn btn-primary" href="@Url.Action("Create", "Compras")">
                     <i class="fa fa-plus-circle"></i>
                     Nueva compra
                 </a>
@@ -60,9 +60,18 @@
                             @Html.DisplayFor(modelItem => item.UltimaFechaActualiza)
                         </td>
                         <td>
-                            @Html.ActionLink("Editar", "Edit", "", new { id = item.Id }, new { @class = "glyphicon glyphicon-log-in" }) |
+                            <a class="btnEditar btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.Id">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btnDetailles btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.Id">
+                                <i class="fas fa-file"></i>
+                            </a>
+                            <a class="btnEliminar btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.Id">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            @*@Html.ActionLink("Editar", "Edit", "", new { id = item.Id }, new { @class = "glyphicon glyphicon-log-in" }) |
                             @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })*@
                         </td>
                     </tr>
                 }
@@ -72,14 +81,11 @@
 </div>
 @section scripts{
 <script>
-
     $('.Tablas').DataTable({
         responsive: true,
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
         }
-    });
-        
-
+    });        
 </script>
 }

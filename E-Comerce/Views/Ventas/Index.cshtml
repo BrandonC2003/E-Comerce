@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<E_Comerce.vw_DetalleVenta>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Detalle de venta";
 }
 <!-- Modal -->
 <div class="modal fade" id="ModalVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -23,7 +23,7 @@
 <div class="row">
     <div class="col-sm-3">
         <a class="btn btn-success" id="btnAgregar" href="#ModalVenta" data-bs-toggle="modal">
-            Agregar 
+            Agregar
         </a>
     </div>
     <div class="col-sm-3"></div>
@@ -64,10 +64,10 @@
                     @Html.DisplayFor(modelItem => item.cantidad)
                 </td>
                 <td>
-                   $ @Html.DisplayFor(modelItem => item.Precio)
+                    $ @Html.DisplayFor(modelItem => item.Precio)
                 </td>
                 <td>
-                   $ @Html.DisplayFor(modelItem => item.descuento)
+                    $ @Html.DisplayFor(modelItem => item.descuento)
                 </td>
                 <td>
                     <a class="btnEditar btn btn-outline-success" href="#ModalVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
@@ -79,8 +79,8 @@
                 </td>
             </tr>
         }
-        <tr class="table-secondary">
-            <th>Total</th>
+        <tr>
+            <td>Total</td>
             <td colspan="4">$@ViewBag.Total.ToString("0.00")</td>
         </tr>
     </tbody>
@@ -88,4 +88,12 @@
 </table>
 @section scripts{
     <script src="~/Scripts/JSPersonalizados/Ventas.js"></script>
+   <script>
+       $('.table').DataTable({
+            responsive: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    </script>
 }

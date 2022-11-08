@@ -12176,7 +12176,7 @@ body {
 }
 
     .sb-sidenav-light .sb-sidenav-menu .sb-sidenav-menu-heading {
-        color: #000;
+        color: #212529;
     }
 
     .sb-sidenav-light .sb-sidenav-menu .nav-link {
@@ -12188,7 +12188,7 @@ body {
         }
 
         .sb-sidenav-light .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
-            color: #adb5bd;
+            color: #212529; #adb5bd;
         }
 
         .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {

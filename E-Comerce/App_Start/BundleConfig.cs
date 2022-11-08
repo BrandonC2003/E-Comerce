@@ -32,7 +32,7 @@ namespace E_Comerce
                       "~/Content/bootstrap.css",
                       "~/Content/DataTables/css/jquery.dataTables.css",
                       "~/Content/DataTables/css/responsive.dataTables.css",
-                      "~/Content/Site.css"));
+                      "~/Content/Estilo.css"));
         }
     }
 }

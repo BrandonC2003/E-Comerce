@@ -17,7 +17,7 @@
     </div>
 </div>
 <h2>Detalles de Ventas</h2>
-<table class="table table-responsive">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -74,7 +74,14 @@
     </tbody>
 
 </table>
-
 @section scripts{
-    <script src="~/Scripts/JSPersonalizados/DetalleVentas.js"></script>
+    <script src="~/Scripts/JSPersonalizados/DEtalleVentas.js"></script>
+    <script>
+        $('.table').DataTable({
+            responsive: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    </script>
 }
