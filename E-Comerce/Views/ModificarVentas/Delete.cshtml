@@ -1,0 +1,20 @@
+﻿@model E_Comerce.DetalleVenta
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = null;
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro de eliminar este detalle de venta?</h3>
+<div>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> 
+            @Html.ActionLink("Cancelar", "Index", null, new {@class="btn btn-secondary"})
+        </div>
+    }
+</div>

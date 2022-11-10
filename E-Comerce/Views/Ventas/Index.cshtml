@@ -1,0 +1,99 @@
+﻿@model IEnumerable<E_Comerce.vw_DetalleVenta>
+
+@{
+    ViewBag.Title = "Detalle de venta";
+}
+<!-- Modal -->
+<div class="modal fade" id="ModalVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-bg-dark">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ventas</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Cargando...
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Ventas</h2>
+
+<div class="row">
+    <div class="col-sm-3">
+        <a class="btn btn-secondary" id="btnAgregar" href="#ModalVenta" data-bs-toggle="modal">
+            Agregar
+        </a>
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+        <a class="btn btn-secondary" id="btnFinalizar" href="#ModalVenta" data-bs-toggle="modal">
+            Finalizar Venta
+        </a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descuento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidad)
+                </td>
+                <td>
+                    $ @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    $ @Html.DisplayFor(modelItem => item.descuento)
+                </td>
+                <td>
+                    <a class="btnEditar btn btn-outline-secondary" href="#ModalVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="btn btn-outline-secondary btnEliminar" href="#ModalVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>Total</td>
+            <td colspan="4">$@ViewBag.Total.ToString("0.00")</td>
+        </tr>
+    </tbody>
+
+</table>
+@section scripts{
+    <script src="~/Scripts/JSPersonalizados/Ventas.js"></script>
+   <script>
+       $('.table').DataTable({
+            responsive: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    </script>
+}
