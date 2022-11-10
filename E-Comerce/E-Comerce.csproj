@@ -126,7 +126,6 @@
     <Compile Include="Controllers\ModificarVentasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\RepartidorController.cs" />
-    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="E_ComerceDB.designer.cs">
       <AutoGen>True</AutoGen>
@@ -505,6 +504,7 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\ModificarVentas\Index.cshtml" />
     <Content Include="Views\ModificarVentas\Delete.cshtml" />
+	  <Content Include="Views\ModificarVentas\Details.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\Create.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
@@ -515,6 +515,9 @@
     <Content Include="Views\ModificarVentas\Edit.cshtml" />
     <Content Include="Views\ModificarVentas\EditarDetalle.cshtml" />
     <Content Include="Views\ModificarVentas\EliminarVenta.cshtml" />
+	<Content Include="Views\Usuarios\Index.cshtml" />
+	<Content Include="Views\Usuarios\Create.cshtml" />
+	  <Content Include="Views\Usuarios\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
