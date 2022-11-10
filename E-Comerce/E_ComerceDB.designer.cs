@@ -71,7 +71,7 @@ namespace E_Comerce
     #endregion
 		
 		public E_ComerceDBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["Ecomerce_StarTechConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["Ecomerce_StarTechConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -288,6 +288,13 @@ namespace E_Comerce
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
 			return ((ISingleResult<sp_EliminarVentaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Sp_EditarUsuarios")]
+		public ISingleResult<Sp_EditarUsuariosResult> Sp_EditarUsuarios([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Rol", DbType="Int")] System.Nullable<int> iD_Rol, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CorreoElectronico", DbType="VarChar(50)")] string correoElectronico, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(50)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(30)")] string clave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Rol, correoElectronico, usuario, nombre, apellido, clave, iD_Usuario);
+			return ((ISingleResult<Sp_EditarUsuariosResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -5383,6 +5390,32 @@ namespace E_Comerce
 				if ((this._Mensaje != value))
 				{
 					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Sp_EditarUsuariosResult
+	{
+		
+		private string _Error;
+		
+		public Sp_EditarUsuariosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error", DbType="NVarChar(4000)")]
+		public string Error
+		{
+			get
+			{
+				return this._Error;
+			}
+			set
+			{
+				if ((this._Error != value))
+				{
+					this._Error = value;
 				}
 			}
 		}

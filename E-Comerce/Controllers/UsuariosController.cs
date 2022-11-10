@@ -62,16 +62,23 @@ namespace E_Comerce.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
+                                    where u.ID_Usuario == id
+                                    select u).Single();
+            return View(objUsuarios);
         }
 
         // POST: Usuarios/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, Usuarios datos)
         {
             try
             {
                 // TODO: Add update logic here
+
+                string Usuario = "admin";
+                E_ComerceDB.Sp_EditarUsuarios(datos.ID_Rol, datos.CorreoElectronico,datos.Usuario,datos.Nombre,datos.Apellido, datos.Clave,Usuario,id);
+                E_ComerceDB.SubmitChanges();
 
                 return RedirectToAction("Index");
             }
