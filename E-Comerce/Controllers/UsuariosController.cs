@@ -24,7 +24,11 @@ namespace E_Comerce.Controllers
         // GET: Usuarios/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Usuarios objUsuarios= (from u in E_ComerceDB.Usuarios
+                                   where u.ID_Usuario ==id
+                                    select u).Single();
+
+            return View(objUsuarios);
         }
 
         // GET: Usuarios/Create

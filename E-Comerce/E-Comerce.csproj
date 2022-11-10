@@ -124,6 +124,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
 <<<<<<< HEAD
     <Compile Include="Controllers\RepartidorController.cs" />
 =======
@@ -472,7 +473,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\JSPersonalizados\DetalleVenta.js" />
+    <Content Include="Scripts\JSPersonalizados\DetalleVent.js" />
     <Content Include="Scripts\JSPersonalizados\Ventas.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\scripts.js" />
@@ -506,7 +507,6 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\ModificarVentas\Index.cshtml" />
-    <Content Include="Views\ModificarVentas\Details.cshtml" />
     <Content Include="Views\ModificarVentas\Delete.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\Create.cshtml" />
@@ -518,8 +518,6 @@
     <Content Include="Views\ModificarVentas\Edit.cshtml" />
     <Content Include="Views\ModificarVentas\EditarDetalle.cshtml" />
     <Content Include="Views\ModificarVentas\EliminarVenta.cshtml" />
-    <Content Include="Views\Usuarios\Index.cshtml" />
-    <Content Include="Views\Usuarios\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

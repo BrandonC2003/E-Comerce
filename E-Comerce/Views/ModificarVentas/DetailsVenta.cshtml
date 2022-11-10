@@ -1,0 +1,88 @@
+﻿@model E_Comerce.vw_DetalleVenta
+
+@{
+    ViewBag.Title = "DetailsVenta";
+    Layout = null;
+}
+
+<div>
+    <h4>Detalles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Venta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Venta)
+        </dd>
+
+        <dt>
+            Producto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descuento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario_Inserta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario_Inserta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Inserta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Inserta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario_Actualiza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario_Actualiza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Actualiza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Actualiza)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Salir", "Edit", new {id = @Html.DisplayFor(model => model.ID_Venta) }, new {@class="btn btn-secondary"})
+</p>
