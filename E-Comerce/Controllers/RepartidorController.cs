@@ -8,12 +8,13 @@ namespace E_Comerce.Controllers
 {
     public class RepartidorController : Controller
     {
+
         E_ComerceDBDataContext E_ComerceDB = new E_ComerceDBDataContext();
 
         // GET: Repartidor
         public ActionResult Index()
         {
-            List<Vw_Repartidor> listaReapartidor = (from p in E_ComerceDB.Vw_Repartidor select p).ToList();
+            List<Vw_Repartidor> listaReapartidor = (from c in E_ComerceDB.Vw_Repartidor select c).ToList();
 
 
             return View(listaReapartidor);

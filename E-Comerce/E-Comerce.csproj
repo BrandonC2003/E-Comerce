@@ -504,7 +504,7 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\ModificarVentas\Index.cshtml" />
     <Content Include="Views\ModificarVentas\Delete.cshtml" />
-	  <Content Include="Views\ModificarVentas\Details.cshtml" />
+    <Content Include="Views\ModificarVentas\Details.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\Create.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
@@ -515,14 +515,14 @@
     <Content Include="Views\ModificarVentas\Edit.cshtml" />
     <Content Include="Views\ModificarVentas\EditarDetalle.cshtml" />
     <Content Include="Views\ModificarVentas\EliminarVenta.cshtml" />
-	<Content Include="Views\Usuarios\Index.cshtml" />
-	<Content Include="Views\Usuarios\Create.cshtml" />
-	  <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Repartidor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Repartidor\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
