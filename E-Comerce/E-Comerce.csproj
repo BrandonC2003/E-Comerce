@@ -125,11 +125,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\RepartidorController.cs" />
-=======
     <Compile Include="Controllers\UsuariosController.cs" />
->>>>>>> 5e0b25741b00d7de98ceadeb7f47461d5a3a80d8
     <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="E_ComerceDB.designer.cs">
       <AutoGen>True</AutoGen>
