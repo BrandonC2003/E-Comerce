@@ -18,7 +18,9 @@
         </div>
     </div>
 </div>
-
+<a href="@Url.Action("Index")" class="btn btn-secondary">
+    Volver
+</a>
 <div class="card mt-2">
     <div class="card-header">
         <div class="row">
@@ -73,7 +75,7 @@
                             <a class="btnEditar btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="btnDetailles btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
+                            <a class="btnDetailles2 btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
                                 <i class="fas fa-file"></i>
                             </a>
                             <a class="btn btn-outline-secondary btnEliminar" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_DetalleVenta">
@@ -88,7 +90,7 @@
     </div>
 </div>
 @section scripts{
-    <script src="~/Scripts/JSPersonalizados/DEtalleVenta.js"></script>
+    <script src="~/Scripts/JSPersonalizados/DEtalleVent.js"></script>
     <script>
         $('.Tabla').DataTable({
             responsive: true,

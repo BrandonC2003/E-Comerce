@@ -26,7 +26,15 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas/Details/5
         public ActionResult Details(int id)
         {
-            vw_DetalleVenta obj = (from dv in ventas.vw_DetalleVenta where dv.ID_DetalleVenta==id select dv).First();
+            List<vw_DetalleVenta> obj = (from dv in ventas.vw_DetalleVenta where dv.ID_Venta==id select dv).ToList();
+            Ventas objVenta = (from v in ventas.Ventas where v.ID_Venta==id select v).Single();
+            ViewBag.ListV = objVenta;
+            return View(obj);
+        }
+
+        public ActionResult DetailsVenta(int id)
+        {
+            vw_DetalleVenta obj = (from i in ventas.vw_DetalleVenta where i.ID_DetalleVenta==id select i).Single();
             return View(obj);
         }
 
@@ -97,7 +105,8 @@ namespace E_Comerce.Controllers
         {
             try
             {
-
+                ventas.sp_EliminarVenta(id);
+                ventas.SubmitChanges();
                return RedirectToAction("Index");
             }
             catch
@@ -114,14 +123,14 @@ namespace E_Comerce.Controllers
 
         // POST: ModificarVentas/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, DetalleVenta dtV)
         {
             try
             {
                 ventas.SP_EliminarDetalleVenta(id);
                 ventas.SubmitChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new {id=dtV.ID_Venta});
             }
             catch
             {

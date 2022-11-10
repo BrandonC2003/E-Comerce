@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "EliminarVenta";
+    Layout = null;
 }
 
 <h3>Eliminar Venta</h3>
@@ -12,8 +13,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-            @Html.ActionLink("Cancelar", "Index", new {@class="btn btn-secondary"})
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Cancelar", "Index",null, new {@class="btn btn-secondary"})
         </div>
     }
 </div>

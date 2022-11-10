@@ -9,12 +9,14 @@
 
 <h3>Estas seguro de eliminar este detalle de venta?</h3>
 <div>
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID_Venta)
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-danger" /> 
-            @Html.ActionLink("Cancelar", "Index", null, new {@class="btn btn-secondary"})
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Cancelar", "Edit", new { id = @Html.DisplayFor(model => model.ID_Venta) }, new { @class = "btn btn-secondary" })
         </div>
     }
 </div>

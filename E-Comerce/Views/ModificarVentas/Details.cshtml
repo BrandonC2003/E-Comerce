@@ -1,86 +1,112 @@
-﻿@model E_Comerce.vw_DetalleVenta
+﻿@model IEnumerable<E_Comerce.vw_DetalleVenta>
 
 @{
     ViewBag.Title = "Details";
-    Layout = null;
 }
 
-<div>
-    <dl class="row">
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.ID_Venta)
-        </dt>
-
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.ID_Venta)
-        </dd>
-
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.NombreProducto)
-        </dt>
-           
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.NombreProducto)
-        </dd>
-           
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.cantidad)
-        </dt>
-
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.cantidad)
-        </dd>
-
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.Precio)
-        </dd>
-
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.descuento)
-        </dt>
-
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.descuento)
-        </dd>
-
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.Usuario_Inserta)
-        </dt>
-
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.Usuario_Inserta)
-        </dd>
-
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.Fecha_Inserta)
-        </dt>
-
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.Fecha_Inserta)
-        </dd>
-
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.Usuario_Actualiza)
-        </dt>
-
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.Usuario_Actualiza)
-        </dd>
-
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.Fecha_Actualiza)
-        </dt>
-
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.Fecha_Actualiza)
-        </dd>
-
-    </dl>
+<div class="container">
+    <div class="row">
+        <div class="card col-sm-3">
+            <div class="card-header text-center">
+                <h3>Monto total</h3>
+            </div>
+            <div class="card-body text-center">
+                $@ViewBag.ListV.PrecioTotal.ToString("0.00")
+            </div>
+        </div>
+        <div class="card col-sm-3">
+            <div class="card-header text-center">
+                <h4>Vendedor</h4>
+            </div>
+            <div class="card-body text-center">
+                @ViewBag.ListV.Usuario_Inserta
+            </div>
+        </div>
+        <div class="card col-sm-4">
+            <div class="card-header text-center">
+                <h4>Edicion</h4>
+            </div>
+            <div class="card-body">
+                <p>
+                    Usuario: @ViewBag.ListV.Usuario_Actualiza <br />
+                    Fecha:   @ViewBag.ListV.Fecha_Actualiza
+                </p>
+            </div>
+        </div>
+        <div class="card col-sm-2">
+            <div class="card-body text-center">
+                <a href="@Url.Action("Index")" class="btn btn-secondary" style="width:90%">
+                    Volver
+                </a>
+                <a href="#" class="btn btn-danger" style="width:90%">Imprimir</a>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Volver", "Index", null, new {@class="btn btn-primary"})
-</p>
+<div class="card mt-2">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <i class="fa fa-cash-register"></i>
+                Detalles
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="Tabla" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID_Venta)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreProducto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cantidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Precio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.descuento)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID_Venta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descuento)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/JSPersonalizados/DEtalleVenta.js"></script>
+    <script>
+        $('.Tabla').DataTable({
+            responsive: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    </script>
+}

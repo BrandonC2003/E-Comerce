@@ -77,7 +77,7 @@
                             <a class="btn btn-outline-secondary" href="@Url.Action("Edit","ModificarVentas",new {id = item.ID_Venta})">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="btn btn-outline-secondary" href="@Url.Action("Edit","ModificarVentas",new {id = item.ID_Venta})">
+                            <a class="btn btn-outline-secondary" href="@Url.Action("Details","ModificarVentas",new {id = item.ID_Venta})">
                                 <i class="fas fa-file"></i>
                             </a>
                             <a class="btn btn-outline-secondary btnEliminarVenta" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_Venta">
@@ -91,7 +91,7 @@
     </div>
 </div>
 @section scripts{
-    <script src="~/Scripts/JSPersonalizados/DetalleVenta.js"></script>
+    <script src="~/Scripts/JSPersonalizados/DetalleVent.js"></script>
     <script>
         $('.Tabla').DataTable({
             responsive: true,
