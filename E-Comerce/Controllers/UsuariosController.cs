@@ -35,10 +35,16 @@ namespace E_Comerce.Controllers
 
         // POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Usuarios datos)
         {
             try
             {
+                datos.Fecha_Inserta = DateTime.Now;
+                datos.Usuario_Inserta = "admin";
+
+                E_ComerceDB.Usuarios.InsertOnSubmit(datos);
+                E_ComerceDB.SubmitChanges();
+
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");

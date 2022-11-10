@@ -515,6 +515,7 @@
     <Content Include="Views\ModificarVentas\EditarDetalle.cshtml" />
     <Content Include="Views\ModificarVentas\EliminarVenta.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
