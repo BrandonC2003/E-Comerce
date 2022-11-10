@@ -12,7 +12,10 @@ namespace E_Comerce.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// pru
+        /// </summary>
+        /// <returns></returns>
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
