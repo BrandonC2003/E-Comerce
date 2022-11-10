@@ -56,9 +56,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -124,7 +124,11 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\RepartidorController.cs" />
+=======
+    <Compile Include="Controllers\UsuariosController.cs" />
+>>>>>>> 5e0b25741b00d7de98ceadeb7f47461d5a3a80d8
     <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="E_ComerceDB.designer.cs">
       <AutoGen>True</AutoGen>
@@ -514,6 +518,8 @@
     <Content Include="Views\ModificarVentas\Edit.cshtml" />
     <Content Include="Views\ModificarVentas\EditarDetalle.cshtml" />
     <Content Include="Views\ModificarVentas\EliminarVenta.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
