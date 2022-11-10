@@ -124,6 +124,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
+    <Compile Include="Controllers\RepartidorController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="E_ComerceDB.designer.cs">
       <AutoGen>True</AutoGen>
@@ -517,6 +518,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Repartidor\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

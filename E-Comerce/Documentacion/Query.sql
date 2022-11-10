@@ -22,7 +22,7 @@ from DetalleVenta v inner join Productos p on p.ID_Producto=v.ID_Producto
 go
 
 --Procedimiento almacenado para editar el detalle de venta
-alter proc sp_EditarDetalleVenta(
+create proc sp_EditarDetalleVenta(
 @ID_DetalleVenta int,
 @ID_Venta int,
 @ID_Producto int, 
@@ -195,7 +195,7 @@ inner join Rol r on u.ID_Rol=r.ID_Rol
 go
 
 --Pocedimiento almacenado para eliminar ventas
-alter proc sp_EliminarVenta(
+create proc sp_EliminarVenta(
 @ID int
 )
 as
@@ -222,3 +222,16 @@ begin
 	end catch
 end
 go
+
+
+--vista Repartidor
+Create View Vw_Repartidor
+AS
+	Select c.ID_Repartidor as Id,
+	c.Nombre + ' ' + c.Apellido as Repartidores,
+	c.CorreoElectronico as Correo,
+	c.Telefono, 
+	ISNULL(c.Usuario_Actualiza,c.Usuario_Inserta) UltimoUsuarioActualiza,
+    ISNULL(c.Fecha_Actualiza,c.Fecha_Inserta) UltimaFechaActualiza
+	from Repartidores c
+GO
