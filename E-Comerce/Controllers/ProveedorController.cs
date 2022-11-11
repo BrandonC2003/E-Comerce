@@ -21,7 +21,11 @@ namespace E_Comerce.Controllers
         // GET: Proveedor/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            Vw_Proveedor dtll = (from dp in dbproveedor.Vw_Proveedor
+                                 where dp.ID_Proveedor == id
+                                 select dp).First();
+            return View(dtll);
         }
 
         // GET: Proveedor/Create
