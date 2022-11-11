@@ -1,0 +1,56 @@
+﻿@model E_Comerce.Proveedores
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<h2>Agregar</h2>
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Proveedor Nuevo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreEmpresa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreEmpresa, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.NombreEmpresa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        *@
+        <div class="modal-footer form-group">
+            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Cerrar</button>
+            <input type="submit" value="Guardar" class="btnUpdate btn-outline-info" />
+        </div>
+    </div>
+}
+@*
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

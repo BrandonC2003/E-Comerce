@@ -524,6 +524,7 @@
     <Content Include="Views\Usuarios\Delete.cshtml" />
     <Content Include="Views\Proveedor\Index.cshtml" />
     <Content Include="Views\Proveedor\Details.cshtml" />
+    <Content Include="Views\Proveedor\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

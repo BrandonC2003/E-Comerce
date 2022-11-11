@@ -304,6 +304,20 @@ namespace E_Comerce
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Usuario, correo, usuario, nombre, apellido, usuario_Actualiza);
 			return ((ISingleResult<Actualizar_UsuariosResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_InsertarProveedor")]
+		public ISingleResult<SP_InsertarProveedorResult> SP_InsertarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre_Empresa", DbType="VarChar(50)")] string nombre_Empresa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre_Empresa, telefono, usuario);
+			return ((ISingleResult<SP_InsertarProveedorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_InsertarProveedor")]
+		public ISingleResult<SP_InsertarProveedorResult1> SP_InsertarProveedor1([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre_Empresa", DbType="VarChar(50)")] string nombre_Empresa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre_Empresa, telefono, usuario);
+			return ((ISingleResult<SP_InsertarProveedorResult1>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
@@ -5512,6 +5526,58 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_InsertarProveedorResult
+	{
+		
+		private string _Mensaje;
+		
+		public SP_InsertarProveedorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(44) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_InsertarProveedorResult1
+	{
+		
+		private string _Mensaje;
+		
+		public SP_InsertarProveedorResult1()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(44) NOT NULL", CanBeNull=false)]
 		public string Mensaje
 		{
 			get

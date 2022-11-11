@@ -320,4 +320,20 @@
       <Column Name="Mensaje" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_InsertarProveedor" Method="SP_InsertarProveedor">
+    <Parameter Name="Nombre_Empresa" Parameter="nombre_Empresa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="telefono" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_InsertarProveedorResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(44) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_InsertarProveedor" Method="SP_InsertarProveedor1">
+    <Parameter Name="Nombre_Empresa" Parameter="nombre_Empresa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="telefono" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_InsertarProveedorResult1">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(44) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

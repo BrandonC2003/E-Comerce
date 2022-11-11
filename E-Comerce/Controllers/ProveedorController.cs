@@ -36,11 +36,16 @@ namespace E_Comerce.Controllers
 
         // POST: Proveedor/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Proveedores datos)
         {
             try
             {
+                var usu = "Amartinez";
+
                 // TODO: Add insert logic here
+
+                dbproveedor.SP_InsertarProveedor(datos.NombreEmpresa, datos.Telefono, usu);
+                dbproveedor.SubmitChanges();
 
                 return RedirectToAction("Index");
             }
