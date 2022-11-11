@@ -49,13 +49,7 @@ namespace E_Comerce
     partial void UpdateLugares_Entrega(Lugares_Entrega instance);
     partial void DeleteLugares_Entrega(Lugares_Entrega instance);
     partial void InsertMunicipios(Municipios instance);
-
-        internal void Actualizar_Usuarios(string correoElectronico, string usuario1, string nombre, string apellido, string clave, string usuario_Actualiza, string usuario2, int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        partial void UpdateMunicipios(Municipios instance);
+    partial void UpdateMunicipios(Municipios instance);
     partial void DeleteMunicipios(Municipios instance);
     partial void InsertProductos(Productos instance);
     partial void UpdateProductos(Productos instance);

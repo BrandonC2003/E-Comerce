@@ -6,12 +6,16 @@ using System.Web.Mvc;
 
 namespace E_Comerce.Controllers
 {
+
     public class ProveedorController : Controller
     {
+        E_ComerceDBDataContext dbproveedor = new E_ComerceDBDataContext();
+
         // GET: Proveedor
         public ActionResult Index()
         {
-            return View();
+            List<Proveedores> Listaproveedor = (from p in dbproveedor.Proveedores select p).ToList();
+            return View(Listaproveedor);
         }
 
         // GET: Proveedor/Details/5

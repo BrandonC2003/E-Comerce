@@ -522,11 +522,11 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Proveedor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Proveedor\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
