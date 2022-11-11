@@ -318,6 +318,20 @@ namespace E_Comerce
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre_Empresa, telefono, usuario);
 			return ((ISingleResult<SP_InsertarProveedorResult1>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ActualizarProveedor")]
+		public ISingleResult<SP_ActualizarProveedorResult> SP_ActualizarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Proveedor", DbType="Int")] System.Nullable<int> id_Proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre_Empresa", DbType="VarChar(50)")] string nombre_Empresa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Proveedor, nombre_Empresa, telefono, usuario);
+			return ((ISingleResult<SP_ActualizarProveedorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_EliminarProveedor")]
+		public ISingleResult<SP_EliminarProveedorResult> SP_EliminarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Proveedor", DbType="Int")] System.Nullable<int> id_Proveedor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Proveedor);
+			return ((ISingleResult<SP_EliminarProveedorResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
@@ -5578,6 +5592,58 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(44) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ActualizarProveedorResult
+	{
+		
+		private string _Mensaje;
+		
+		public SP_ActualizarProveedorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(46) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_EliminarProveedorResult
+	{
+		
+		private string _Mensaje;
+		
+		public SP_EliminarProveedorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(54) NOT NULL", CanBeNull=false)]
 		public string Mensaje
 		{
 			get

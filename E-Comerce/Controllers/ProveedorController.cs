@@ -40,7 +40,7 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                var usu = "Amartinez";
+                var usu = "jmartinez";
 
                 // TODO: Add insert logic here
 
@@ -58,16 +58,24 @@ namespace E_Comerce.Controllers
         // GET: Proveedor/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Proveedores editProveedor = (from p in dbproveedor.Proveedores
+                                         where p.ID_Proveedor == id
+                                         select p).Single();
+
+            return View(editProveedor);
         }
 
         // POST: Proveedor/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, Proveedores datos)
         {
             try
             {
+                var usuario = "jmartinez";
                 // TODO: Add update logic here
+
+                dbproveedor.SP_ActualizarProveedor(id, datos.NombreEmpresa, datos.Telefono, usuario);
+                dbproveedor.SubmitChanges();
 
                 return RedirectToAction("Index");
             }
@@ -80,7 +88,10 @@ namespace E_Comerce.Controllers
         // GET: Proveedor/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var dell = (from d in dbproveedor.Proveedores
+                        where d.ID_Proveedor == id
+                        select d).First();
+            return View(dell);
         }
 
         // POST: Proveedor/Delete/5
@@ -90,6 +101,9 @@ namespace E_Comerce.Controllers
             try
             {
                 // TODO: Add delete logic here
+
+                dbproveedor.SP_EliminarProveedor(id);
+                dbproveedor.SubmitChanges();
 
                 return RedirectToAction("Index");
             }

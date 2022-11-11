@@ -336,4 +336,19 @@
       <Column Name="Mensaje" Type="System.String" DbType="VarChar(44) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_ActualizarProveedor" Method="SP_ActualizarProveedor">
+    <Parameter Name="Id_Proveedor" Parameter="id_Proveedor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre_Empresa" Parameter="nombre_Empresa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="telefono" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_ActualizarProveedorResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(46) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_EliminarProveedor" Method="SP_EliminarProveedor">
+    <Parameter Name="Id_Proveedor" Parameter="id_Proveedor" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_EliminarProveedorResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(54) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>
