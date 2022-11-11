@@ -470,6 +470,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\JSPersonalizados\DetalleVent.js" />
+    <Content Include="Scripts\JSPersonalizados\ModalProveedor.js" />
     <Content Include="Scripts\JSPersonalizados\Ventas.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\scripts.js" />
