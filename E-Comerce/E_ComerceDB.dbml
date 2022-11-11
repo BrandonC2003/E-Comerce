@@ -300,16 +300,15 @@
       <Column Name="Mensaje" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.Sp_EditarUsuarios" Method="Sp_EditarUsuarios">
-    <Parameter Name="ID_Rol" Parameter="iD_Rol" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CorreoElectronico" Parameter="correoElectronico" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Apellido" Parameter="apellido" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="Clave" Parameter="clave" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="ID_Usuario" Parameter="iD_Usuario" Type="System.Int32" DbType="Int" />
-    <ElementType Name="Sp_EditarUsuariosResult">
-      <Column Name="Error" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+  <Function Name="dbo.Actualizar_Usuarios" Method="Actualizar_Usuarios">
+    <Parameter Name="Id_Usuario" Parameter="id_Usuario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="correo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="usuario_Actualiza" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="Actualizar_UsuariosResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>

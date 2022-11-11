@@ -49,7 +49,13 @@ namespace E_Comerce
     partial void UpdateLugares_Entrega(Lugares_Entrega instance);
     partial void DeleteLugares_Entrega(Lugares_Entrega instance);
     partial void InsertMunicipios(Municipios instance);
-    partial void UpdateMunicipios(Municipios instance);
+
+        internal void Actualizar_Usuarios(string correoElectronico, string usuario1, string nombre, string apellido, string clave, string usuario_Actualiza, string usuario2, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        partial void UpdateMunicipios(Municipios instance);
     partial void DeleteMunicipios(Municipios instance);
     partial void InsertProductos(Productos instance);
     partial void UpdateProductos(Productos instance);
@@ -290,11 +296,11 @@ namespace E_Comerce
 			return ((ISingleResult<sp_EliminarVentaResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Sp_EditarUsuarios")]
-		public ISingleResult<Sp_EditarUsuariosResult> Sp_EditarUsuarios([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Rol", DbType="Int")] System.Nullable<int> iD_Rol, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CorreoElectronico", DbType="VarChar(50)")] string correoElectronico, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(50)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(30)")] string clave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Actualizar_Usuarios")]
+		public ISingleResult<Actualizar_UsuariosResult> Actualizar_Usuarios([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Usuario", DbType="Int")] System.Nullable<int> id_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string usuario_Actualiza)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Rol, correoElectronico, usuario, nombre, apellido, clave, iD_Usuario);
-			return ((ISingleResult<Sp_EditarUsuariosResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Usuario, correo, usuario, nombre, apellido, usuario_Actualiza);
+			return ((ISingleResult<Actualizar_UsuariosResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -5395,27 +5401,27 @@ namespace E_Comerce
 		}
 	}
 	
-	public partial class Sp_EditarUsuariosResult
+	public partial class Actualizar_UsuariosResult
 	{
 		
-		private string _Error;
+		private string _Mensaje;
 		
-		public Sp_EditarUsuariosResult()
+		public Actualizar_UsuariosResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error", DbType="NVarChar(4000)")]
-		public string Error
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
+		public string Mensaje
 		{
 			get
 			{
-				return this._Error;
+				return this._Mensaje;
 			}
 			set
 			{
-				if ((this._Error != value))
+				if ((this._Mensaje != value))
 				{
-					this._Error = value;
+					this._Mensaje = value;
 				}
 			}
 		}

@@ -77,7 +77,7 @@ namespace E_Comerce.Controllers
                 // TODO: Add update logic here
 
                 string Usuario = "admin";
-                E_ComerceDB.Sp_EditarUsuarios(datos.ID_Rol, datos.CorreoElectronico,datos.Usuario,datos.Nombre,datos.Apellido, datos.Clave,Usuario,id);
+                E_ComerceDB.Actualizar_Usuarios(datos.CorreoElectronico, datos.Usuario, datos.Nombre, datos.Apellido, datos.Clave, datos.Usuario_Actualiza,Usuario,id);
                 E_ComerceDB.SubmitChanges();
 
                 return RedirectToAction("Index");
@@ -91,7 +91,10 @@ namespace E_Comerce.Controllers
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
+                                    where u.ID_Usuario == id
+                                    select u).Single();
+            return View(objUsuarios);
         }
 
         // POST: Usuarios/Delete/5
@@ -100,7 +103,16 @@ namespace E_Comerce.Controllers
         {
             try
             {
+                
+
                 // TODO: Add delete logic here
+                Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
+                                        where u.ID_Usuario == id
+                                        select u).Single();
+
+                E_ComerceDB.Usuarios.DeleteOnSubmit(objUsuarios);
+                E_ComerceDB.SubmitChanges();
+
 
                 return RedirectToAction("Index");
             }
