@@ -76,8 +76,8 @@ namespace E_Comerce.Controllers
             {
                 // TODO: Add update logic here
 
-                string Usuario = "admin";
-                E_ComerceDB.Actualizar_Usuarios(datos.CorreoElectronico, datos.Usuario, datos.Nombre, datos.Apellido, datos.Clave, datos.Usuario_Actualiza,Usuario,id);
+                //string Usuario = "admin";
+                E_ComerceDB.Actualizar_Usuarios(datos.ID_Usuario,datos.CorreoElectronico, datos.Usuario, datos.Nombre, datos.Apellido, datos.Usuario_Actualiza);
                 E_ComerceDB.SubmitChanges();
 
                 return RedirectToAction("Index");
