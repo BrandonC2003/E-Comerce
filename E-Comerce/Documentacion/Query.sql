@@ -235,3 +235,45 @@ AS
     ISNULL(c.Fecha_Actualiza,c.Fecha_Inserta) UltimaFechaActualiza
 	from Repartidores c
 GO
+
+--/********                           ***************/
+ALTER proc [dbo].[SP_ActualizarProveedor]
+@Id_Proveedor int,
+@Nombre_Empresa varchar (50),
+@telefono varchar (20),
+@Usuario varchar (50)
+as
+begin
+   
+    begin try 
+	   if not exists( select*from Proveedores where NombreEmpresa=@Nombre_Empresa or Telefono=@telefono)  
+	   begin
+	     RAISERROR('Nombre del proveedor o el telefono ya existe',16,1)
+	   end
+
+	   update Proveedores set NombreEmpresa = @Nombre_Empresa , Telefono = @telefono, Usuario_Inserta = @Usuario, Fecha_Inserta = GETDATE()
+	   where ID_Proveedor = @Id_Proveedor
+
+	   select 'El proveedor ha sido actualizado exitosamente!' Mensaje
+	end try
+	begin catch
+
+	     select ERROR_MESSAGE() Mensaje 
+
+	end catch
+end
+GO
+
+/***** View Proveedores *******/
+
+create  VIEW [dbo].[Vw_Proveedor]
+as
+  
+    SELECT
+	   ID_Proveedor,
+	   NombreEmpresa,
+	   Telefono,
+		ISNULL(Usuario_Actualiza,Usuario_Inserta) UltimoUsuarioActualiza,
+		ISNULL(Fecha_Actualiza,Fecha_Inserta) UltimaFechactualiza
+	        FROM Proveedores
+GO
