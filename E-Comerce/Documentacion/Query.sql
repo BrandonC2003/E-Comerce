@@ -309,8 +309,8 @@ end
 go
 
 
---procedimiento almacenado para editar categoria
-Create procedure SP_EditarRepartidor
+--procedimiento almacenado para editar categoria (Modificado)
+create procedure SP_EditarRepartidor
 @ID_Repartidor int,
 @Nombre VARCHAR(50),
 @Apellido VARCHAR(50), 
@@ -320,23 +320,21 @@ Create procedure SP_EditarRepartidor
 as 
 begin
 	begin try
-		if exists(Select *  from Repartidores where ID_Repartidor = @ID_Repartidor)
-			
-			begin
-				raiserror('Ya esta registrado',16,1)
-			end
-			
+		begin tran			
 			UPDATE Repartidores set  Nombre = @Nombre, Apellido = @Apellido, 
 			CorreoElectronico = @correo, Telefono = @telefono, 
 			Usuario_Actualiza = @Usuario_Actualiza, Fecha_Actualiza = getdate()
 			where ID_Repartidor = @ID_Repartidor
-			Select 'El dato se actualizo correctamente' Mensaje
+			
+		commit
 	end try
 	begin catch
-		Select ERROR_MESSAGE() Mensaje
+		if @@TRANCOUNT>0
+			rollback
 	end catch
 end
 go
+
 
 --Procedimiento almacenado para eliminar repartidor
 create proc SP_EliminarRepartidor

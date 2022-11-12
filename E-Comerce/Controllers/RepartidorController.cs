@@ -14,7 +14,7 @@ namespace E_Comerce.Controllers
         // GET: Repartidor
         public ActionResult Index()
         {
-            List<Vw_Repartidor> listaReapartidor = (from a in E_ComerceDB.Vw_Repartidor select a).ToList();
+            List<Vw_Repartidor> listaReapartidor = (from r in E_ComerceDB.Vw_Repartidor select r).ToList();
 
 
             return View(listaReapartidor);
@@ -23,7 +23,10 @@ namespace E_Comerce.Controllers
         // GET: Repartidor/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            Repartidores repar = (from r in E_ComerceDB.Repartidores where r.ID_Repartidor == id select r).Single();
+
+            return View(repar);
         }
 
         // GET: Repartidor/Create
@@ -68,7 +71,7 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                E_ComerceDB.SP_EditarRepartidor(rpar.ID_Repartidor, rpar.Nombre, rpar.Apellido, rpar.CorreoElectronico, rpar.Telefono, rpar.Usuario_Inserta);
+                E_ComerceDB.SP_EditarRepartidor(id, rpar.Nombre, rpar.Apellido, rpar.CorreoElectronico, rpar.Telefono, rpar.Usuario_Inserta);
                 E_ComerceDB.SubmitChanges();
 
                 // TODO: Add update logic here
@@ -84,10 +87,10 @@ namespace E_Comerce.Controllers
         // GET: Repartidor/Delete/5
         public ActionResult Delete(int id)
         {
+            Repartidores repar = (from r in E_ComerceDB.Repartidores where r.ID_Repartidor == id select r).Single();
 
+            return View(repar);
 
-
-            return View();
         }
 
         // POST: Repartidor/Delete/5
