@@ -14,7 +14,7 @@ namespace E_Comerce.Controllers
         // GET: Repartidor
         public ActionResult Index()
         {
-            List<Vw_Repartidor> listaReapartidor = (from c in E_ComerceDB.Vw_Repartidor select c).ToList();
+            List<Vw_Repartidor> listaReapartidor = (from a in E_ComerceDB.Vw_Repartidor select a).ToList();
 
 
             return View(listaReapartidor);
@@ -29,17 +29,23 @@ namespace E_Comerce.Controllers
         // GET: Repartidor/Create
         public ActionResult Create()
         {
+            List<Repartidores> repartidor = (from r in E_ComerceDB.Repartidores select r).ToList();
+
+            ViewBag.Lista = repartidor;
+
             return View();
         }
 
         // POST: Repartidor/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Repartidores repartidor)
         {
             try
             {
                 // TODO: Add insert logic here
 
+                E_ComerceDB.SP_InsertarRepartido(repartidor.Nombre, repartidor.Apellido, repartidor.CorreoElectronico, repartidor.Telefono, repartidor.Usuario_Inserta);
+                E_ComerceDB.SubmitChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -51,15 +57,22 @@ namespace E_Comerce.Controllers
         // GET: Repartidor/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Repartidores repar = (from r in E_ComerceDB.Repartidores where r.ID_Repartidor == id select r).Single();
+            List<Repartidores> repart = (from re in E_ComerceDB.Repartidores select re).ToList();
+
+            ViewBag.Lista = repart;
+            return View(repart);
         }
 
         // POST: Repartidor/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, Repartidores rpar)
         {
             try
             {
+                E_ComerceDB.SP_EditarRepartidor(rpar.ID_Repartidor, rpar.Nombre, rpar.Apellido, rpar.CorreoElectronico, rpar.Telefono, rpar.Usuario_Inserta);
+                E_ComerceDB.SubmitChanges();
+
                 // TODO: Add update logic here
 
                 return RedirectToAction("Index");
@@ -73,6 +86,9 @@ namespace E_Comerce.Controllers
         // GET: Repartidor/Delete/5
         public ActionResult Delete(int id)
         {
+
+
+
             return View();
         }
 
@@ -82,6 +98,11 @@ namespace E_Comerce.Controllers
         {
             try
             {
+
+                E_ComerceDB.SP_EliminarRepartidor(id);
+                E_ComerceDB.SubmitChanges();
+
+
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");

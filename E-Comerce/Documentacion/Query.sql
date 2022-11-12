@@ -277,3 +277,80 @@ as
 		ISNULL(Fecha_Actualiza,Fecha_Inserta) UltimaFechactualiza
 	        FROM Proveedores
 GO
+
+----------------------------------------------------------------------
+--****************procedure para repartidor***************************
+----------------------------------------------------------------------
+
+
+--procedimiento para insertar repartidor
+Create procedure SP_InsertarRepartido
+@Nombre varchar(50),
+@Apellido VARCHAR(50), 
+@correo VARCHAR(50),
+@telefono varchar(15),
+@Usuario_Inserta varchar(100)
+as 
+begin
+	begin try
+		if exists(Select *  from Repartidores where CorreoElectronico = @correo)
+			begin
+				raiserror('Repartidor ya existe',16,1)
+			end
+			insert into Repartidores(Nombre,Apellido,CorreoElectronico,Telefono,Usuario_Inserta,Fecha_Inserta) 
+			values (@Nombre,@Apellido,@Correo,@telefono,@Usuario_Inserta,GETDATE())
+			
+			Select 'Repartidor insertado Exitosamente!' Mensaje
+	end try
+	begin catch
+		Select ERROR_MESSAGE() Mensaje
+	end catch
+end
+go
+
+
+--procedimiento almacenado para editar categoria
+Create procedure SP_EditarRepartidor
+@ID_Repartidor int,
+@Nombre VARCHAR(50),
+@Apellido VARCHAR(50), 
+@correo VARCHAR(50),
+@telefono varchar(15),
+@Usuario_Actualiza varchar(100)
+as 
+begin
+	begin try
+		if exists(Select *  from Repartidores where ID_Repartidor = @ID_Repartidor)
+			
+			begin
+				raiserror('Ya esta registrado',16,1)
+			end
+			
+			UPDATE Repartidores set  Nombre = @Nombre, Apellido = @Apellido, 
+			CorreoElectronico = @correo, Telefono = @telefono, 
+			Usuario_Actualiza = @Usuario_Actualiza, Fecha_Actualiza = getdate()
+			where ID_Repartidor = @ID_Repartidor
+			Select 'El dato se actualizo correctamente' Mensaje
+	end try
+	begin catch
+		Select ERROR_MESSAGE() Mensaje
+	end catch
+end
+go
+
+--Procedimiento almacenado para eliminar repartidor
+create proc SP_EliminarRepartidor
+@ID_Repartidor int
+as
+begin
+      begin try
+         delete from Repartidores where ID_Repartidor=@ID_Repartidor
+
+			select 'El repartidor a sido eliminado del sistema exitosamente' Mensaje
+        end try
+        begin catch
+            select ERROR_MESSAGE() Mensaje
+
+         end catch
+end
+go
