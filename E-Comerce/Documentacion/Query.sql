@@ -352,3 +352,25 @@ begin
          end catch
 end
 go
+----------sp Producto mas Vendido segun fecha----
+create procedure sp_ProMasV
+@fechamin date,
+@fechamax date
+as
+begin
+  begin try
+    if not exists(select*from DetalleVenta where Fecha_Inserta between @fechamin and @fechamax)
+	begin
+	raiserror('No hay Productos Vendidos',16,1)
+	end
+     select top 3 p.NombreProducto as Producto,sum(d.cantidad)as Total from DetalleVenta d inner join Productos p
+     on d.ID_Producto=p.ID_Producto
+     where d.Fecha_Inserta between @fechamin and @fechamax
+     group by p.NombreProducto
+     order by total desc
+	 end try
+	 begin catch
+	 select ERROR_MESSAGE() Mensaje
+	 end catch
+	end
+go
