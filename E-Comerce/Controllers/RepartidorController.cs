@@ -58,10 +58,8 @@ namespace E_Comerce.Controllers
         public ActionResult Edit(int id)
         {
             Repartidores repar = (from r in E_ComerceDB.Repartidores where r.ID_Repartidor == id select r).Single();
-            List<Repartidores> repart = (from re in E_ComerceDB.Repartidores select re).ToList();
 
-            ViewBag.Lista = repart;
-            return View(repart);
+            return View(repar);
         }
 
         // POST: Repartidor/Edit/5
