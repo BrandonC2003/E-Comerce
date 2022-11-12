@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Ecomerce_StarTech" Class="E_ComerceDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-5M0NB9GN\SQLEXPRESS;Initial Catalog=Ecomerce_StarTech;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Ecomerce_StarTechConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=Ecomerce_StarTech;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Ecomerce_StarTechConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Categorias" Member="Categorias">
     <Type Name="Categorias">
       <Column Name="ID_Categoria" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -384,6 +384,14 @@
     <ElementType Name="sp_ProMasVResult">
       <Column Name="Producto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_GuardarCompra" Method="SP_GuardarCompra">
+    <Parameter Name="ID_Usuario" Parameter="iD_Usuario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrecioTotal" Parameter="precioTotal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SP_GuardarCompraResult">
+      <Column Name="" Member="Column1" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
