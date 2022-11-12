@@ -124,6 +124,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformesController.cs" />
+    <Compile Include="Controllers\InicioEComerceController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -536,6 +537,8 @@
     <Content Include="Views\Repartidor\Edit.cshtml" />
     <Content Include="Views\Repartidor\Delete.cshtml" />
     <Content Include="Views\Informes\Index.cshtml" />
+    <Content Include="Views\Shared\LayoutEcomerce.cshtml" />
+    <Content Include="Views\InicioEComerce\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
