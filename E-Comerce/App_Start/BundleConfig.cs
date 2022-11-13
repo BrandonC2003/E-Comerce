@@ -20,7 +20,8 @@ namespace E_Comerce
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.bundle.js"));
+                      "~/Scripts/bootstrap.bundle.js",
+                      "~/Scripts/Chart.min.js"));
 
             bundles.Add(new Bundle("~/bundles/complementos").Include(
                       "~/Scripts/scripts.js",
@@ -32,7 +33,8 @@ namespace E_Comerce
                       "~/Content/bootstrap.css",
                       "~/Content/DataTables/css/jquery.dataTables.css",
                       "~/Content/DataTables/css/responsive.dataTables.css",
-                      "~/Content/Estilo.css"));
+                      "~/Content/Estilo.css",
+                      "~/Content/Chart.min.css"));
         }
     }
 }

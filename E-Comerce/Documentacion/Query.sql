@@ -22,7 +22,7 @@ from DetalleVenta v inner join Productos p on p.ID_Producto=v.ID_Producto
 go
 
 --Procedimiento almacenado para editar el detalle de venta
-alter proc sp_EditarDetalleVenta(
+create proc sp_EditarDetalleVenta(
 @ID_DetalleVenta int,
 @ID_Venta int,
 @ID_Producto int, 
@@ -195,7 +195,7 @@ inner join Rol r on u.ID_Rol=r.ID_Rol
 go
 
 --Pocedimiento almacenado para eliminar ventas
-alter proc sp_EliminarVenta(
+create proc sp_EliminarVenta(
 @ID int
 )
 as
@@ -221,4 +221,156 @@ begin
 		rollback tran
 	end catch
 end
+go
+
+
+--vista Repartidor
+Create View Vw_Repartidor
+AS
+	Select c.ID_Repartidor as Id,
+	c.Nombre + ' ' + c.Apellido as Repartidores,
+	c.CorreoElectronico as Correo,
+	c.Telefono, 
+	ISNULL(c.Usuario_Actualiza,c.Usuario_Inserta) UltimoUsuarioActualiza,
+    ISNULL(c.Fecha_Actualiza,c.Fecha_Inserta) UltimaFechaActualiza
+	from Repartidores c
+GO
+
+--/********                           ***************/
+ALTER proc [dbo].[SP_ActualizarProveedor]
+@Id_Proveedor int,
+@Nombre_Empresa varchar (50),
+@telefono varchar (20),
+@Usuario varchar (50)
+as
+begin
+   
+    begin try 
+	   if not exists( select*from Proveedores where NombreEmpresa=@Nombre_Empresa or Telefono=@telefono)  
+	   begin
+	     RAISERROR('Nombre del proveedor o el telefono ya existe',16,1)
+	   end
+
+	   update Proveedores set NombreEmpresa = @Nombre_Empresa , Telefono = @telefono, Usuario_Inserta = @Usuario, Fecha_Inserta = GETDATE()
+	   where ID_Proveedor = @Id_Proveedor
+
+	   select 'El proveedor ha sido actualizado exitosamente!' Mensaje
+	end try
+	begin catch
+
+	     select ERROR_MESSAGE() Mensaje 
+
+	end catch
+end
+GO
+
+/***** View Proveedores *******/
+
+create  VIEW [dbo].[Vw_Proveedor]
+as
+  
+    SELECT
+	   ID_Proveedor,
+	   NombreEmpresa,
+	   Telefono,
+		ISNULL(Usuario_Actualiza,Usuario_Inserta) UltimoUsuarioActualiza,
+		ISNULL(Fecha_Actualiza,Fecha_Inserta) UltimaFechactualiza
+	        FROM Proveedores
+GO
+
+----------------------------------------------------------------------
+--****************procedure para repartidor***************************
+----------------------------------------------------------------------
+
+
+--procedimiento para insertar repartidor
+Create procedure SP_InsertarRepartido
+@Nombre varchar(50),
+@Apellido VARCHAR(50), 
+@correo VARCHAR(50),
+@telefono varchar(15),
+@Usuario_Inserta varchar(100)
+as 
+begin
+	begin try
+		if exists(Select *  from Repartidores where CorreoElectronico = @correo)
+			begin
+				raiserror('Repartidor ya existe',16,1)
+			end
+			insert into Repartidores(Nombre,Apellido,CorreoElectronico,Telefono,Usuario_Inserta,Fecha_Inserta) 
+			values (@Nombre,@Apellido,@Correo,@telefono,@Usuario_Inserta,GETDATE())
+			
+			Select 'Repartidor insertado Exitosamente!' Mensaje
+	end try
+	begin catch
+		Select ERROR_MESSAGE() Mensaje
+	end catch
+end
+go
+
+
+--procedimiento almacenado para editar categoria (Modificado)
+create procedure SP_EditarRepartidor
+@ID_Repartidor int,
+@Nombre VARCHAR(50),
+@Apellido VARCHAR(50), 
+@correo VARCHAR(50),
+@telefono varchar(15),
+@Usuario_Actualiza varchar(100)
+as 
+begin
+	begin try
+		begin tran			
+			UPDATE Repartidores set  Nombre = @Nombre, Apellido = @Apellido, 
+			CorreoElectronico = @correo, Telefono = @telefono, 
+			Usuario_Actualiza = @Usuario_Actualiza, Fecha_Actualiza = getdate()
+			where ID_Repartidor = @ID_Repartidor
+			
+		commit
+	end try
+	begin catch
+		if @@TRANCOUNT>0
+			rollback
+	end catch
+end
+go
+
+
+--Procedimiento almacenado para eliminar repartidor
+create proc SP_EliminarRepartidor
+@ID_Repartidor int
+as
+begin
+      begin try
+         delete from Repartidores where ID_Repartidor=@ID_Repartidor
+
+			select 'El repartidor a sido eliminado del sistema exitosamente' Mensaje
+        end try
+        begin catch
+            select ERROR_MESSAGE() Mensaje
+
+         end catch
+end
+go
+----------sp Producto mas Vendido segun fecha----
+create procedure sp_ProMasV
+@fechamin date,
+@fechamax date
+as
+begin
+  begin try
+    if not exists(select*from DetalleVenta where Fecha_Inserta between @fechamin and @fechamax)
+	begin
+	raiserror('No hay Productos Vendidos',16,1)
+	end
+     select top 3 p.NombreProducto as Producto,sum(d.cantidad)as Total from DetalleVenta d inner join Productos p
+     on d.ID_Producto=p.ID_Producto
+     where d.Fecha_Inserta between @fechamin and @fechamax
+     group by p.NombreProducto
+     order by total desc
+	 end try
+	 begin catch
+	 select ERROR_MESSAGE() Mensaje
+	 end catch
+	end
 go

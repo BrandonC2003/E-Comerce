@@ -228,6 +228,22 @@ namespace E_Comerce
 			}
 		}
 		
+		public System.Data.Linq.Table<Vw_Repartidor> Vw_Repartidor
+		{
+			get
+			{
+				return this.GetTable<Vw_Repartidor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Vw_Proveedor> Vw_Proveedor
+		{
+			get
+			{
+				return this.GetTable<Vw_Proveedor>();
+			}
+		}
+		
 		private void InsertVentas(Ventas obj)
 		{
 			this.sp_EditarDetalleVenta(default(System.Nullable<int>), ((System.Nullable<int>)(obj.ID_Venta)), default(System.Nullable<int>), default(System.Nullable<int>), default(string));
@@ -282,29 +298,99 @@ namespace E_Comerce
 			return ((ISingleResult<sp_EliminarVentaResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EditarCategorias")]
-		public ISingleResult<EditarCategoriasResult> EditarCategorias([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Categoria", DbType="VarChar(50)")] string categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Actualiza", DbType="VarChar(50)")] string usuario_Actualiza)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Actualizar_Usuarios")]
+		public ISingleResult<Actualizar_UsuariosResult> Actualizar_Usuarios([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Usuario", DbType="Int")] System.Nullable<int> id_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string usuario_Actualiza)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria, categoria, descripcion, usuario_Actualiza);
-			return ((ISingleResult<EditarCategoriasResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Usuario, correo, usuario, nombre, apellido, usuario_Actualiza);
+			return ((ISingleResult<Actualizar_UsuariosResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCategoria")]
-		public ISingleResult<EliminarCategoriaResult> EliminarCategoria([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_InsertarProveedor")]
+		public ISingleResult<SP_InsertarProveedorResult> SP_InsertarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre_Empresa", DbType="VarChar(50)")] string nombre_Empresa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria);
-			return ((ISingleResult<EliminarCategoriaResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre_Empresa, telefono, usuario);
+			return ((ISingleResult<SP_InsertarProveedorResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarCategorias")]
-		public ISingleResult<InsertarCategoriasResult> InsertarCategorias([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Categoria", DbType="VarChar(50)")] string categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Inserta", DbType="VarChar(50)")] string usuario_Inserta)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_InsertarProveedor")]
+		public ISingleResult<SP_InsertarProveedorResult1> SP_InsertarProveedor1([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre_Empresa", DbType="VarChar(50)")] string nombre_Empresa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), categoria, descripcion, usuario_Inserta);
-			return ((ISingleResult<InsertarCategoriasResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre_Empresa, telefono, usuario);
+			return ((ISingleResult<SP_InsertarProveedorResult1>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ActualizarProveedor")]
+		public ISingleResult<SP_ActualizarProveedorResult> SP_ActualizarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Proveedor", DbType="Int")] System.Nullable<int> id_Proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre_Empresa", DbType="VarChar(50)")] string nombre_Empresa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Proveedor, nombre_Empresa, telefono, usuario);
+			return ((ISingleResult<SP_ActualizarProveedorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_EliminarProveedor")]
+		public ISingleResult<SP_EliminarProveedorResult> SP_EliminarProveedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Proveedor", DbType="Int")] System.Nullable<int> id_Proveedor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Proveedor);
+			return ((ISingleResult<SP_EliminarProveedorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_EliminarRepartidor")]
+		public ISingleResult<SP_EliminarRepartidorResult> SP_EliminarRepartidor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Repartidor", DbType="Int")] System.Nullable<int> iD_Repartidor)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Repartidor);
+			return ((ISingleResult<SP_EliminarRepartidorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_InsertarRepartido")]
+		public ISingleResult<SP_InsertarRepartidoResult> SP_InsertarRepartido([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(50)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Inserta", DbType="VarChar(100)")] string usuario_Inserta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, apellido, correo, telefono, usuario_Inserta);
+			return ((ISingleResult<SP_InsertarRepartidoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_EditarRepartidor")]
+		public ISingleResult<SP_EditarRepartidorResult> SP_EditarRepartidor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Repartidor", DbType="Int")] System.Nullable<int> iD_Repartidor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(50)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(15)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Actualiza", DbType="VarChar(100)")] string usuario_Actualiza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Repartidor, nombre, apellido, correo, telefono, usuario_Actualiza);
+			return ((ISingleResult<SP_EditarRepartidorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ProMasV")]
+		public ISingleResult<sp_ProMasVResult> sp_ProMasV([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> fechamin, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> fechamax)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fechamin, fechamax);
+			return ((ISingleResult<sp_ProMasVResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_GuardarCompra")]
+		public ISingleResult<SP_GuardarCompraResult> SP_GuardarCompra([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioTotal", DbType="Int")] System.Nullable<int> precioTotal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha", DbType="DateTime")] System.Nullable<System.DateTime> fecha)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Usuario, precioTotal, fecha);
+			return ((ISingleResult<SP_GuardarCompraResult>)(result.ReturnValue));
 		}
 	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
+
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.EditarCategorias")]
+	public ISingleResult<EditarCategoriasResult> EditarCategorias([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "ID_Categoria", DbType = "Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Categoria", DbType = "VarChar(50)")] string categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Descripcion", DbType = "VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Usuario_Actualiza", DbType = "VarChar(50)")] string usuario_Actualiza)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria, categoria, descripcion, usuario_Actualiza);
+		return ((ISingleResult<EditarCategoriasResult>)(result.ReturnValue));
+	}
+
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.EliminarCategoria")]
+	public ISingleResult<EliminarCategoriaResult> EliminarCategoria([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "ID_Categoria", DbType = "Int")] System.Nullable<int> iD_Categoria)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria);
+		return ((ISingleResult<EliminarCategoriaResult>)(result.ReturnValue));
+	}
+
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.InsertarCategorias")]
+	public ISingleResult<InsertarCategoriasResult> InsertarCategorias([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Categoria", DbType = "VarChar(50)")] string categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Descripcion", DbType = "VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Usuario_Inserta", DbType = "VarChar(50)")] string usuario_Inserta)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), categoria, descripcion, usuario_Inserta);
+		return ((ISingleResult<InsertarCategoriasResult>)(result.ReturnValue));
+	}
+}
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
 	public partial class Categorias : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -4794,6 +4880,222 @@ namespace E_Comerce
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Repartidor")]
+	public partial class Vw_Repartidor
+	{
+		
+		private int _Id;
+		
+		private string _Repartidores;
+		
+		private string _Correo;
+		
+		private string _Telefono;
+		
+		private string _UltimoUsuarioActualiza;
+		
+		private System.Nullable<System.DateTime> _UltimaFechaActualiza;
+		
+		public Vw_Repartidor()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Repartidores", DbType="VarChar(101)")]
+		public string Repartidores
+		{
+			get
+			{
+				return this._Repartidores;
+			}
+			set
+			{
+				if ((this._Repartidores != value))
+				{
+					this._Repartidores = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
+		public string Correo
+		{
+			get
+			{
+				return this._Correo;
+			}
+			set
+			{
+				if ((this._Correo != value))
+				{
+					this._Correo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(15)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoUsuarioActualiza", DbType="VarChar(50)")]
+		public string UltimoUsuarioActualiza
+		{
+			get
+			{
+				return this._UltimoUsuarioActualiza;
+			}
+			set
+			{
+				if ((this._UltimoUsuarioActualiza != value))
+				{
+					this._UltimoUsuarioActualiza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimaFechaActualiza", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UltimaFechaActualiza
+		{
+			get
+			{
+				return this._UltimaFechaActualiza;
+			}
+			set
+			{
+				if ((this._UltimaFechaActualiza != value))
+				{
+					this._UltimaFechaActualiza = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Proveedor")]
+	public partial class Vw_Proveedor
+	{
+		
+		private int _ID_Proveedor;
+		
+		private string _NombreEmpresa;
+		
+		private string _Telefono;
+		
+		private string _UltimoUsuarioActualiza;
+		
+		private System.Nullable<System.DateTime> _UltimaFechactualiza;
+		
+		public Vw_Proveedor()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Proveedor", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int ID_Proveedor
+		{
+			get
+			{
+				return this._ID_Proveedor;
+			}
+			set
+			{
+				if ((this._ID_Proveedor != value))
+				{
+					this._ID_Proveedor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreEmpresa", DbType="VarChar(50)")]
+		public string NombreEmpresa
+		{
+			get
+			{
+				return this._NombreEmpresa;
+			}
+			set
+			{
+				if ((this._NombreEmpresa != value))
+				{
+					this._NombreEmpresa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(20)")]
+		public string Telefono
+		{
+			get
+			{
+				return this._Telefono;
+			}
+			set
+			{
+				if ((this._Telefono != value))
+				{
+					this._Telefono = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoUsuarioActualiza", DbType="VarChar(50)")]
+		public string UltimoUsuarioActualiza
+		{
+			get
+			{
+				return this._UltimoUsuarioActualiza;
+			}
+			set
+			{
+				if ((this._UltimoUsuarioActualiza != value))
+				{
+					this._UltimoUsuarioActualiza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimaFechactualiza", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UltimaFechactualiza
+		{
+			get
+			{
+				return this._UltimaFechactualiza;
+			}
+			set
+			{
+				if ((this._UltimaFechactualiza != value))
+				{
+					this._UltimaFechactualiza = value;
+				}
+			}
+		}
+	}
+	
 	public partial class sp_EditarDetalleVentaResult
 	{
 		
@@ -5284,16 +5586,16 @@ namespace E_Comerce
 		}
 	}
 	
-	public partial class EditarCategoriasResult
+	public partial class Actualizar_UsuariosResult
 	{
 		
 		private string _Mensaje;
 		
-		public EditarCategoriasResult()
+		public Actualizar_UsuariosResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(34) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(36) NOT NULL", CanBeNull=false)]
 		public string Mensaje
 		{
 			get
@@ -5310,16 +5612,16 @@ namespace E_Comerce
 		}
 	}
 	
-	public partial class EliminarCategoriaResult
+	public partial class SP_InsertarProveedorResult
 	{
 		
 		private string _Mensaje;
 		
-		public EliminarCategoriaResult()
+		public SP_InsertarProveedorResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(44) NOT NULL", CanBeNull=false)]
 		public string Mensaje
 		{
 			get
@@ -5336,16 +5638,94 @@ namespace E_Comerce
 		}
 	}
 	
-	public partial class InsertarCategoriasResult
+	public partial class SP_InsertarProveedorResult1
 	{
 		
 		private string _Mensaje;
 		
-		public InsertarCategoriasResult()
+		public SP_InsertarProveedorResult1()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(44) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ActualizarProveedorResult
+	{
+		
+		private string _Mensaje;
+		
+		public SP_ActualizarProveedorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(46) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_EliminarProveedorResult
+	{
+		
+		private string _Mensaje;
+		
+		public SP_EliminarProveedorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(54) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_EliminarRepartidorResult
+	{
+		
+		private string _Mensaje;
+		
+		public SP_EliminarRepartidorResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(55) NOT NULL", CanBeNull=false)]
 		public string Mensaje
 		{
 			get

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.5, 23" name="E_ComerceDB">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.5, 25" name="E_ComerceDB">
   <DataContextMoniker Name="/E_ComerceDBDataContext" />
   <nestedChildShapes>
     <classShape Id="45c2d795-68d6-4f39-8edb-d95b0acbb7bc" absoluteBounds="0.75, 3.75, 2, 2.1554996744791666">
@@ -122,7 +122,7 @@
         <classShapeMoniker Id="21929181-2f95-4319-b812-99e6ba137a17" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.21875); (4.34375 : 1.21875); (4.34375 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 0.96875); (4.40625 : 0.96875); (4.40625 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/E_ComerceDBDataContext/Proveedores/Proveedores_Productos" />
       <nodes>
         <classShapeMoniker Id="c9f1ca30-a1f3-44a7-ac90-0df81b1112e1" />
@@ -187,6 +187,18 @@
       <DataClassMoniker Name="/E_ComerceDBDataContext/vw_Venta" />
       <nestedChildShapes>
         <elementListCompartment Id="20a5bcb0-3eae-4658-a8c5-bc85fece2b51" absoluteBounds="9.265, 0.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="34c434e6-1454-465d-8d26-f1ed54bf7d46" absoluteBounds="1.375, 22.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/E_ComerceDBDataContext/Vw_Repartidor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0bf7b4dd-46f0-4e3f-8515-50b975549ad0" absoluteBounds="1.3899999999999997, 23.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5cf615d4-a3b1-4232-a084-808cd6501154" absoluteBounds="5.375, 1.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/E_ComerceDBDataContext/Vw_Proveedor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5f87ae16-f83d-4769-9403-a5214a8a2251" absoluteBounds="5.39, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

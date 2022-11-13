@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>E_Comerce</RootNamespace>
     <AssemblyName>E-Comerce</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -49,18 +49,16 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -104,6 +102,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -125,7 +124,12 @@
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformesController.cs" />
+    <Compile Include="Controllers\InicioEComerceController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
+    <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\RepartidorController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="E_ComerceDB.designer.cs">
       <AutoGen>True</AutoGen>
@@ -158,6 +162,8 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
+    <Content Include="Content\Chart.css" />
+    <Content Include="Content\Chart.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -370,6 +376,8 @@
       <DependentUpon>E_ComerceDB.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -469,7 +477,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\JSPersonalizados\DetalleVenta.js" />
+    <Content Include="Scripts\JSPersonalizados\DetalleVent.js" />
+    <Content Include="Scripts\JSPersonalizados\ModalProveedor.js" />
     <Content Include="Scripts\JSPersonalizados\Ventas.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\scripts.js" />
@@ -503,8 +512,8 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\ModificarVentas\Index.cshtml" />
-    <Content Include="Views\ModificarVentas\Details.cshtml" />
     <Content Include="Views\ModificarVentas\Delete.cshtml" />
+    <Content Include="Views\ModificarVentas\Details.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Ventas\Create.cshtml" />
     <Content Include="Views\Compras\Index.cshtml" />
@@ -515,12 +524,28 @@
     <Content Include="Views\ModificarVentas\Edit.cshtml" />
     <Content Include="Views\ModificarVentas\EditarDetalle.cshtml" />
     <Content Include="Views\ModificarVentas\EliminarVenta.cshtml" />
-    <Content Include="Views\Categoria\Index.cshtml" />
-    <Content Include="Views\Categoria\Create.cshtml" />
-    <Content Include="Views\Categoria\Details.cshtml" />
-    <Content Include="Views\Categoria\Edit.cshtml" />
-    <Content Include="Views\Categoria\Delete.cshtml" />
-  </ItemGroup>
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Proveedor\Index.cshtml" />
+    <Content Include="Views\Proveedor\Details.cshtml" />
+    <Content Include="Views\Proveedor\Create.cshtml" />
+    <Content Include="Views\Proveedor\Edit.cshtml" />
+    <Content Include="Views\Proveedor\Delete.cshtml" />
+    <Content Include="Views\Repartidor\Create.cshtml" />
+    <Content Include="Views\Repartidor\Edit.cshtml" />
+    <Content Include="Views\Repartidor\Delete.cshtml" />
+    <Content Include="Views\Informes\Index.cshtml" />
+    <Content Include="Views\Shared\LayoutEcomerce.cshtml" />
+    <Content Include="Views\InicioEComerce\Index.cshtml" />
+
+	  <Content Include="Views\Categoria\Index.cshtml" />
+	  <Content Include="Views\Categoria\Create.cshtml" />
+	  <Content Include="Views\Categoria\Details.cshtml" />
+	  <Content Include="Views\Categoria\Edit.cshtml" />
+	  <Content Include="Views\Categoria\Delete.cshtm"</ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />

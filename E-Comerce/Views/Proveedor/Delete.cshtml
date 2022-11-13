@@ -1,0 +1,45 @@
+﻿@model E_Comerce.Proveedores
+
+@{
+    //ViewBag.Title = "Delete";
+    Layout = null;
+}
+
+<h3>Desea Eliminar este Proveedor?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreEmpresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreEmpresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @*
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+
+        <div class="modal-footer form-group">
+            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Cerrar</button>
+            <input type="submit" value="Aceptar" class="btnDelete btn-outline-info" />
+        </div>
+    }
+</div>

@@ -228,6 +228,25 @@
       <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Vw_Repartidor" Member="Vw_Repartidor">
+    <Type Name="Vw_Repartidor">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Repartidores" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="UltimoUsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UltimaFechaActualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vw_Proveedor" Member="Vw_Proveedor">
+    <Type Name="Vw_Proveedor">
+      <Column Name="ID_Proveedor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NombreEmpresa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="UltimoUsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UltimaFechactualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Id="FunctionId1" Name="dbo.sp_EditarDetalleVenta" Method="sp_EditarDetalleVenta">
     <Parameter Name="ID_DetalleVenta" Parameter="iD_DetalleVenta" Type="System.Int32" DbType="Int" />
     <Parameter Name="ID_Venta" Parameter="iD_Venta" Type="System.Int32" DbType="Int" />
@@ -290,7 +309,93 @@
       <Column Name="Mensaje" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.EditarCategorias" Method="EditarCategorias">
+  <Function Name="dbo.Actualizar_Usuarios" Method="Actualizar_Usuarios">
+    <Parameter Name="Id_Usuario" Parameter="id_Usuario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="correo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="usuario_Actualiza" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="Actualizar_UsuariosResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_InsertarProveedor" Method="SP_InsertarProveedor">
+    <Parameter Name="Nombre_Empresa" Parameter="nombre_Empresa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="telefono" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_InsertarProveedorResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(44) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_InsertarProveedor" Method="SP_InsertarProveedor1">
+    <Parameter Name="Nombre_Empresa" Parameter="nombre_Empresa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="telefono" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_InsertarProveedorResult1">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(44) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ActualizarProveedor" Method="SP_ActualizarProveedor">
+    <Parameter Name="Id_Proveedor" Parameter="id_Proveedor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre_Empresa" Parameter="nombre_Empresa" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="telefono" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_ActualizarProveedorResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(46) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_EliminarProveedor" Method="SP_EliminarProveedor">
+    <Parameter Name="Id_Proveedor" Parameter="id_Proveedor" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_EliminarProveedorResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(54) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_EliminarRepartidor" Method="SP_EliminarRepartidor">
+    <Parameter Name="ID_Repartidor" Parameter="iD_Repartidor" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_EliminarRepartidorResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(55) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_InsertarRepartido" Method="SP_InsertarRepartido">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Apellido" Parameter="apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="correo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="telefono" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="Usuario_Inserta" Parameter="usuario_Inserta" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_InsertarRepartidoResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(34) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_EditarRepartidor" Method="SP_EditarRepartidor">
+    <Parameter Name="ID_Repartidor" Parameter="iD_Repartidor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Apellido" Parameter="apellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="correo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="telefono" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="Usuario_Actualiza" Parameter="usuario_Actualiza" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_EditarRepartidorResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(34) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ProMasV" Method="sp_ProMasV">
+    <Parameter Name="fechamin" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="fechamax" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="sp_ProMasVResult">
+      <Column Name="Producto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_GuardarCompra" Method="SP_GuardarCompra">
+    <Parameter Name="ID_Usuario" Parameter="iD_Usuario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrecioTotal" Parameter="precioTotal" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Fecha" Parameter="fecha" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SP_GuardarCompraResult">
+      <Column Name="" Member="Column1" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+
+   <Function Name="dbo.EditarCategorias" Method="EditarCategorias">
     <Parameter Name="ID_Categoria" Parameter="iD_Categoria" Type="System.Int32" DbType="Int" />
     <Parameter Name="Categoria" Parameter="categoria" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(100)" />
