@@ -545,7 +545,8 @@
 	  <Content Include="Views\Categoria\Create.cshtml" />
 	  <Content Include="Views\Categoria\Details.cshtml" />
 	  <Content Include="Views\Categoria\Edit.cshtml" />
-	  <Content Include="Views\Categoria\Delete.cshtm"</ItemGroup>
+	  <Content Include="Views\Categoria\Delete.cshtm"/>
+	</ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
