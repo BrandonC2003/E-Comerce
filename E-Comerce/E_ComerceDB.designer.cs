@@ -9,6 +9,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.ComponentModel;
+using System.Data.Linq;
+using System.Data.Linq.Mapping;
+
 namespace E_Comerce
 {
 	using System.Data.Linq;
