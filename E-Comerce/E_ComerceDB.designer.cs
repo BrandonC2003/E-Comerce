@@ -9,11 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.ComponentModel;
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
-
 namespace E_Comerce
 {
 	using System.Data.Linq;
@@ -372,30 +367,30 @@ namespace E_Comerce
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Usuario, precioTotal, fecha);
 			return ((ISingleResult<SP_GuardarCompraResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCategoria")]
+		public ISingleResult<EliminarCategoriaResult> EliminarCategoria([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria);
+			return ((ISingleResult<EliminarCategoriaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EditarCategorias")]
+		public ISingleResult<EditarCategoriasResult> EditarCategorias([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Categoria", DbType="VarChar(50)")] string categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Actualiza", DbType="VarChar(50)")] string usuario_Actualiza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria, categoria, descripcion, usuario_Actualiza);
+			return ((ISingleResult<EditarCategoriasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertarCategorias")]
+		public ISingleResult<InsertarCategoriasResult> InsertarCategorias([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Categoria", DbType="VarChar(50)")] string categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Inserta", DbType="VarChar(50)")] string usuario_Inserta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), categoria, descripcion, usuario_Inserta);
+			return ((ISingleResult<InsertarCategoriasResult>)(result.ReturnValue));
+		}
 	}
-
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.EditarCategorias")]
-	public ISingleResult<EditarCategoriasResult> EditarCategorias([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "ID_Categoria", DbType = "Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Categoria", DbType = "VarChar(50)")] string categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Descripcion", DbType = "VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Usuario_Actualiza", DbType = "VarChar(50)")] string usuario_Actualiza)
-	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria, categoria, descripcion, usuario_Actualiza);
-		return ((ISingleResult<EditarCategoriasResult>)(result.ReturnValue));
-	}
-
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.EliminarCategoria")]
-	public ISingleResult<EliminarCategoriaResult> EliminarCategoria([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "ID_Categoria", DbType = "Int")] System.Nullable<int> iD_Categoria)
-	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria);
-		return ((ISingleResult<EliminarCategoriaResult>)(result.ReturnValue));
-	}
-
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "dbo.InsertarCategorias")]
-	public ISingleResult<InsertarCategoriasResult> InsertarCategorias([global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Categoria", DbType = "VarChar(50)")] string categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Descripcion", DbType = "VarChar(100)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name = "Usuario_Inserta", DbType = "VarChar(50)")] string usuario_Inserta)
-	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), categoria, descripcion, usuario_Inserta);
-		return ((ISingleResult<InsertarCategoriasResult>)(result.ReturnValue));
-	}
-}
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
 	public partial class Categorias : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -5864,6 +5859,84 @@ namespace E_Comerce
 				if ((this._Column1 != value))
 				{
 					this._Column1 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class EliminarCategoriaResult
+	{
+		
+		private string _Mensaje;
+		
+		public EliminarCategoriaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class EditarCategoriasResult
+	{
+		
+		private string _Mensaje;
+		
+		public EditarCategoriasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(34) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class InsertarCategoriasResult
+	{
+		
+		private string _Mensaje;
+		
+		public InsertarCategoriasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
 				}
 			}
 		}
