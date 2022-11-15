@@ -374,3 +374,23 @@ begin
 	 end catch
 	end
 go
+----------Procedimiento almacenado que retorna total de ventas de los ultimos 3 meses--
+create procedure SP_RetornarVentas
+as 
+begin 
+
+declare @fecha_maxima datetime;
+declare @fecha_minima datetime;
+
+set @fecha_maxima = ( select MAX(fecha) from Ventas)
+
+set @fecha_minima = DATEADD(MONTH,-2,@fecha_maxima);
+SET @fecha_minima = DATEADD(DAY,- (day(@fecha_minima) -1 ), @fecha_minima);
+
+select year(fecha) as 'Año',DATENAME(MONTH,fecha) as 'Mes',sum(PrecioTotal) as 'Total' from Ventas
+where Fecha between @fecha_minima and @fecha_maxima 
+group by year(fecha), MONTH(fecha), DATENAME(MONTH, Fecha)
+order by year(Fecha), MONTH(Fecha) asc  
+
+end
+go

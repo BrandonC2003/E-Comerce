@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<E_Comerce.sp_ProMasVResult>
 
+
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Informes</h2>
 
 <div class="container text-center">
     <div class="row row-cols-2">
@@ -21,7 +23,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <b>Productos Mas Vendido</b>
+                    <b>Ventas Ultimos 3 Meses</b>
                 </div>
                 <div class="card-body">
                     <canvas id="barras" width="10" height="5"></canvas>
@@ -29,34 +31,67 @@
             </div>
         </div>
         <div class="col">
-
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Producto)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Total)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Producto)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Total)</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
+            <div class="card">
+                <div class="card-header">
+                    <b>Tabla de Valores</b>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Producto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Total)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Producto)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="col">Column4</div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <b>Tabla de Valores</b>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Producto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Total)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Producto)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 @section scripts{
     <script>
 
@@ -104,11 +139,11 @@
             dataType: "json",
             contentType: "aplication/json; charset=utf-8",
             success: function (data) {
-                var productos = [];
+                var meses = [];
                 var total = [];
                 console.log(data)
                 for (var i = 0; i < data.length; i++) {
-                    productos.push(data[i].Producto)
+                    meses.push(data[i].Mes)
                     total.push(data[i].Total)
 
                 }
@@ -117,9 +152,9 @@
 
                     type: 'bar',
                     data: {
-                        labels: productos,
+                        labels: meses,
                         datasets: [{
-                            label:"productos",
+                            label:"Mes",
                             backgroundColor: ['#007bff', '#dc3545', '#ffc107'],
                             data:total,
                         }]

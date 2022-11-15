@@ -16,8 +16,16 @@ namespace E_Comerce.Controllers
             DateTime fem = new DateTime(2016, 01, 06);
             DateTime fema = new DateTime(2022, 09, 30);
             List<sp_ProMasVResult> pmv = (from c in informe.sp_ProMasV(fem, fema) select c).ToList();
-            ViewBag.productos = pmv;
+
             return View(pmv);
+        }
+
+        public ActionResult Tabla()
+        {
+            
+            List<SP_RetornarVentasResult> rv = (from v in informe.SP_RetornarVentas() select v).ToList();
+
+            return View(rv);
         }
 
         public ActionResult Grafico()
@@ -34,10 +42,9 @@ namespace E_Comerce.Controllers
 
         public ActionResult Graficobar()
         {
-            DateTime fem = new DateTime(2016, 01, 06);
-            DateTime fema = new DateTime(2022, 09, 30);
-            ISingleResult<sp_ProMasVResult> result =
-         informe.sp_ProMasV(fem, fema);
+            
+            ISingleResult<SP_RetornarVentasResult> result =
+         informe.SP_RetornarVentas();
 
 
             return Json(result, JsonRequestBehavior.AllowGet);
