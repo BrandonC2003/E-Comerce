@@ -388,6 +388,13 @@ namespace E_Comerce
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), categoria, descripcion, usuario_Inserta);
 			return ((ISingleResult<InsertarCategoriasResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_RetornarVentas")]
+		public ISingleResult<SP_RetornarVentasResult> SP_RetornarVentas()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_RetornarVentasResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
@@ -5937,6 +5944,68 @@ namespace E_Comerce
 				if ((this._Mensaje != value))
 				{
 					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_RetornarVentasResult
+	{
+		
+		private System.Nullable<int> _Año;
+		
+		private string _Mes;
+		
+		private System.Nullable<decimal> _Total;
+		
+		public SP_RetornarVentasResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Año", DbType="Int")]
+		public System.Nullable<int> Año
+		{
+			get
+			{
+				return this._Año;
+			}
+			set
+			{
+				if ((this._Año != value))
+				{
+					this._Año = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mes", DbType="NVarChar(30)")]
+		public string Mes
+		{
+			get
+			{
+				return this._Mes;
+			}
+			set
+			{
+				if ((this._Mes != value))
+				{
+					this._Mes = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
 				}
 			}
 		}
