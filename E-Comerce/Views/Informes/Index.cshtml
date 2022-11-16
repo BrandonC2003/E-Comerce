@@ -70,20 +70,24 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Producto)
+                                    Año
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Total)
+                                    Mes
+                                </th>
+                                <th>
+                                    Total Ventas
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in ViewBag.RetorV)
                             {
-                                <tr>
-                                    <td>@Html.DisplayFor(modelItem => item.Producto)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Total)</td>
-                                </tr>
+                            <tr>
+                                <td>@item.Año</td>
+                                <td>@item.Mes</td>
+                                <td>@item.Total</td>
+                            </tr>
                             }
                         </tbody>
                     </table>
