@@ -4,7 +4,7 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2><i class="fa fa-trash-alt"></i> Borrar registro</h2>
 
 <h3>Estas seguro de querer eliminar este registro?</h3>
 <div>
@@ -61,12 +61,20 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a class="btn btn-dark" href="@Url.Action("Index", "Categoria")">
+                    <i class="fa fa-arrow-circle-left"></i>
+                    volver
+                </a>
+                <input type="submit" value="Eliminar" class="btn btn-warning" />
+            </div>
         </div>
+
+
     }
 </div>

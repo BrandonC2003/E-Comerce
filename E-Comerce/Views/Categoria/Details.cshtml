@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2><i class="fa fa-book"></i> Detalles</h2>
 
 <div>
     <h4>Categorias</h4>
@@ -61,6 +61,12 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Categoria }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-dark" href="@Url.Action("Index", "Categoria")">
+        <i class="fa fa-arrow-circle-left"></i>
+        volver
+    </a>
+    <a class="btn btn-warning" href="@Url.Action("Edit", "Categoria", new { id = Model.ID_Categoria })">
+        Editar
+    </a>
+
 </p>
