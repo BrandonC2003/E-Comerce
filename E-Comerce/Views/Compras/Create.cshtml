@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Nueva compra";
 }
-<br/>
+<br />
 <div class="card mb-4">
     <div class="card-header py-3">
         <h4 class="mb-0">Nueva compra</h4>
@@ -13,7 +13,7 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">         
+            <div class="form-horizontal">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -41,9 +41,29 @@
                 </div>
             </div>
         }
+        <div class="VistaParcial">
+
+        </div>
+    
     </div>
 </div>
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function llamarVistaParcial() {
+        $.ajax({
+            cache: false,
+            async: true,
+            type: "GET",
+            url: '@Url.Action("Index", "Ventas")',
+            data: {},
+            success: function (response) {
+                $('.VistaParcial').html('');
+                $('.VistaParcial').html(response);
+            }
+        });
+    }
+</script>
 }

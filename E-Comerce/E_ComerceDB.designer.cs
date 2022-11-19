@@ -361,13 +361,6 @@ namespace E_Comerce
 			return ((ISingleResult<sp_ProMasVResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_GuardarCompra")]
-		public ISingleResult<SP_GuardarCompraResult> SP_GuardarCompra([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioTotal", DbType="Int")] System.Nullable<int> precioTotal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha", DbType="DateTime")] System.Nullable<System.DateTime> fecha)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Usuario, precioTotal, fecha);
-			return ((ISingleResult<SP_GuardarCompraResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCategoria")]
 		public ISingleResult<EliminarCategoriaResult> EliminarCategoria([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria)
 		{
@@ -394,6 +387,13 @@ namespace E_Comerce
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_RetornarVentasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_GuardarCompra")]
+		public ISingleResult<SP_GuardarCompraResult> SP_GuardarCompra([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Usuario", DbType="Int")] System.Nullable<int> id_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioTotal", DbType="Money")] System.Nullable<decimal> precioTotal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Usuario, precioTotal, usuario);
+			return ((ISingleResult<SP_GuardarCompraResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -5845,32 +5845,6 @@ namespace E_Comerce
 		}
 	}
 	
-	public partial class SP_GuardarCompraResult
-	{
-		
-		private System.Nullable<decimal> _Column1;
-		
-		public SP_GuardarCompraResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Decimal(38,0)")]
-		public System.Nullable<decimal> Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class EliminarCategoriaResult
 	{
 		
@@ -6006,6 +5980,50 @@ namespace E_Comerce
 				if ((this._Total != value))
 				{
 					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_GuardarCompraResult
+	{
+		
+		private System.Nullable<int> _IdTransaccion;
+		
+		private string _mensaje;
+		
+		public SP_GuardarCompraResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTransaccion", DbType="Int")]
+		public System.Nullable<int> IdTransaccion
+		{
+			get
+			{
+				return this._IdTransaccion;
+			}
+			set
+			{
+				if ((this._IdTransaccion != value))
+				{
+					this._IdTransaccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mensaje", DbType="VarChar(22) NOT NULL", CanBeNull=false)]
+		public string mensaje
+		{
+			get
+			{
+				return this._mensaje;
+			}
+			set
+			{
+				if ((this._mensaje != value))
+				{
+					this._mensaje = value;
 				}
 			}
 		}
