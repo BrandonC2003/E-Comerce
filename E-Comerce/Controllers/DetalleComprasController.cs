@@ -6,32 +6,31 @@ using System.Web.Mvc;
 
 namespace E_Comerce.Controllers
 {
-    public class DetalleCompraController : Controller
+    public class DetalleComprasController : Controller
     {
-        // GET: DetalleCompra
+        E_ComerceDBDataContext E_ComerceDB = new E_ComerceDBDataContext();
+        // GET: DetalleCompras
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: DetalleCompra/Details/5
+        // GET: DetalleCompras/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
-        // GET: DetalleCompra/Create
-        public ActionResult CreaDetalle()
-        {
-            return View();
-        }
 
-        // GET: DetalleCompra/Create
+        // GET: DetalleCompras/Create
         public ActionResult Create()
         {
+            List<Productos> products = (from p in E_ComerceDB.Productos select p).ToList();
+
+            ViewBag.Lista = products;
             return View();
         }
 
-        // POST: DetalleCompra/Create
+        // POST: DetalleCompras/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -47,13 +46,13 @@ namespace E_Comerce.Controllers
             }
         }
 
-        // GET: DetalleCompra/Edit/5
+        // GET: DetalleCompras/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: DetalleCompra/Edit/5
+        // POST: DetalleCompras/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -69,13 +68,13 @@ namespace E_Comerce.Controllers
             }
         }
 
-        // GET: DetalleCompra/Delete/5
+        // GET: DetalleCompras/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: DetalleCompra/Delete/5
+        // POST: DetalleCompras/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

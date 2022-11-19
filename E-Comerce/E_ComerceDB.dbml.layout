@@ -108,7 +108,7 @@
         <classShapeMoniker Id="90ee2466-b3b4-4d70-a805-c5ecf109c377" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.6963525390625); (12.75 : 5.6963525390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 5.82615397135417); (12.75 : 5.82615397135417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/E_ComerceDBDataContext/Productos/Productos_DetalleVenta" />
       <nodes>
         <classShapeMoniker Id="21929181-2f95-4319-b812-99e6ba137a17" />
@@ -122,7 +122,7 @@
         <classShapeMoniker Id="21929181-2f95-4319-b812-99e6ba137a17" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 0.90625); (4.40625 : 0.90625); (4.40625 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.75 : 2.90549967447917); (1.75 : 3.5); (3 : 3.5); (3 : 4.80850341796875); (3.5 : 4.80850341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/E_ComerceDBDataContext/Proveedores/Proveedores_Productos" />
       <nodes>
         <classShapeMoniker Id="c9f1ca30-a1f3-44a7-ac90-0df81b1112e1" />
@@ -199,6 +199,12 @@
       <DataClassMoniker Name="/E_ComerceDBDataContext/Vw_Proveedor" />
       <nestedChildShapes>
         <elementListCompartment Id="5f87ae16-f83d-4769-9403-a5214a8a2251" absoluteBounds="5.39, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c579bddb-43cb-4496-a48f-49ec2dd28133" absoluteBounds="3.25, 0.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/E_ComerceDBDataContext/V_DetalleCompra" />
+      <nestedChildShapes>
+        <elementListCompartment Id="68cd49ce-5d7f-4dc3-b3c6-aa1075f6cc0c" absoluteBounds="3.2649999999999997, 1.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

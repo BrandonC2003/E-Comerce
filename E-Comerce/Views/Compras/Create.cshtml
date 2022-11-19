@@ -3,6 +3,20 @@
 @{
     ViewBag.Title = "Nueva compra";
 }
+<div class="modal fade" id="ModalVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-bg-dark">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Productos</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Cargando...
+            </div>
+        </div>
+    </div>
+</div>
+
 <br />
 <div class="card mb-4">
     <div class="card-header py-3">
@@ -16,7 +30,7 @@
             <div class="form-horizontal">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-5">
                         @Html.LabelFor(model => model.PrecioTotal, htmlAttributes: new { @class = "control-label col-md-12" })
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.PrecioTotal, new { htmlAttributes = new { @class = "form-control" } })
@@ -24,15 +38,29 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-5">
                         @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-12" })
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
                         </div>
                     </div>
+
+                    <div class="form-group col-md-2">
+                        <label></label>
+                        <div class="col-md-10">
+                            <input type="button" id="btnAgregar" href="#ModalVenta" data-bs-toggle="modal" value="Agregar produto" class="btn btn-secondary me-md-2" />
+                        </div>
+                    </div>
                 </div>
                 <br />
+
+                @*<div class="VistaParcial">
+                        @{
+                            Html.RenderAction("Create", "DetalleCompras");
+                        }
+                    </div>*@
+
                 <div class="form-group">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                         <input type="submit" value="Guardar" class="btn btn-secondary me-md-2" />
@@ -41,29 +69,15 @@
                 </div>
             </div>
         }
-        <div class="VistaParcial">
 
-        </div>
-    
     </div>
 </div>
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
-    function llamarVistaParcial() {
-        $.ajax({
-            cache: false,
-            async: true,
-            type: "GET",
-            url: '@Url.Action("Index", "Ventas")',
-            data: {},
-            success: function (response) {
-                $('.VistaParcial').html('');
-                $('.VistaParcial').html(response);
-            }
-        });
-    }
-</script>
+    <script src="~/Scripts/JSPersonalizados/EComerce.js"></script>
+    <script>
+        MostrarModal("btnAgregar", "/DetalleCompras/Create");
+    </script>
 }

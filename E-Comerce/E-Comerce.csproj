@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\DetalleComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformesController.cs" />
     <Compile Include="Controllers\InicioEComerceController.cs" />
@@ -479,6 +480,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\JSPersonalizados\DetalleVent.js" />
+    <Content Include="Scripts\JSPersonalizados\EComerce.js" />
     <Content Include="Scripts\JSPersonalizados\ModalProveedor.js" />
     <Content Include="Scripts\JSPersonalizados\Ventas.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -547,10 +549,11 @@
     <Content Include="Views\Categoria\Edit.cshtml" />
     <Content Include="Views\Categoria\Delete.cshtm" />
     <Content Include="Views\Categoria\Index.cshtml" />
-	<Content Include="Views\Categoria\Create.cshtml" />
-	<Content Include="Views\Categoria\Details.cshtml" />
-	<Content Include="Views\Categoria\Edit.cshtml" />
-	<Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\Categoria\Create.cshtml" />
+    <Content Include="Views\Categoria\Details.cshtml" />
+    <Content Include="Views\Categoria\Edit.cshtml" />
+    <Content Include="Views\Categoria\Delete.cshtml" />
+    <Content Include="Views\DetalleCompras\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
