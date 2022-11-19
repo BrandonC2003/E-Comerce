@@ -1,44 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace E_Comerce.Controllers
 {
+    public class DetCompras
+    {
+        public int ID_Compra { get; set; }
+        public int ID_Producto { get; set; }
+        public int Cantidad { get; set; }
+        public int Total { get; set; }
+    };
     public class ComprasController : Controller
     {
         E_ComerceDBDataContext E_ComerceDB = new E_ComerceDBDataContext();
-        
-        public void AgregarDetalles()
-        {
-            DataTable detalles = new DataTable();
-            detalles.Clear();
-            detalles.Columns.Add("ID_Compra");
-            detalles.Columns.Add("ID_Producto");
-            detalles.Columns.Add("Cantidad");
-            detalles.Columns.Add("Total");
-            DataRow row = detalles.NewRow();
-            row["ID_Compra"] = 1;
-            row["ID_Producto"] = 1;
-            row["Cantidad"] = 1;
-            row["Total"] = 10;
-            detalles.Rows.Add(row);
 
-            DataTable DetCompra = new DataTable();
-            DetCompra.Columns.Add("ID_Compra", typeof(Int64));
-            DetCompra.Columns.Add("ID_Producto", typeof(Int64));
-            DetCompra.Columns.Add("Cantidad", typeof(Int64));
-            DetCompra.Columns.Add("Total", typeof(decimal));
-            //Get student name of string type
-             var courseList = E_ComerceDB.ExecuteCommand("SP_DetalleCompra", DetCompra);
-            //Database.SqlQuery<Course>("exec GetCoursesByStudentId @StudentId ", idParam).ToList<Course>();
-
-        }
         // GET: Compras
         public ActionResult Index()
         {
@@ -71,10 +55,45 @@ namespace E_Comerce.Controllers
             try
             {
                 // TODO: Add insert logic here
-                var items = E_ComerceDB.SP_GuardarCompra(1,10,DateTime.Now);
-                AgregarDetalles();
+                //var items = E_ComerceDB.SP_GuardarCompra(1,10,DateTime.Now);
                 //var id = items[0].
-                var id = items.Select(p => p.Column1).FirstOrDefault();
+                //var id = items.Select(p => p.Column1).FirstOrDefault();
+
+
+                /*DetCompras dt = new DetCompras();
+                dt.ID_Compra = 1;
+                dt.ID_Producto = 1;
+                dt.Cantidad = 12;
+                dt.Total = 3;*/
+
+               /* DataTable d1t = new DataTable();
+                d1t.Clear();
+                d1t.Columns.Add("ID_Compra", typeof(int));
+                d1t.Columns.Add("ID_Producto", typeof(int));
+                d1t.Columns.Add("Cantidad",typeof(int));
+                d1t.Columns.Add("Total", typeof(Decimal));
+                DataRow _ravi = d1t.NewRow();
+                _ravi["ID_Compra"] = 1;
+                _ravi["ID_Producto"] = 1;
+                _ravi["Cantidad"] = 2;
+                _ravi["Total"] = 500.00;
+                d1t.Rows.Add(_ravi);*/
+
+
+                var table = new DataTable();
+                table.Columns.Add("ID_Compra", typeof(int));
+                table.Columns.Add("ID_Producto", typeof(int));
+                table.Columns.Add("Cantidad", typeof(int));
+                table.Columns.Add("Total", typeof(decimal));
+                DataRow _ravi = table.NewRow();
+                _ravi["ID_Compra"] = 1;
+                _ravi["ID_Producto"] = 1;
+                _ravi["Cantidad"] = 2;
+                _ravi["Total"] = 500.00;
+                table.Rows.Add(_ravi);
+                var pList = new SqlParameter("@DetCompras", SqlDbType.Structured);
+                var resultado = E_ComerceDB.ExecuteCommand("EXEC SP_GuardarDetalleCompra", pList);
+
 
                 E_ComerceDB.SubmitChanges();
                 return RedirectToAction("Index");
