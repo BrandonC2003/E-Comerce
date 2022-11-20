@@ -19,6 +19,7 @@ namespace E_Comerce
 	using System.Linq;
 	using System.Linq.Expressions;
 	using System.ComponentModel;
+	using System.ComponentModel.DataAnnotations;
 	using System;
 	
 	
@@ -739,7 +740,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioTotal", DbType="Money")]
-		public System.Nullable<decimal> PrecioTotal
+        [DisplayName("Precio total")]
+        public System.Nullable<decimal> PrecioTotal
 		{
 			get
 			{
@@ -779,7 +781,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Inserta", DbType="VarChar(50)")]
-		public string Usuario_Inserta
+        [DisplayName("Usuario")]
+        public string Usuario_Inserta
 		{
 			get
 			{
@@ -4292,6 +4295,7 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoUsuarioActualiza", DbType="VarChar(50)")]
+		[DisplayName("Último usuario actualiza")]
 		public string UltimoUsuarioActualiza
 		{
 			get
@@ -4308,7 +4312,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimaFechaActualiza", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UltimaFechaActualiza
+        [DisplayName("Última fecha actualiza")]
+        public System.Nullable<System.DateTime> UltimaFechaActualiza
 		{
 			get
 			{
@@ -4952,7 +4957,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioUnitario", DbType="Money")]
-		public System.Nullable<decimal> PrecioUnitario
+        [Required()]
+        public System.Nullable<decimal> PrecioUnitario
 		{
 			get
 			{
@@ -5113,7 +5119,9 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Producto", DbType="Int")]
-		public System.Nullable<int> ID_Producto
+        [DisplayName("Producto")]
+		[Required()]
+        public System.Nullable<int> ID_Producto
 		{
 			get
 			{
@@ -5161,7 +5169,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
-		public System.Nullable<int> Cantidad
+        [Required()]
+        public System.Nullable<int> Cantidad
 		{
 			get
 			{
@@ -5177,7 +5186,10 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioUnitario", DbType="Money")]
-		public System.Nullable<decimal> PrecioUnitario
+        [DisplayName("Precio unitario")]
+        [Required()]
+
+        public System.Nullable<decimal> PrecioUnitario
 		{
 			get
 			{
@@ -5193,7 +5205,9 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
-		public System.Nullable<decimal> Total
+        [DisplayName("Sub-Total")]
+        [Required()]
+        public System.Nullable<decimal> Total
 		{
 			get
 			{

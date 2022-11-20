@@ -30,10 +30,12 @@
         }
         @{if (Session["Compra"] != null)
             {
-                foreach (var item in Session["Compra"] as List<V_DetalleCompra>)
-                {
-                    double totalItem = (double)(item.Cantidad * item.PrecioUnitario);
-                    totalACancelar += totalItem;
+                var det = Session["Compra"] as List<V_DetalleCompra>;
+                if (det.Count > 0) {
+                    foreach (var item in Session["Compra"] as List<V_DetalleCompra>)
+                    {
+                        double totalItem = (double)(item.Cantidad * item.PrecioUnitario);
+                        totalACancelar += totalItem;
                 <tr>
 
                     <td>
@@ -54,9 +56,10 @@
                         </a>                        
                     </td>
                 </tr>
+                        }
+                    }
                 }
             }
-        }
     </tbody>
     <tfoot>
         <tr>

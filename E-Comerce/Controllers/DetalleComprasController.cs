@@ -83,7 +83,10 @@ namespace E_Comerce.Controllers
             try
             {
                 // TODO: Add insert logic here
-                AgregarACompra(datos);
+                if (ModelState.IsValid)
+                {
+                    AgregarACompra(datos);
+                }
                 return RedirectToAction("Create", "Compras");
             }
             catch
