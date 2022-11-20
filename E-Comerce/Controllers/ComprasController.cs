@@ -28,7 +28,19 @@ namespace E_Comerce.Controllers
         // GET: Compras/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Session["Compra"] = null;
+            if (Session["Compra"] == null)
+            {
+                List<V_DetalleCompra> detcompra = (from p in E_ComerceDB.V_DetalleCompra
+                                                   where p.ID_Compra == id
+                                                   select p).ToList();
+                V_Compras Compra = (from c in E_ComerceDB.V_Compras 
+                               where c.Id == id 
+                               select c).Single();
+                Session["Compra"] = detcompra;
+                return View(Compra);
+            }
+            return RedirectToAction("Index", "Compras");
         }
 
         // GET: Compras/Create
@@ -36,38 +48,51 @@ namespace E_Comerce.Controllers
         {
             return View();
         }
-        // GET: Compras/Create
-        public ActionResult Prueba()
+        public ActionResult Nuevacompra()
         {
-            return View();
+            Session["Compra"] = null;
+            return RedirectToAction("Create", "Compras");
         }
 
         // POST: Compras/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection, Compras compras, List<Detalle_Compra> detcompras)
+        public ActionResult Create(FormCollection collection, Compras compras)
         {
             try
             {
                 // TODO: Add insert logic here
-                compras.ID_Usuario = 1;//int.Parse(Session[""].ToString());
-                compras.Usuario_Inserta = "Eduardo"; //Session[""].ToString();
-                var resultado = E_ComerceDB.SP_GuardarCompra(compras.ID_Usuario, compras.PrecioTotal, compras.Usuario_Inserta).Single();
-                var ListaDetalleCompra = (from per in detcompras
-                          where per.ID_Compra == null
-                          select new Detalle_Compra
-                          {
-                              ID_Compra = resultado.IdTransaccion,
-                              ID_Producto = per.ID_Producto,
-                              Cantidad = per.Cantidad,
-                              Total = per.Total,
-                              Usuario_Inserta = compras.Usuario_Inserta,
-                              Fecha_Inserta = compras.Fecha_Inserta
-                          }).ToList();
+                if (Session["Compra"] != null)
+                {
+                    List<Detalle_Compra> detCompras = (List<Detalle_Compra>)Session["Compra"];
+                    if (detCompras.Count > 0)
+                    {
+                        compras.ID_Usuario = 1;//int.Parse(Session[""].ToString());
+                        compras.Usuario_Inserta = "Eduardo"; //Session[""].ToString();
+                        compras.PrecioTotal = detCompras.Sum(x => x.Cantidad * x.PrecioUnitario);
 
-                E_ComerceDB.Detalle_Compra.InsertAllOnSubmit(ListaDetalleCompra);
-                
-                E_ComerceDB.SubmitChanges();
-                return RedirectToAction("Index");
+                        var resultado = E_ComerceDB.SP_GuardarCompra(compras.ID_Usuario, compras.PrecioTotal, compras.Usuario_Inserta).Single();
+                        var ListaDetalleCompra = (from d in detCompras
+                                                  where d.ID_Compra == null
+                                                  select new Detalle_Compra
+                                                  {
+                                                      ID_Compra = resultado.IdTransaccion,
+                                                      ID_Producto = d.ID_Producto,
+                                                      Cantidad = d.Cantidad,
+                                                      PrecioUnitario = d.PrecioUnitario,
+                                                      Total = d.Cantidad * d.PrecioUnitario,
+                                                      Usuario_Inserta = compras.Usuario_Inserta,
+                                                      Fecha_Inserta = DateTime.Now,
+                                                  }).ToList();
+
+                        E_ComerceDB.Detalle_Compra.InsertAllOnSubmit(ListaDetalleCompra);
+
+                        E_ComerceDB.SubmitChanges();
+                        Session["Compra"] = null;
+                        return RedirectToAction("Index");
+                    }
+                    return RedirectToAction("Create", "Compras");
+                }
+                return RedirectToAction("Create", "Compras");
             }
             catch
             {

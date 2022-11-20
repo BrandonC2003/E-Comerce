@@ -15,6 +15,52 @@ namespace E_Comerce.Controllers
             return View();
         }
 
+        public void AgregarACompra(V_DetalleCompra datos)
+        {
+            Productos producto = (from c in E_ComerceDB.Productos
+                             where c.ID_Producto == datos.ID_Producto
+                             select c).Single();
+            if (Session["Compra"] == null)
+            {
+                List<V_DetalleCompra> detcompra = new List<V_DetalleCompra>();
+                detcompra.Add(new V_DetalleCompra
+                {
+                    ID_Producto = Convert.ToInt32(datos.ID_Producto),
+                    NombreProducto = producto.NombreProducto,
+                    Cantidad = Convert.ToInt32(datos.Cantidad),
+                    PrecioUnitario = datos.PrecioUnitario,
+                    Total = datos.Total
+                });
+                Session["Compra"] = detcompra;
+            }
+            else
+            {
+                List<V_DetalleCompra> detcompra = (List<V_DetalleCompra>)Session["Compra"];                
+                int existeIndex = ObtenerIdPpoducto(Convert.ToInt32(datos.ID_Producto));
+                if (existeIndex == -1)
+                    detcompra.Add(new V_DetalleCompra
+                    {
+                        ID_Producto = Convert.ToInt32(datos.ID_Producto),
+                        NombreProducto = producto.NombreProducto,
+                        Cantidad = Convert.ToInt32(datos.Cantidad),
+                        PrecioUnitario = datos.PrecioUnitario,
+                        Total = datos.Total
+                    });
+                else
+                    detcompra[existeIndex].Cantidad= detcompra[existeIndex].Cantidad + datos.Cantidad;
+                Session["Compra"] = detcompra;                
+            }
+        }       
+        private int ObtenerIdPpoducto(int id)
+        {
+            List<V_DetalleCompra> detcompra = (List<V_DetalleCompra>)Session["Compra"];        
+            for (int i = 0; i < detcompra.Count; i++)
+            {
+                if(detcompra[i].ID_Producto == id)
+                    return i;
+            }
+            return -1;
+        }
         // GET: DetalleCompras/Details/5
         public ActionResult Details(int id)
         {
@@ -32,13 +78,13 @@ namespace E_Comerce.Controllers
 
         // POST: DetalleCompras/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, V_DetalleCompra datos)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                AgregarACompra(datos);
+                return RedirectToAction("Create", "Compras");
             }
             catch
             {
@@ -69,11 +115,20 @@ namespace E_Comerce.Controllers
         }
 
         // GET: DetalleCompras/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Eliminar(int id)
         {
-            return View();
-        }
+            try
+            {
+                List<V_DetalleCompra> detCompra = (List<V_DetalleCompra>)Session["Compra"];
+                detCompra.RemoveAt(ObtenerIdPpoducto(id));
+                return RedirectToAction("Create", "Compras");
+            }
+            catch
+            {
+                return RedirectToAction("Create", "Compras");
+            }
 
+        }
         // POST: DetalleCompras/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

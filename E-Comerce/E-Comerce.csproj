@@ -554,6 +554,8 @@
     <Content Include="Views\Categoria\Edit.cshtml" />
     <Content Include="Views\Categoria\Delete.cshtml" />
     <Content Include="Views\DetalleCompras\Create.cshtml" />
+    <Content Include="Views\DetalleCompras\Index.cshtml" />
+    <Content Include="Views\Compras\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
