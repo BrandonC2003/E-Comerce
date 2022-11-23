@@ -21,6 +21,7 @@ namespace E_Comerce
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.bundle.js",
+                      "~/Scripts/jquery.validate*",
                       "~/Scripts/Chart.min.js"));
 
             bundles.Add(new Bundle("~/bundles/complementos").Include(
