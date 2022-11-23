@@ -1,44 +1,23 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Linq;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace E_Comerce.Controllers
 {
     public class ComprasController : Controller
     {
         E_ComerceDBDataContext E_ComerceDB = new E_ComerceDBDataContext();
-        
-        public void AgregarDetalles()
-        {
-            DataTable detalles = new DataTable();
-            detalles.Clear();
-            detalles.Columns.Add("ID_Compra");
-            detalles.Columns.Add("ID_Producto");
-            detalles.Columns.Add("Cantidad");
-            detalles.Columns.Add("Total");
-            DataRow row = detalles.NewRow();
-            row["ID_Compra"] = 1;
-            row["ID_Producto"] = 1;
-            row["Cantidad"] = 1;
-            row["Total"] = 10;
-            detalles.Rows.Add(row);
 
-            DataTable DetCompra = new DataTable();
-            DetCompra.Columns.Add("ID_Compra", typeof(Int64));
-            DetCompra.Columns.Add("ID_Producto", typeof(Int64));
-            DetCompra.Columns.Add("Cantidad", typeof(Int64));
-            DetCompra.Columns.Add("Total", typeof(decimal));
-            //Get student name of string type
-             var courseList = E_ComerceDB.ExecuteCommand("SP_DetalleCompra", DetCompra);
-            //Database.SqlQuery<Course>("exec GetCoursesByStudentId @StudentId ", idParam).ToList<Course>();
-
-        }
         // GET: Compras
         public ActionResult Index()
         {
@@ -46,11 +25,22 @@ namespace E_Comerce.Controllers
                                           select p).ToList(); 
             return View(listaCompras);
         }
-
         // GET: Compras/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Session["Compra"] = null;
+            if (Session["Compra"] == null)
+            {
+                List<V_DetalleCompra> detcompra = (from p in E_ComerceDB.V_DetalleCompra
+                                                   where p.ID_Compra == id
+                                                   select p).ToList();
+                V_Compras Compra = (from c in E_ComerceDB.V_Compras 
+                               where c.Id == id 
+                               select c).Single();
+                Session["Compra"] = detcompra;
+                return View(Compra);
+            }
+            return RedirectToAction("Index", "Compras");
         }
 
         // GET: Compras/Create
@@ -58,26 +48,51 @@ namespace E_Comerce.Controllers
         {
             return View();
         }
-        // GET: Compras/Create
-        public ActionResult Prueba()
+        public ActionResult Nuevacompra()
         {
-            return View();
+            Session["Compra"] = null;
+            return RedirectToAction("Create", "Compras");
         }
 
         // POST: Compras/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Compras compras)
         {
             try
             {
                 // TODO: Add insert logic here
-                var items = E_ComerceDB.SP_GuardarCompra(1,10,DateTime.Now);
-                AgregarDetalles();
-                //var id = items[0].
-                var id = items.Select(p => p.Column1).FirstOrDefault();
+                if (Session["Compra"] != null)
+                {
+                    List<Detalle_Compra> detCompras = (List<Detalle_Compra>)Session["Compra"];
+                    if (detCompras.Count > 0)
+                    {
+                        compras.ID_Usuario = 1;//int.Parse(Session[""].ToString());
+                        compras.Usuario_Inserta = "Eduardo"; //Session[""].ToString();
+                        compras.PrecioTotal = detCompras.Sum(x => x.Cantidad * x.PrecioUnitario);
 
-                E_ComerceDB.SubmitChanges();
-                return RedirectToAction("Index");
+                        var resultado = E_ComerceDB.SP_GuardarCompra(compras.ID_Usuario, compras.PrecioTotal, compras.Usuario_Inserta).Single();
+                        var ListaDetalleCompra = (from d in detCompras
+                                                  where d.ID_Compra == null
+                                                  select new Detalle_Compra
+                                                  {
+                                                      ID_Compra = resultado.IdTransaccion,
+                                                      ID_Producto = d.ID_Producto,
+                                                      Cantidad = d.Cantidad,
+                                                      PrecioUnitario = d.PrecioUnitario,
+                                                      Total = d.Cantidad * d.PrecioUnitario,
+                                                      Usuario_Inserta = compras.Usuario_Inserta,
+                                                      Fecha_Inserta = DateTime.Now,
+                                                  }).ToList();
+
+                        E_ComerceDB.Detalle_Compra.InsertAllOnSubmit(ListaDetalleCompra);
+
+                        E_ComerceDB.SubmitChanges();
+                        Session["Compra"] = null;
+                        return RedirectToAction("Index");
+                    }
+                    return RedirectToAction("Create", "Compras");
+                }
+                return RedirectToAction("Create", "Compras");
             }
             catch
             {

@@ -19,6 +19,7 @@ namespace E_Comerce
 	using System.Linq;
 	using System.Linq.Expressions;
 	using System.ComponentModel;
+	using System.ComponentModel.DataAnnotations;
 	using System;
 	
 	
@@ -39,9 +40,6 @@ namespace E_Comerce
     partial void InsertDepartamentos(Departamentos instance);
     partial void UpdateDepartamentos(Departamentos instance);
     partial void DeleteDepartamentos(Departamentos instance);
-    partial void InsertDetalle_Compra(Detalle_Compra instance);
-    partial void UpdateDetalle_Compra(Detalle_Compra instance);
-    partial void DeleteDetalle_Compra(Detalle_Compra instance);
     partial void InsertDetalleVenta(DetalleVenta instance);
     partial void UpdateDetalleVenta(DetalleVenta instance);
     partial void DeleteDetalleVenta(DetalleVenta instance);
@@ -68,6 +66,9 @@ namespace E_Comerce
     partial void DeleteUsuarios(Usuarios instance);
     partial void UpdateVentas(Ventas instance);
     partial void DeleteVentas(Ventas instance);
+    partial void InsertDetalle_Compra(Detalle_Compra instance);
+    partial void UpdateDetalle_Compra(Detalle_Compra instance);
+    partial void DeleteDetalle_Compra(Detalle_Compra instance);
     #endregion
 		
 		public E_ComerceDBDataContext() : 
@@ -121,14 +122,6 @@ namespace E_Comerce
 			get
 			{
 				return this.GetTable<Departamentos>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Detalle_Compra> Detalle_Compra
-		{
-			get
-			{
-				return this.GetTable<Detalle_Compra>();
 			}
 		}
 		
@@ -241,6 +234,22 @@ namespace E_Comerce
 			get
 			{
 				return this.GetTable<Vw_Proveedor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Detalle_Compra> Detalle_Compra
+		{
+			get
+			{
+				return this.GetTable<Detalle_Compra>();
+			}
+		}
+		
+		public System.Data.Linq.Table<V_DetalleCompra> V_DetalleCompra
+		{
+			get
+			{
+				return this.GetTable<V_DetalleCompra>();
 			}
 		}
 		
@@ -361,13 +370,6 @@ namespace E_Comerce
 			return ((ISingleResult<sp_ProMasVResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_GuardarCompra")]
-		public ISingleResult<SP_GuardarCompraResult> SP_GuardarCompra([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioTotal", DbType="Int")] System.Nullable<int> precioTotal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Fecha", DbType="DateTime")] System.Nullable<System.DateTime> fecha)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Usuario, precioTotal, fecha);
-			return ((ISingleResult<SP_GuardarCompraResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.EliminarCategoria")]
 		public ISingleResult<EliminarCategoriaResult> EliminarCategoria([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria)
 		{
@@ -394,6 +396,13 @@ namespace E_Comerce
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_RetornarVentasResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_GuardarCompra")]
+		public ISingleResult<SP_GuardarCompraResult> SP_GuardarCompra([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id_Usuario", DbType="Int")] System.Nullable<int> id_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioTotal", DbType="Money")] System.Nullable<decimal> precioTotal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id_Usuario, precioTotal, usuario);
+			return ((ISingleResult<SP_GuardarCompraResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -731,7 +740,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioTotal", DbType="Money")]
-		public System.Nullable<decimal> PrecioTotal
+        [DisplayName("Precio total")]
+        public System.Nullable<decimal> PrecioTotal
 		{
 			get
 			{
@@ -771,7 +781,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Inserta", DbType="VarChar(50)")]
-		public string Usuario_Inserta
+        [DisplayName("Usuario")]
+        public string Usuario_Inserta
 		{
 			get
 			{
@@ -1137,342 +1148,6 @@ namespace E_Comerce
 		{
 			this.SendPropertyChanging();
 			entity.Departamentos = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Detalle_Compra")]
-	public partial class Detalle_Compra : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID_DetalleCompra;
-		
-		private System.Nullable<int> _ID_Compra;
-		
-		private System.Nullable<int> _ID_Producto;
-		
-		private System.Nullable<int> _Cantidad;
-		
-		private System.Nullable<decimal> _Total;
-		
-		private string _Usuario_Inserta;
-		
-		private System.Nullable<System.DateTime> _Fecha_Inserta;
-		
-		private string _Usuario_Actualiza;
-		
-		private System.Nullable<System.DateTime> _Fecha_Actualiza;
-		
-		private EntityRef<Compras> _Compras;
-		
-		private EntityRef<Productos> _Productos;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_DetalleCompraChanging(int value);
-    partial void OnID_DetalleCompraChanged();
-    partial void OnID_CompraChanging(System.Nullable<int> value);
-    partial void OnID_CompraChanged();
-    partial void OnID_ProductoChanging(System.Nullable<int> value);
-    partial void OnID_ProductoChanged();
-    partial void OnCantidadChanging(System.Nullable<int> value);
-    partial void OnCantidadChanged();
-    partial void OnTotalChanging(System.Nullable<decimal> value);
-    partial void OnTotalChanged();
-    partial void OnUsuario_InsertaChanging(string value);
-    partial void OnUsuario_InsertaChanged();
-    partial void OnFecha_InsertaChanging(System.Nullable<System.DateTime> value);
-    partial void OnFecha_InsertaChanged();
-    partial void OnUsuario_ActualizaChanging(string value);
-    partial void OnUsuario_ActualizaChanged();
-    partial void OnFecha_ActualizaChanging(System.Nullable<System.DateTime> value);
-    partial void OnFecha_ActualizaChanged();
-    #endregion
-		
-		public Detalle_Compra()
-		{
-			this._Compras = default(EntityRef<Compras>);
-			this._Productos = default(EntityRef<Productos>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_DetalleCompra", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID_DetalleCompra
-		{
-			get
-			{
-				return this._ID_DetalleCompra;
-			}
-			set
-			{
-				if ((this._ID_DetalleCompra != value))
-				{
-					this.OnID_DetalleCompraChanging(value);
-					this.SendPropertyChanging();
-					this._ID_DetalleCompra = value;
-					this.SendPropertyChanged("ID_DetalleCompra");
-					this.OnID_DetalleCompraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Compra", DbType="Int")]
-		public System.Nullable<int> ID_Compra
-		{
-			get
-			{
-				return this._ID_Compra;
-			}
-			set
-			{
-				if ((this._ID_Compra != value))
-				{
-					if (this._Compras.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnID_CompraChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Compra = value;
-					this.SendPropertyChanged("ID_Compra");
-					this.OnID_CompraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Producto", DbType="Int")]
-		public System.Nullable<int> ID_Producto
-		{
-			get
-			{
-				return this._ID_Producto;
-			}
-			set
-			{
-				if ((this._ID_Producto != value))
-				{
-					if (this._Productos.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnID_ProductoChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Producto = value;
-					this.SendPropertyChanged("ID_Producto");
-					this.OnID_ProductoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
-		public System.Nullable<int> Cantidad
-		{
-			get
-			{
-				return this._Cantidad;
-			}
-			set
-			{
-				if ((this._Cantidad != value))
-				{
-					this.OnCantidadChanging(value);
-					this.SendPropertyChanging();
-					this._Cantidad = value;
-					this.SendPropertyChanged("Cantidad");
-					this.OnCantidadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
-		public System.Nullable<decimal> Total
-		{
-			get
-			{
-				return this._Total;
-			}
-			set
-			{
-				if ((this._Total != value))
-				{
-					this.OnTotalChanging(value);
-					this.SendPropertyChanging();
-					this._Total = value;
-					this.SendPropertyChanged("Total");
-					this.OnTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Inserta", DbType="VarChar(50)")]
-		public string Usuario_Inserta
-		{
-			get
-			{
-				return this._Usuario_Inserta;
-			}
-			set
-			{
-				if ((this._Usuario_Inserta != value))
-				{
-					this.OnUsuario_InsertaChanging(value);
-					this.SendPropertyChanging();
-					this._Usuario_Inserta = value;
-					this.SendPropertyChanged("Usuario_Inserta");
-					this.OnUsuario_InsertaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Inserta", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Inserta
-		{
-			get
-			{
-				return this._Fecha_Inserta;
-			}
-			set
-			{
-				if ((this._Fecha_Inserta != value))
-				{
-					this.OnFecha_InsertaChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha_Inserta = value;
-					this.SendPropertyChanged("Fecha_Inserta");
-					this.OnFecha_InsertaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Actualiza", DbType="VarChar(50)")]
-		public string Usuario_Actualiza
-		{
-			get
-			{
-				return this._Usuario_Actualiza;
-			}
-			set
-			{
-				if ((this._Usuario_Actualiza != value))
-				{
-					this.OnUsuario_ActualizaChanging(value);
-					this.SendPropertyChanging();
-					this._Usuario_Actualiza = value;
-					this.SendPropertyChanged("Usuario_Actualiza");
-					this.OnUsuario_ActualizaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Actualiza", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Actualiza
-		{
-			get
-			{
-				return this._Fecha_Actualiza;
-			}
-			set
-			{
-				if ((this._Fecha_Actualiza != value))
-				{
-					this.OnFecha_ActualizaChanging(value);
-					this.SendPropertyChanging();
-					this._Fecha_Actualiza = value;
-					this.SendPropertyChanged("Fecha_Actualiza");
-					this.OnFecha_ActualizaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Compras_Detalle_Compra", Storage="_Compras", ThisKey="ID_Compra", OtherKey="ID_Compra", IsForeignKey=true)]
-		public Compras Compras
-		{
-			get
-			{
-				return this._Compras.Entity;
-			}
-			set
-			{
-				Compras previousValue = this._Compras.Entity;
-				if (((previousValue != value) 
-							|| (this._Compras.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Compras.Entity = null;
-						previousValue.Detalle_Compra.Remove(this);
-					}
-					this._Compras.Entity = value;
-					if ((value != null))
-					{
-						value.Detalle_Compra.Add(this);
-						this._ID_Compra = value.ID_Compra;
-					}
-					else
-					{
-						this._ID_Compra = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Compras");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Productos_Detalle_Compra", Storage="_Productos", ThisKey="ID_Producto", OtherKey="ID_Producto", IsForeignKey=true)]
-		public Productos Productos
-		{
-			get
-			{
-				return this._Productos.Entity;
-			}
-			set
-			{
-				Productos previousValue = this._Productos.Entity;
-				if (((previousValue != value) 
-							|| (this._Productos.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Productos.Entity = null;
-						previousValue.Detalle_Compra.Remove(this);
-					}
-					this._Productos.Entity = value;
-					if ((value != null))
-					{
-						value.Detalle_Compra.Add(this);
-						this._ID_Producto = value.ID_Producto;
-					}
-					else
-					{
-						this._ID_Producto = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Productos");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -2505,8 +2180,6 @@ namespace E_Comerce
 		
 		private System.Nullable<System.DateTime> _Fecha_Actualiza;
 		
-		private EntitySet<Detalle_Compra> _Detalle_Compra;
-		
 		private EntitySet<DetalleVenta> _DetalleVenta;
 		
 		private EntityRef<Categorias> _Categorias;
@@ -2545,7 +2218,6 @@ namespace E_Comerce
 		
 		public Productos()
 		{
-			this._Detalle_Compra = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compra), new Action<Detalle_Compra>(this.detach_Detalle_Compra));
 			this._DetalleVenta = new EntitySet<DetalleVenta>(new Action<DetalleVenta>(this.attach_DetalleVenta), new Action<DetalleVenta>(this.detach_DetalleVenta));
 			this._Categorias = default(EntityRef<Categorias>);
 			this._Proveedores = default(EntityRef<Proveedores>);
@@ -2800,19 +2472,6 @@ namespace E_Comerce
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Productos_Detalle_Compra", Storage="_Detalle_Compra", ThisKey="ID_Producto", OtherKey="ID_Producto")]
-		public EntitySet<Detalle_Compra> Detalle_Compra
-		{
-			get
-			{
-				return this._Detalle_Compra;
-			}
-			set
-			{
-				this._Detalle_Compra.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Productos_DetalleVenta", Storage="_DetalleVenta", ThisKey="ID_Producto", OtherKey="ID_Producto")]
 		public EntitySet<DetalleVenta> DetalleVenta
 		{
@@ -2912,18 +2571,6 @@ namespace E_Comerce
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Detalle_Compra(Detalle_Compra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Productos = this;
-		}
-		
-		private void detach_Detalle_Compra(Detalle_Compra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Productos = null;
 		}
 		
 		private void attach_DetalleVenta(DetalleVenta entity)
@@ -4648,6 +4295,7 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoUsuarioActualiza", DbType="VarChar(50)")]
+		[DisplayName("Último usuario actualiza")]
 		public string UltimoUsuarioActualiza
 		{
 			get
@@ -4664,7 +4312,8 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimaFechaActualiza", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UltimaFechaActualiza
+        [DisplayName("Última fecha actualiza")]
+        public System.Nullable<System.DateTime> UltimaFechaActualiza
 		{
 			get
 			{
@@ -5098,6 +4747,541 @@ namespace E_Comerce
 				if ((this._UltimaFechactualiza != value))
 				{
 					this._UltimaFechactualiza = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Detalle_Compra")]
+	public partial class Detalle_Compra : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_DetalleCompra;
+		
+		private System.Nullable<int> _ID_Compra;
+		
+		private System.Nullable<int> _ID_Producto;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		private System.Nullable<decimal> _Total;
+		
+		private string _Usuario_Actualiza;
+		
+		private System.Nullable<System.DateTime> _Fecha_Actualiza;
+		
+		private System.Nullable<decimal> _PrecioUnitario;
+		
+		private string _Usuario_Inserta;
+		
+		private System.Nullable<System.DateTime> _Fecha_Inserta;
+		
+		private EntityRef<Compras> _Compras;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_DetalleCompraChanging(int value);
+    partial void OnID_DetalleCompraChanged();
+    partial void OnID_CompraChanging(System.Nullable<int> value);
+    partial void OnID_CompraChanged();
+    partial void OnID_ProductoChanging(System.Nullable<int> value);
+    partial void OnID_ProductoChanged();
+    partial void OnCantidadChanging(System.Nullable<int> value);
+    partial void OnCantidadChanged();
+    partial void OnTotalChanging(System.Nullable<decimal> value);
+    partial void OnTotalChanged();
+    partial void OnUsuario_ActualizaChanging(string value);
+    partial void OnUsuario_ActualizaChanged();
+    partial void OnFecha_ActualizaChanging(System.Nullable<System.DateTime> value);
+    partial void OnFecha_ActualizaChanged();
+    partial void OnPrecioUnitarioChanging(System.Nullable<decimal> value);
+    partial void OnPrecioUnitarioChanged();
+    partial void OnUsuario_InsertaChanging(string value);
+    partial void OnUsuario_InsertaChanged();
+    partial void OnFecha_InsertaChanging(System.Nullable<System.DateTime> value);
+    partial void OnFecha_InsertaChanged();
+    #endregion
+		
+		public Detalle_Compra()
+		{
+			this._Compras = default(EntityRef<Compras>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_DetalleCompra", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_DetalleCompra
+		{
+			get
+			{
+				return this._ID_DetalleCompra;
+			}
+			set
+			{
+				if ((this._ID_DetalleCompra != value))
+				{
+					this.OnID_DetalleCompraChanging(value);
+					this.SendPropertyChanging();
+					this._ID_DetalleCompra = value;
+					this.SendPropertyChanged("ID_DetalleCompra");
+					this.OnID_DetalleCompraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Compra", DbType="Int")]
+		public System.Nullable<int> ID_Compra
+		{
+			get
+			{
+				return this._ID_Compra;
+			}
+			set
+			{
+				if ((this._ID_Compra != value))
+				{
+					if (this._Compras.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_CompraChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Compra = value;
+					this.SendPropertyChanged("ID_Compra");
+					this.OnID_CompraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Producto", DbType="Int")]
+		public System.Nullable<int> ID_Producto
+		{
+			get
+			{
+				return this._ID_Producto;
+			}
+			set
+			{
+				if ((this._ID_Producto != value))
+				{
+					this.OnID_ProductoChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Producto = value;
+					this.SendPropertyChanged("ID_Producto");
+					this.OnID_ProductoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this.OnCantidadChanging(value);
+					this.SendPropertyChanging();
+					this._Cantidad = value;
+					this.SendPropertyChanged("Cantidad");
+					this.OnCantidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
+		public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Actualiza", DbType="VarChar(50)")]
+		public string Usuario_Actualiza
+		{
+			get
+			{
+				return this._Usuario_Actualiza;
+			}
+			set
+			{
+				if ((this._Usuario_Actualiza != value))
+				{
+					this.OnUsuario_ActualizaChanging(value);
+					this.SendPropertyChanging();
+					this._Usuario_Actualiza = value;
+					this.SendPropertyChanged("Usuario_Actualiza");
+					this.OnUsuario_ActualizaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Actualiza", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Actualiza
+		{
+			get
+			{
+				return this._Fecha_Actualiza;
+			}
+			set
+			{
+				if ((this._Fecha_Actualiza != value))
+				{
+					this.OnFecha_ActualizaChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Actualiza = value;
+					this.SendPropertyChanged("Fecha_Actualiza");
+					this.OnFecha_ActualizaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioUnitario", DbType="Money")]
+        [Required()]
+        public System.Nullable<decimal> PrecioUnitario
+		{
+			get
+			{
+				return this._PrecioUnitario;
+			}
+			set
+			{
+				if ((this._PrecioUnitario != value))
+				{
+					this.OnPrecioUnitarioChanging(value);
+					this.SendPropertyChanging();
+					this._PrecioUnitario = value;
+					this.SendPropertyChanged("PrecioUnitario");
+					this.OnPrecioUnitarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Inserta", DbType="VarChar(50)")]
+		public string Usuario_Inserta
+		{
+			get
+			{
+				return this._Usuario_Inserta;
+			}
+			set
+			{
+				if ((this._Usuario_Inserta != value))
+				{
+					this.OnUsuario_InsertaChanging(value);
+					this.SendPropertyChanging();
+					this._Usuario_Inserta = value;
+					this.SendPropertyChanged("Usuario_Inserta");
+					this.OnUsuario_InsertaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Inserta", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Inserta
+		{
+			get
+			{
+				return this._Fecha_Inserta;
+			}
+			set
+			{
+				if ((this._Fecha_Inserta != value))
+				{
+					this.OnFecha_InsertaChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha_Inserta = value;
+					this.SendPropertyChanged("Fecha_Inserta");
+					this.OnFecha_InsertaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Compras_Detalle_Compra", Storage="_Compras", ThisKey="ID_Compra", OtherKey="ID_Compra", IsForeignKey=true)]
+		public Compras Compras
+		{
+			get
+			{
+				return this._Compras.Entity;
+			}
+			set
+			{
+				Compras previousValue = this._Compras.Entity;
+				if (((previousValue != value) 
+							|| (this._Compras.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Compras.Entity = null;
+						previousValue.Detalle_Compra.Remove(this);
+					}
+					this._Compras.Entity = value;
+					if ((value != null))
+					{
+						value.Detalle_Compra.Add(this);
+						this._ID_Compra = value.ID_Compra;
+					}
+					else
+					{
+						this._ID_Compra = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Compras");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.V_DetalleCompra")]
+	public partial class V_DetalleCompra
+	{
+		
+		private int _ID_DetalleCompra;
+		
+		private System.Nullable<int> _ID_Producto;
+		
+		private string _NombreProducto;
+		
+		private System.Nullable<int> _ID_Compra;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		private System.Nullable<decimal> _PrecioUnitario;
+		
+		private System.Nullable<decimal> _Total;
+		
+		private string _Usuario_Actualiza;
+		
+		private System.Nullable<System.DateTime> _Fecha_Actualiza;
+		
+		private string _Usuario_Inserta;
+		
+		private System.Nullable<System.DateTime> _Fecha_Inserta;
+		
+		public V_DetalleCompra()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_DetalleCompra", DbType="Int NOT NULL")]
+		public int ID_DetalleCompra
+		{
+			get
+			{
+				return this._ID_DetalleCompra;
+			}
+			set
+			{
+				if ((this._ID_DetalleCompra != value))
+				{
+					this._ID_DetalleCompra = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Producto", DbType="Int")]
+        [DisplayName("Producto")]
+		[Required()]
+        public System.Nullable<int> ID_Producto
+		{
+			get
+			{
+				return this._ID_Producto;
+			}
+			set
+			{
+				if ((this._ID_Producto != value))
+				{
+					this._ID_Producto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProducto", DbType="VarChar(50)")]
+		public string NombreProducto
+		{
+			get
+			{
+				return this._NombreProducto;
+			}
+			set
+			{
+				if ((this._NombreProducto != value))
+				{
+					this._NombreProducto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Compra", DbType="Int")]
+		public System.Nullable<int> ID_Compra
+		{
+			get
+			{
+				return this._ID_Compra;
+			}
+			set
+			{
+				if ((this._ID_Compra != value))
+				{
+					this._ID_Compra = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+        [Required()]
+        public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioUnitario", DbType="Money")]
+        [DisplayName("Precio unitario")]
+        [Required()]
+
+        public System.Nullable<decimal> PrecioUnitario
+		{
+			get
+			{
+				return this._PrecioUnitario;
+			}
+			set
+			{
+				if ((this._PrecioUnitario != value))
+				{
+					this._PrecioUnitario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Money")]
+        [DisplayName("Sub-Total")]
+        [Required()]
+        public System.Nullable<decimal> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Actualiza", DbType="VarChar(50)")]
+		public string Usuario_Actualiza
+		{
+			get
+			{
+				return this._Usuario_Actualiza;
+			}
+			set
+			{
+				if ((this._Usuario_Actualiza != value))
+				{
+					this._Usuario_Actualiza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Actualiza", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Actualiza
+		{
+			get
+			{
+				return this._Fecha_Actualiza;
+			}
+			set
+			{
+				if ((this._Fecha_Actualiza != value))
+				{
+					this._Fecha_Actualiza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Inserta", DbType="VarChar(50)")]
+		public string Usuario_Inserta
+		{
+			get
+			{
+				return this._Usuario_Inserta;
+			}
+			set
+			{
+				if ((this._Usuario_Inserta != value))
+				{
+					this._Usuario_Inserta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Inserta", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Inserta
+		{
+			get
+			{
+				return this._Fecha_Inserta;
+			}
+			set
+			{
+				if ((this._Fecha_Inserta != value))
+				{
+					this._Fecha_Inserta = value;
 				}
 			}
 		}
@@ -5845,32 +6029,6 @@ namespace E_Comerce
 		}
 	}
 	
-	public partial class SP_GuardarCompraResult
-	{
-		
-		private System.Nullable<decimal> _Column1;
-		
-		public SP_GuardarCompraResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="", Storage="_Column1", DbType="Decimal(38,0)")]
-		public System.Nullable<decimal> Column1
-		{
-			get
-			{
-				return this._Column1;
-			}
-			set
-			{
-				if ((this._Column1 != value))
-				{
-					this._Column1 = value;
-				}
-			}
-		}
-	}
-	
 	public partial class EliminarCategoriaResult
 	{
 		
@@ -6006,6 +6164,50 @@ namespace E_Comerce
 				if ((this._Total != value))
 				{
 					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_GuardarCompraResult
+	{
+		
+		private System.Nullable<int> _IdTransaccion;
+		
+		private string _mensaje;
+		
+		public SP_GuardarCompraResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdTransaccion", DbType="Int")]
+		public System.Nullable<int> IdTransaccion
+		{
+			get
+			{
+				return this._IdTransaccion;
+			}
+			set
+			{
+				if ((this._IdTransaccion != value))
+				{
+					this._IdTransaccion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mensaje", DbType="VarChar(22) NOT NULL", CanBeNull=false)]
+		public string mensaje
+		{
+			get
+			{
+				return this._mensaje;
+			}
+			set
+			{
+				if ((this._mensaje != value))
+				{
+					this._mensaje = value;
 				}
 			}
 		}

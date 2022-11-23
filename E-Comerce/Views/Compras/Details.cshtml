@@ -1,0 +1,58 @@
+﻿@model E_Comerce.V_Compras
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<div class="card mb-4">
+    <div class="card-header py-3">
+        <h4 class="mb-0">Detalle compra</h4>
+    </div>
+    <div class="card-body">
+        <div class="dl-horizontal">
+            <dl class="dl-horizontal row">
+                <div class="col-4">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Usuario)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Usuario)
+                    </dd>
+                </div>
+                <div class="col-4">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Total)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Total)
+                    </dd>
+                </div>
+                <div class="col-4">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Fecha)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Fecha)
+                    </dd>
+                </div>
+            </dl>
+            <div class="VistaParcial">
+                @{
+                    Html.RenderAction("Index", "DetalleCompras");
+                }
+            </div>
+
+            <div class="form-group">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    @Html.ActionLink("Regresar a lista", "Index", null, new { @class = "btn btn-outline-secondary" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(".crear").remove();
+    </script>
+}

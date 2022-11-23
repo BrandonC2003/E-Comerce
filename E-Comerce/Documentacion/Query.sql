@@ -394,3 +394,55 @@ order by year(Fecha), MONTH(Fecha) asc
 
 end
 go
+
+
+----------------------------------------------------------------------
+--****************			Compra			***************************
+----------------------------------------------------------------------
+Create Procedure SP_GuardarCompra
+@Id_Usuario int,
+@PrecioTotal  money, 
+@Usuario varchar(50)
+AS
+	begin
+		begin try
+			declare @Idtransaccion int;
+
+			Insert Into Compras (ID_Usuario, PrecioTotal, Fecha, Fecha_Inserta, Usuario_Inserta)
+			Values (@Id_Usuario, @PrecioTotal, GETDATE(), GETDATE(),@Usuario)
+
+			set @Idtransaccion = SCOPE_IDENTITY();
+
+			Select @Idtransaccion IdTransaccion, 'guardado correctamente' mensaje
+		end try
+		begin catch
+			Set @idTransaccion= 0;
+			Select @idTransaccion IdTransaccion, 'succedio un error' mensaje
+		end catch
+	end
+go
+
+Create View V_DetalleCompra
+AS
+	Select d.ID_DetalleCompra,
+	d.ID_Producto,
+	p.NombreProducto,
+	d.ID_Compra,
+	d.Cantidad,
+	d.PrecioUnitario,
+	d.Total,	
+	d.Usuario_Actualiza,
+	d.Fecha_Actualiza,
+	d.Usuario_Inserta,
+	d.Fecha_Inserta
+	from Detalle_Compra d
+	inner join Productos p on d.ID_Producto = p.ID_Producto
+GO
+
+Select * from V_DetalleCompra
+
+Alter table Detalle_Compra 
+add PrecioUnitario Money null,
+Usuario_Inserta varchar(50) null,
+Fecha_Inserta datetime null
+GO
