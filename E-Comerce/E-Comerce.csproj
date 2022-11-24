@@ -559,6 +559,7 @@
     <Content Include="Views\Compras\Details.cshtml" />
     <Content Include="Views\Repartidor\Index.cshtml" />
     <Content Include="Views\Carrito\Index.cshtml" />
+    <Content Include="Views\Repartidor\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
