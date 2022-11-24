@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\DetalleComprasController.cs" />
@@ -556,6 +557,8 @@
     <Content Include="Views\DetalleCompras\Create.cshtml" />
     <Content Include="Views\DetalleCompras\Index.cshtml" />
     <Content Include="Views\Compras\Details.cshtml" />
+    <Content Include="Views\Repartidor\Index.cshtml" />
+    <Content Include="Views\Carrito\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
