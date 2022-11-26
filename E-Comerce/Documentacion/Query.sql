@@ -446,3 +446,145 @@ add PrecioUnitario Money null,
 Usuario_Inserta varchar(50) null,
 Fecha_Inserta datetime null
 GO
+
+
+--------------------------------------------------------------------------------------
+-----------procedimientos para el carrito---------------------------------------------
+--------------------------------------------------------------------------------------
+--Procedimiento almacenado para registrar el detalle de una venta
+create proc sp_RegistrarCarrito(
+@ID_Producto int,
+@Cantidad int,
+@UsuarioInserta varchar(50)
+)
+as
+begin
+	declare @CantProd int, @Precio money, @Descuento money
+	begin try
+		begin tran
+			select @CantProd=CantidadDisponible from Productos where ID_Producto=@ID_Producto
+			select @Precio=PrecioVenta from Productos where ID_Producto=@ID_Producto
+			select @Descuento = Descuento from Productos where ID_Producto=@ID_Producto
+			if (@Cantidad>@CantProd)
+			begin
+				raiserror('No se cuenta con la cantidad de productos requerida',16,1)
+			end
+			insert into DetalleVenta(ID_Producto,Cantidad,Precio,descuento,Usuario_Inserta)
+			values(@ID_Producto,@Cantidad,@Precio*@Cantidad,@Descuento*@Cantidad,@UsuarioInserta)
+
+			update Productos
+			set cantidadDisponible=cantidadDisponible-@Cantidad
+			where ID_Producto=@ID_Producto
+
+		commit tran
+
+	end try
+	begin catch	
+		rollback 
+	end catch
+end
+go
+
+
+--Procedimiento almacenado sumar cantidad de producto al carrito
+create proc sp_SumarCarrito(
+@ID_DetalleVenta int
+)
+as
+begin	
+	declare @ID_producto int
+	begin try
+		begin tran
+
+			select @ID_producto= ID_Producto from DetalleVenta
+			where ID_DetalleVenta=@ID_DetalleVenta
+
+			update DetalleVenta 
+			set Cantidad=Cantidad+1
+			where ID_DetalleVenta=@ID_DetalleVenta
+
+			update Productos
+			set
+			 cantidadDisponible=cantidadDisponible-1
+			where ID_Producto=@ID_producto
+
+		commit tran
+
+	end try
+	begin catch	
+		rollback 
+	end catch
+end
+go
+
+
+--Procedimiento almacenado restar cantidad de producto al carrito
+create proc sp_RestarCarrito(
+@ID_DetalleVenta int
+)
+as
+begin	
+	declare @ID_producto int
+	begin try
+		begin tran
+
+			select @ID_producto= ID_Producto from DetalleVenta
+			where ID_DetalleVenta=@ID_DetalleVenta
+
+			update DetalleVenta 
+			set Cantidad=Cantidad-1
+			where ID_DetalleVenta=@ID_DetalleVenta
+
+			update Productos
+			set
+			 cantidadDisponible=cantidadDisponible+1
+			where ID_Producto=@ID_producto
+
+		commit tran
+
+	end try
+	begin catch	
+		rollback 
+	end catch
+end
+go
+
+
+--Procedimiento almacenado para eliminar el producto agregado al carrito
+create proc SP_EliminarCarrito(
+@ID_DetalleVenta int
+)
+as
+begin
+	declare @Cantidad int, @IDPRod int
+	begin try
+		Select @Cantidad=Cantidad from DetalleVenta where ID_DetalleVenta=@ID_DetalleVenta
+		Select @IDPRod=ID_Producto from DetalleVenta where ID_DetalleVenta=@ID_DetalleVenta		
+
+		Delete from DetalleVenta where ID_DetalleVenta=@ID_DetalleVenta
+
+		update Productos
+		set
+		 cantidadDisponible=cantidadDisponible+@Cantidad
+		where ID_Producto=@IDPRod
+
+		select 'El producto a sido eliminado del carrito' as Mensaje
+	end try
+	begin catch
+		select ERROR_MESSAGE() as Mensajee
+	end catch
+end
+go
+
+
+--Vista para el carrito
+create view vw_Carrito
+as
+Select ID_DetalleVenta,ID_Venta,v.ID_Producto,p.NombreProducto,p.Imagen,cantidad,Precio, v.descuento, 
+v.Usuario_Inserta,v.Fecha_Inserta,v.Usuario_Actualiza,v.Fecha_Actualiza 
+from DetalleVenta v inner join Productos p on p.ID_Producto=v.ID_Producto
+go
+
+
+--modificacion de la tabla de producto para agregar la imagen del producto
+Alter table Productos add Imagen image

@@ -9,22 +9,57 @@ namespace E_Comerce.Controllers
     public class CarritoController : Controller
     {
 
-        E_ComerceDBDataContext E_ComerceDB = new E_ComerceDBDataContext();
+        E_ComerceDBDataContext carrito = new E_ComerceDBDataContext();
 
         // GET: Carrito
         public ActionResult Index()
         {
-            List<Productos> list = (from p in E_ComerceDB.Productos select p).ToList();
+            //consultar detalle venta
+            List<vw_Carrito> ventasV = (from v in carrito.vw_Carrito where v.ID_Venta == null && v.Usuario_Inserta == "" select v).ToList();
+            decimal total = 0;
+            foreach (var item in ventasV)
+            {
+                total += Convert.ToDecimal(item.Precio - item.descuento);
+            }
+            ViewBag.Total = total;
 
-            return View();
+            return View(ventasV);           
         }
 
-        // GET: Carrito/Details/5
-        public ActionResult Details(int id)
+
+        // POST: Carrito/sumar
+        [HttpPost]
+        public ActionResult sumar(int Id) 
         {
-            return View();
+            try
+            {
+                carrito.sp_SumarCarrito(Id);
+                carrito.SubmitChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
-   
+
+        // POST: Carrito/sumar
+        [HttpPost]
+        public ActionResult restar(int Id)
+        {
+            try
+            {
+                carrito.sp_RestarCarrito(Id);
+                carrito.SubmitChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         // GET: Carrito/Delete/5
         public ActionResult Delete(int id)
@@ -34,11 +69,12 @@ namespace E_Comerce.Controllers
 
         // POST: Carrito/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int Id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                carrito.SP_EliminarCarrito(Id);
+                carrito.SubmitChanges();
 
                 return RedirectToAction("Index");
             }
