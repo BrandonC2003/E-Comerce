@@ -130,6 +130,7 @@
     <Compile Include="Controllers\InicioEComerceController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\TiendaController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\RepartidorController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
@@ -560,6 +561,7 @@
     <Content Include="Views\Repartidor\Index.cshtml" />
     <Content Include="Views\Carrito\Index.cshtml" />
     <Content Include="Views\Repartidor\Details.cshtml" />
+    <Content Include="Views\Tienda\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
