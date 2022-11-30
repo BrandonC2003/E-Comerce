@@ -102,7 +102,7 @@
         <classShapeMoniker Id="21929181-2f95-4319-b812-99e6ba137a17" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 0.84375); (3.59375 : 0.84375); (3.59375 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 0.84375); (3.59375 : 0.84375); (3.59375 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/E_ComerceDBDataContext/Proveedores/Proveedores_Productos" />
       <nodes>
         <classShapeMoniker Id="c9f1ca30-a1f3-44a7-ac90-0df81b1112e1" />

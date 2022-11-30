@@ -489,4 +489,30 @@
       <Column Name="Mensaje" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_ACTUALIZAR_PRODUCTOS" Method="SP_ACTUALIZAR_PRODUCTOS">
+    <Parameter Name="ID_Producto" Parameter="iD_Producto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Categoria" Parameter="iD_Categoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Proveedor" Parameter="iD_Proveedor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrecioCompra" Parameter="precioCompra" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="PrecioVenta" Parameter="precioVenta" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Descuento" Parameter="descuento" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="cantidadDisponible" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario_Actualiza" Parameter="usuario_Actualiza" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ELIMINAR_PRODUCTOS" Method="SP_ELIMINAR_PRODUCTOS">
+    <Parameter Name="ID_Producto" Parameter="iD_Producto" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_INSERTAR_PRODUCTOS" Method="SP_INSERTAR_PRODUCTOS">
+    <Parameter Name="ID_Categoria" Parameter="iD_Categoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Proveedor" Parameter="iD_Proveedor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NombreProducto" Parameter="nombreProducto" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PrecioCompra" Parameter="precioCompra" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="PrecioVenta" Parameter="precioVenta" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Descuento" Parameter="descuento" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="cantidadDisponible" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario_Inserta" Parameter="usuario_Inserta" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

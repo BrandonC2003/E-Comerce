@@ -447,6 +447,27 @@ namespace E_Comerce
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_DetalleVenta);
 			return ((ISingleResult<SP_EliminarCarritoResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACTUALIZAR_PRODUCTOS")]
+		public int SP_ACTUALIZAR_PRODUCTOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Producto", DbType="Int")] System.Nullable<int> iD_Producto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Proveedor", DbType="Int")] System.Nullable<int> iD_Proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioCompra", DbType="Money")] System.Nullable<decimal> precioCompra, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioVenta", DbType="Money")] System.Nullable<decimal> precioVenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descuento", DbType="Money")] System.Nullable<decimal> descuento, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> cantidadDisponible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Actualiza", DbType="VarChar(50)")] string usuario_Actualiza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Producto, iD_Categoria, iD_Proveedor, precioCompra, precioVenta, descuento, cantidadDisponible, usuario_Actualiza);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ELIMINAR_PRODUCTOS")]
+		public int SP_ELIMINAR_PRODUCTOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Producto", DbType="Int")] System.Nullable<int> iD_Producto)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Producto);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_INSERTAR_PRODUCTOS")]
+		public int SP_INSERTAR_PRODUCTOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Proveedor", DbType="Int")] System.Nullable<int> iD_Proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProducto", DbType="VarChar(50)")] string nombreProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioCompra", DbType="Money")] System.Nullable<decimal> precioCompra, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioVenta", DbType="Money")] System.Nullable<decimal> precioVenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descuento", DbType="Money")] System.Nullable<decimal> descuento, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> cantidadDisponible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Inserta", DbType="VarChar(50)")] string usuario_Inserta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Categoria, iD_Proveedor, nombreProducto, precioCompra, precioVenta, descuento, cantidadDisponible, usuario_Inserta);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
