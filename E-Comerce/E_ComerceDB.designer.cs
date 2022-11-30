@@ -260,6 +260,14 @@ namespace E_Comerce
 			}
 		}
 		
+		public System.Data.Linq.Table<V_Producto> V_Producto
+		{
+			get
+			{
+				return this.GetTable<V_Producto>();
+			}
+		}
+		
 		private void InsertVentas(Ventas obj)
 		{
 			this.sp_EditarDetalleVenta(default(System.Nullable<int>), ((System.Nullable<int>)(obj.ID_Venta)), default(System.Nullable<int>), default(System.Nullable<int>), default(string));
@@ -5529,6 +5537,195 @@ namespace E_Comerce
 				if ((this._Fecha_Actualiza != value))
 				{
 					this._Fecha_Actualiza = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.V_Producto")]
+	public partial class V_Producto
+	{
+		
+		private int _ID_Producto;
+		
+		private string _NombreProducto;
+		
+		private string _Categoria;
+		
+		private System.Nullable<decimal> _PrecioCompra;
+		
+		private System.Nullable<decimal> _PrecioVenta;
+		
+		private System.Nullable<decimal> _Descuento;
+		
+		private System.Nullable<int> _cantidadDisponible;
+		
+		private System.Data.Linq.Binary _imagen;
+		
+		private string _UltimoUsuarioActualiza;
+		
+		private System.Nullable<System.DateTime> _UltimoFechaInserta;
+		
+		public V_Producto()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Producto", DbType="Int NOT NULL")]
+		public int ID_Producto
+		{
+			get
+			{
+				return this._ID_Producto;
+			}
+			set
+			{
+				if ((this._ID_Producto != value))
+				{
+					this._ID_Producto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProducto", DbType="VarChar(50)")]
+		public string NombreProducto
+		{
+			get
+			{
+				return this._NombreProducto;
+			}
+			set
+			{
+				if ((this._NombreProducto != value))
+				{
+					this._NombreProducto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Categoria", DbType="VarChar(50)")]
+		public string Categoria
+		{
+			get
+			{
+				return this._Categoria;
+			}
+			set
+			{
+				if ((this._Categoria != value))
+				{
+					this._Categoria = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioCompra", DbType="Money")]
+		public System.Nullable<decimal> PrecioCompra
+		{
+			get
+			{
+				return this._PrecioCompra;
+			}
+			set
+			{
+				if ((this._PrecioCompra != value))
+				{
+					this._PrecioCompra = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioVenta", DbType="Money")]
+		public System.Nullable<decimal> PrecioVenta
+		{
+			get
+			{
+				return this._PrecioVenta;
+			}
+			set
+			{
+				if ((this._PrecioVenta != value))
+				{
+					this._PrecioVenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descuento", DbType="Money")]
+		public System.Nullable<decimal> Descuento
+		{
+			get
+			{
+				return this._Descuento;
+			}
+			set
+			{
+				if ((this._Descuento != value))
+				{
+					this._Descuento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cantidadDisponible", DbType="Int")]
+		public System.Nullable<int> cantidadDisponible
+		{
+			get
+			{
+				return this._cantidadDisponible;
+			}
+			set
+			{
+				if ((this._cantidadDisponible != value))
+				{
+					this._cantidadDisponible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imagen", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary imagen
+		{
+			get
+			{
+				return this._imagen;
+			}
+			set
+			{
+				if ((this._imagen != value))
+				{
+					this._imagen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoUsuarioActualiza", DbType="VarChar(50)")]
+		public string UltimoUsuarioActualiza
+		{
+			get
+			{
+				return this._UltimoUsuarioActualiza;
+			}
+			set
+			{
+				if ((this._UltimoUsuarioActualiza != value))
+				{
+					this._UltimoUsuarioActualiza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoFechaInserta", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UltimoFechaInserta
+		{
+			get
+			{
+				return this._UltimoFechaInserta;
+			}
+			set
+			{
+				if ((this._UltimoFechaInserta != value))
+				{
+					this._UltimoFechaInserta = value;
 				}
 			}
 		}
