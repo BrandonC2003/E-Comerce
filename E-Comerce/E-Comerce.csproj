@@ -565,6 +565,7 @@
     <Content Include="Views\Tienda\Index.cshtml" />
     <Content Include="Views\Shared\LayoutCarrito.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

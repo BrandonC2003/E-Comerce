@@ -26,6 +26,15 @@ namespace E_Comerce.Controllers
         // GET: Producto/Create
         public ActionResult Create()
         {
+            var listacate = (from c in comerce.Categorias
+                             select c).ToList();
+
+            ViewBag.listacate = listacate;
+
+            var listaprov = (from c in comerce.Proveedores
+                             select c).ToList();
+
+            ViewBag.listaprov = listaprov;
             return View();
         }
 
