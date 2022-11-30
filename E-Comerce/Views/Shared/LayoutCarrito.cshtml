@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    
 }
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="@Url.Action("Index","Tienda")">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Categorias</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Categoria")">Categorias</a></li>
                 </ul>
                 <div class="d-flex">
                     <a class="btn btn-outline-dark" href="@Url.Action("Index","Carrito")">
@@ -30,23 +30,50 @@
                         Carrito
                         <span class="badge bg-dark text-white ms-1 rounded-pill" id="cantidadcarrito">0@*@ViewBag.Carrito*@</span>
                     </a>
-                </div>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="dropdown-item" href="@Url.Action("CerrarSesion","Tienda")">Cerrar Sesión</a></li>
+                    </ul>
+                </div>  
             </div>
         </div>
     </nav>
-    <!-- Header-->
-    <header class="bg-dark py-5" style="background: linear-gradient(rgba(50,50,50, 0.5),rgba(50,50,50, 0.5)),url('../../imagenes/fondoheadinicio.jpg'); background-size: 100%; ">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">StarTech</h1>
-                <p class="lead fw-normal text-white-50 mb-0">@ViewBag.Title</p>
+    @{
+        <form action="@Url.Action("Carrito","Tienda")" method="post" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <button class="btn btn-close-white" type="submit">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge bg-dark text-white ms-1 rounded-pill contador-carrito">0</span>
+            </button>
+        </form> 
+    }
+
+    <main class="container-fluid">
+        @RenderBody()
+    </main>
+    <div class="position-fixed top-0 end-0 p-3 mt-5" style="z-index: 5">
+        <div id="toast-carrito" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+            <div class="toast-body bg-success text-white">
+                <div class="d-flex">
+                    <i class="fas fa-check fa-2x"></i> <label style="margin-left: 10px !important">Se añadió al carrito!</label>
+                </div>
             </div>
         </div>
-    </header>
+    </div>
+
+    <div class="position-fixed top-0 end-0 p-3 mt-5" style="z-index: 5">
+        <div id="toast-alerta" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="toast-body bg-danger text-white">
+                <div class="d-flex">
+                    <i class="fas fa-exclamation-circle fa-2x"></i> <label id="mensaje-error" class="ml-2" style="margin-left: 10px !important">Error</label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
-            @RenderBody()
+
         </div>
     </section>
     <!-- Footer-->
@@ -56,7 +83,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/complementos")
-    @RenderSection("scripts", required: false)   
+    @RenderSection("scripts", required: false)
 
+
+    <script>
+        funtion
+
+    </script>
 </body>
 </html>
