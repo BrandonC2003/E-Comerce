@@ -1,0 +1,106 @@
+﻿@model E_Comerce.Productos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Productos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Categoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Proveedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Proveedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioVenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioVenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descuento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidadDisponible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidadDisponible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario_Inserta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario_Inserta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Inserta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Inserta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario_Actualiza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario_Actualiza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Actualiza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Actualiza)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Producto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -20,9 +20,12 @@ namespace E_Comerce.Controllers
         // GET: Producto/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Productos objproductos = (from cp in comerce.Productos
+                                      where cp.ID_Producto == id
+                                      select cp).Single();
+            return View(objproductos);
         }
-
+        
         // GET: Producto/Create
         public ActionResult Create()
         {
@@ -42,6 +45,8 @@ namespace E_Comerce.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+
+
             try
             {
                 // TODO: Add insert logic here
