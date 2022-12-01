@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace E_Comerce.Controllers
@@ -13,7 +11,6 @@ namespace E_Comerce.Controllers
         // GET: Informes
         public ActionResult Index()
         {
-            
             List<SP_RetornarVentasResult> rv = (from v in informe.SP_RetornarVentas() select v).ToList();
             ViewBag.RetorV = rv;
 
@@ -23,7 +20,7 @@ namespace E_Comerce.Controllers
         }
         public ActionResult Grafico()
         {
-            
+
             ISingleResult<sp_ProMasVResult> result =
          informe.sp_ProMasV();
 
@@ -34,7 +31,7 @@ namespace E_Comerce.Controllers
 
         public ActionResult Graficobar()
         {
-            
+
             ISingleResult<SP_RetornarVentasResult> result =
          informe.SP_RetornarVentas();
 
