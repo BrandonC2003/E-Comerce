@@ -192,6 +192,7 @@
     <Content Include="Content\DataTables\css\buttons.jqueryui.min.css" />
     <Content Include="Content\DataTables\css\buttons.semanticui.css" />
     <Content Include="Content\DataTables\css\buttons.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.carrito.bootstrap.css" />
     <Content Include="Content\DataTables\css\colReorder.bootstrap.css" />
     <Content Include="Content\DataTables\css\colReorder.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\colReorder.bootstrap4.css" />
@@ -482,6 +483,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JSPersonalizados\EstiloCarrito.js" />
     <Content Include="Scripts\JSPersonalizados\DetalleVent.js" />
     <Content Include="Scripts\JSPersonalizados\EComerce.js" />
     <Content Include="Scripts\JSPersonalizados\ModalProveedor.js" />

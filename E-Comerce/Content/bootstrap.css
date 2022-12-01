@@ -10877,4 +10877,10 @@ textarea.form-control-lg {
   }
 }
 
+/*este lo agregue para ver si funciona los botones del carrito*/
+.center {
+    width: 150px;
+    margin: 40px auto;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */

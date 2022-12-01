@@ -1,0 +1,12 @@
+
+woocommerce-variation-add-to-cart {
+    display: flex;
+}
+
+.qib-container {
+    display: flex;
+}
+
+input.qty {
+    width: 30px;
+}
