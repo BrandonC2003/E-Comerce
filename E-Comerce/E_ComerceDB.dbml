@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Ecomerce_StarTech" Class="E_ComerceDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-N72AJUD;Initial Catalog=Ecomerce_StarTech;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Ecomerce_StarTechConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-5M0NB9GN\SQLEXPRESS;Initial Catalog=Ecomerce_StarTech;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Ecomerce_StarTechConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Categorias" Member="Categorias">
     <Type Name="Categorias">
       <Column Name="ID_Categoria" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -422,14 +422,6 @@
       <Column Name="Mensaje" Type="System.String" DbType="VarChar(34) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sp_ProMasV" Method="sp_ProMasV">
-    <Parameter Name="fechamin" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="fechamax" Type="System.DateTime" DbType="Date" />
-    <ElementType Name="sp_ProMasVResult">
-      <Column Name="Producto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.EliminarCategoria" Method="EliminarCategoria">
     <Parameter Name="ID_Categoria" Parameter="iD_Categoria" Type="System.Int32" DbType="Int" />
     <ElementType Name="EliminarCategoriaResult">
@@ -514,5 +506,11 @@
     <Parameter Name="cantidadDisponible" Type="System.Int32" DbType="Int" />
     <Parameter Name="Usuario_Inserta" Parameter="usuario_Inserta" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_ProMasV" Method="sp_ProMasV">
+    <ElementType Name="sp_ProMasVResult">
+      <Column Name="Producto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

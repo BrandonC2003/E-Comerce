@@ -13,21 +13,19 @@ namespace E_Comerce.Controllers
         // GET: Informes
         public ActionResult Index()
         {
-            DateTime fem = new DateTime(2016, 01, 06);
-            DateTime fema = new DateTime(2022, 09, 30);
+            
             List<SP_RetornarVentasResult> rv = (from v in informe.SP_RetornarVentas() select v).ToList();
             ViewBag.RetorV = rv;
 
-            List<sp_ProMasVResult> pmv = (from c in informe.sp_ProMasV(fem, fema) select c).ToList();
+            List<sp_ProMasVResult> pmv = (from c in informe.sp_ProMasV() select c).ToList();
 
             return View(pmv);
         }
         public ActionResult Grafico()
         {
-            DateTime fem = new DateTime(2016, 01, 06);
-            DateTime fema = new DateTime(2022, 09, 30);
+            
             ISingleResult<sp_ProMasVResult> result =
-         informe.sp_ProMasV(fem, fema);
+         informe.sp_ProMasV();
 
 
             return Json(result, JsonRequestBehavior.AllowGet);
