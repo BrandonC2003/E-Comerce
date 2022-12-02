@@ -66,13 +66,27 @@ namespace E_Comerce.Controllers
         // GET: Producto/Edit/5
         public ActionResult Edit(int id)
         {
+            var listacate = (from c in comerce.Categorias
+                             select c).ToList();
+
+            ViewBag.listacate = listacate;
+
+            var listaprov = (from c in comerce.Proveedores
+                             select c).ToList();
+
+            ViewBag.listaprov = listaprov;
             return View();
         }
 
         // POST: Producto/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, Productos datos)
         {
+            datos.Usuario_Inserta = "rodrigo";
+            datos.Fecha_Inserta = DateTime.Now;
+
+            comerce.Productos.InsertOnSubmit(datos);
+            comerce.SubmitChanges();
             try
             {
                 // TODO: Add update logic here
