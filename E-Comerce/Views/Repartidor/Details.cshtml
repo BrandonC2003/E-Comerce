@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = null;
 }
 
 <h2>Detalles</h2>
@@ -76,7 +77,12 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Repartidor }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="modal-footer form-group">
+    <button type="button" class="btn btn-secondary btn-lg btn-block" data-bs-dismiss="modal">Cerrar</button>
+</div>
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Repartidor }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
