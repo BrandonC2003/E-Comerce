@@ -1,0 +1,24 @@
+﻿@model IEnumerable<E_Comerce.vw_Carrito>
+@{
+    ViewBag.Title = "AgregarCarrito";
+}
+
+<h2>AgregarCarrito</h2>
+
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Producto AGregado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>El producto se ha agregado al carrito de compras</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Ir a carrito</button>
+            </div>
+        </div>
+    </div>
+</div>

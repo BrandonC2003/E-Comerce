@@ -26,6 +26,26 @@ namespace E_Comerce.Controllers
             return View(ventasV);           
         }
 
+        [HttpPost]
+        public ActionResult AgregarCarrito(int id,Productos producto)
+        {
+            try
+            {
+
+                var usu = "jmartinez";
+
+                carrito.sp_RegistrarCarrito(id,producto.cantidadDisponible, usu);
+                carrito.SubmitChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
 
         // POST: Carrito/sumar
         [HttpPost]
