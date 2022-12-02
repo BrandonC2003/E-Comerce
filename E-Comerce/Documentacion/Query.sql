@@ -567,6 +567,7 @@ go
 
 --modificacion de la tabla de producto para agregar la imagen del producto
 Alter table Productos add Imagen image
+go
 
 ----------Modificacion sp Producto mas Vendido----
  alter procedure sp_ProMasV
@@ -588,3 +589,98 @@ begin
 	end
 go
 
+create view [dbo].[V_Producto]
+as
+	select
+	p.ID_Producto,
+	NombreProducto,
+	Categoria,
+	PrecioCompra,
+	PrecioVenta,
+	Descuento,
+	cantidadDisponible,
+	imagen,
+	ISNULL(p.Usuario_Actualiza,p.Usuario_Inserta) UltimoUsuarioActualiza,
+	ISNULL(p.Fecha_Actualiza,p.Fecha_Inserta) UltimoFechaInserta
+	from Productos p 
+	inner join Categorias c on p.ID_Categoria=c.ID_Categoria
+GO
+
+--SP que actualiza productos
+create proc [dbo].[SP_ACTUALIZAR_PRODUCTOS](
+@ID_Producto int,
+@ID_Categoria int,
+@ID_Proveedor int,
+@PrecioCompra money,
+@PrecioVenta money,
+@Descuento money,
+@cantidadDisponible int,
+@Usuario_Actualiza varchar(50)
+)
+as
+begin
+--Condicion IF para que actualice segun la existencia del ID del producto 
+if(select count(*) from Productos
+where ID_Producto = @ID_Producto) = 1 --si el ID existe procede a actualizar
+update Productos
+set ID_Categoria = @ID_Categoria, ID_Proveedor = @ID_Proveedor, PrecioCompra = @PrecioCompra, 
+PrecioVenta = @PrecioVenta, Descuento = @Descuento, cantidadDisponible = @cantidadDisponible, 
+Usuario_Actualiza = @Usuario_Actualiza, Fecha_Actualiza = getdate()
+where ID_Producto = @ID_Producto
+else  --si el ID no existe, envia un mensaje de error que el ID no existe
+print 'Error, no se pudo actualizar porque el ID del producto no existe' 
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[SP_ELIMINAR_PRODUCTOS]    Script Date: 01/12/2022 23:24:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-----------------------------------------------------------------------------------
+--SP que elimina productos
+create proc [dbo].[SP_ELIMINAR_PRODUCTOS]
+@ID_Producto int
+as
+begin
+--Condicion IF para eliminar productos por medio del ID
+if(select count(*) from Productos
+where ID_Producto = @ID_Producto) = 1 -- si existe 1 producto con ese ID procede a eliminar
+delete from Productos
+where ID_Producto = @ID_Producto
+else --si no existe 1 prodcuto con ese ID manda un mensaje de error
+print 'Error, no se pudo eliminar porque no existe el producto'
+end
+
+GO
+/****** Object:  StoredProcedure [dbo].[SP_INSERTAR_PRODUCTOS]    Script Date: 01/12/2022 23:24:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+--SP que inserta nuevos productos
+create proc [dbo].[SP_INSERTAR_PRODUCTOS]
+@ID_Categoria int,
+@ID_Proveedor int,
+@NombreProducto varchar(50),
+@PrecioCompra money,
+@PrecioVenta money,
+@Descuento money,
+@cantidadDisponible int,
+@Usuario_Inserta varchar(50)
+as
+begin
+--Condicion IF para realizar al validacion del nombre del producto y que no este repetido
+if(select count(*) from Productos
+where NombreProducto = @NombreProducto) = 0 --si no exisste ningun nombre igual
+insert into Productos(ID_Categoria, ID_Proveedor, NombreProducto, PrecioCompra,
+PrecioVenta, Descuento, cantidadDisponible, Usuario_Inserta, Fecha_Inserta)
+values(@ID_Categoria, @ID_Proveedor, @Nombreproducto, @PrecioCompra, @PrecioVenta,
+@Descuento, @cantidadDisponible, @Usuario_Inserta, getdate()) --si es nombre es valido inserta el nuevo producto
+else --sino es valido, envia un mensaje de error y especifica cual es el error
+print 'Error al ingresar el nuevo producto, ya existe un producto con el nombre: ' + @NombreProducto
+end
+
+GO
