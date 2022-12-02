@@ -43,9 +43,13 @@ namespace E_Comerce.Controllers
 
         // POST: Producto/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Productos datos)
         {
+            datos.Usuario_Inserta = "rodrigo";
+            datos.Fecha_Inserta = DateTime.Now;
 
+            comerce.Productos.InsertOnSubmit(datos);
+            comerce.SubmitChanges();
 
             try
             {

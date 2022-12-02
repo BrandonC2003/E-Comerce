@@ -5573,6 +5573,8 @@ namespace E_Comerce
 		
 		private string _Categoria;
 		
+		private string _NombreEmpresa;
+		
 		private System.Nullable<decimal> _PrecioCompra;
 		
 		private System.Nullable<decimal> _PrecioVenta;
@@ -5585,7 +5587,7 @@ namespace E_Comerce
 		
 		private string _UltimoUsuarioActualiza;
 		
-		private System.Nullable<System.DateTime> _UltimoFechaInserta;
+		private System.Nullable<System.DateTime> _UltimoFechaActualiza;
 		
 		public V_Producto()
 		{
@@ -5635,6 +5637,22 @@ namespace E_Comerce
 				if ((this._Categoria != value))
 				{
 					this._Categoria = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreEmpresa", DbType="VarChar(50)")]
+		public string NombreEmpresa
+		{
+			get
+			{
+				return this._NombreEmpresa;
+			}
+			set
+			{
+				if ((this._NombreEmpresa != value))
+				{
+					this._NombreEmpresa = value;
 				}
 			}
 		}
@@ -5735,18 +5753,18 @@ namespace E_Comerce
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoFechaInserta", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UltimoFechaInserta
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UltimoFechaActualiza", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UltimoFechaActualiza
 		{
 			get
 			{
-				return this._UltimoFechaInserta;
+				return this._UltimoFechaActualiza;
 			}
 			set
 			{
-				if ((this._UltimoFechaInserta != value))
+				if ((this._UltimoFechaActualiza != value))
 				{
-					this._UltimoFechaInserta = value;
+					this._UltimoFechaActualiza = value;
 				}
 			}
 		}

@@ -595,15 +595,16 @@ as
 	p.ID_Producto,
 	NombreProducto,
 	Categoria,
+	NombreEmpresa,
 	PrecioCompra,
 	PrecioVenta,
 	Descuento,
 	cantidadDisponible,
 	imagen,
 	ISNULL(p.Usuario_Actualiza,p.Usuario_Inserta) UltimoUsuarioActualiza,
-	ISNULL(p.Fecha_Actualiza,p.Fecha_Inserta) UltimoFechaInserta
+	ISNULL(p.Fecha_Actualiza,p.Fecha_Inserta) UltimoFechaActualiza
 	from Productos p 
-	inner join Categorias c on p.ID_Categoria=c.ID_Categoria
+	inner join Categorias c on p.ID_Categoria=c.ID_Categoria inner join Proveedores pr on p.ID_Proveedor=pr.ID_Proveedor
 GO
 
 --SP que actualiza productos
