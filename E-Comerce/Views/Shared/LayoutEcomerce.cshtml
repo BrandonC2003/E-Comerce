@@ -10,6 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - StarTech</title>
+    <link rel="shortcut icon" href="~/Imagenes/Logo E-Comerce.png">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -28,7 +29,13 @@
                     <a class="btn btn-outline-dark" href="@Url.Action("Index","Carrito")">
                         <i class="fa fa-shopping-cart"></i>
                         Carrito
-                        <span class="badge bg-dark text-white ms-1 rounded-pill" id="cantidadcarrito">@Session["Carrito"].ToString()</span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill" id="cantidadcarrito">
+                        @{
+                            if (Session["Carrito"] != null)
+                            { 
+                                Session["Carrito"].ToString(); 
+                            }
+                        }</span>
                     </a>
                 </div>
             </div>

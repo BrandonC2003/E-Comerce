@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - StarTech</title>
+    <link rel="shortcut icon" href="~/Imagenes/Logo E-Comerce.png">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -36,7 +37,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading sb-sidenav-menu-heading-color">Administración</div>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="@Url.Action("Index", "Usuarios")">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Usuarios
                         </a>
@@ -44,7 +45,7 @@
                             <div class="sb-nav-link-icon"><i class="fa fa-motorcycle"></i></div>
                             Repartidores
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="@Url.Action("Index", "Municipios")">
                             <div class="sb-nav-link-icon"><i class="fa fa-map-marker-alt"></i></div>
                             Municipios
                         </a>
