@@ -38,7 +38,8 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="@Url.Action(" AgregarCarrito","Carrito", new { id = item.ID_Producto, Productos = item.cantidadDisponible})" id="agregarCarrito">Agregar al carrito</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" type="submit" href="@Url.Action("AgregarCarrito","Carrito", 
+                                                    new { id = item.ID_Producto,Productos = item.cantidadDisponible})" id="agregarCarrito">Agregar al carrito</a></div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver detalles</a></div>

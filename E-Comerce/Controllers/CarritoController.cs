@@ -15,7 +15,7 @@ namespace E_Comerce.Controllers
         public ActionResult Index()
         {
             //consultar detalle venta
-            List<vw_Carrito> ventasV = (from v in carrito.vw_Carrito where v.ID_Venta == null && v.Usuario_Inserta == "" select v).ToList();
+            List<vw_Carrito> ventasV = (from v in carrito.vw_Carrito where v.ID_Venta == null && v.Usuario_Inserta == "jmartinez" select v).ToList();
             decimal total = 0;
             foreach (var item in ventasV)
             {
@@ -23,10 +23,16 @@ namespace E_Comerce.Controllers
             }
             ViewBag.Total = total;
 
+            int cantidad = 0;
+            foreach (var item in ventasV)
+            {
+                cantidad += Convert.ToInt32(item.cantidad);
+            }
+            Session["Carrito"] = cantidad;
             return View(ventasV);           
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult AgregarCarrito(int id,Productos producto)
         {
             try
@@ -34,7 +40,7 @@ namespace E_Comerce.Controllers
 
                 var usu = "jmartinez";
 
-                carrito.sp_RegistrarCarrito(id,producto.cantidadDisponible, usu);
+                carrito.sp_RegistrarCarrito(id,1, usu);
                 carrito.SubmitChanges();
                 return RedirectToAction("Index");
             }
@@ -44,11 +50,8 @@ namespace E_Comerce.Controllers
             }
         }
 
-
-
-
         // POST: Carrito/sumar
-        [HttpPost]
+        [HttpGet]
         public ActionResult sumar(int Id) 
         {
             try
@@ -64,7 +67,7 @@ namespace E_Comerce.Controllers
         }
 
         // POST: Carrito/sumar
-        [HttpPost]
+        [HttpGet]
         public ActionResult restar(int Id)
         {
             try
@@ -80,15 +83,8 @@ namespace E_Comerce.Controllers
             }
         }
 
-
-        // GET: Carrito/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Carrito/Delete/5
-        [HttpPost]
+        [HttpGet]
         public ActionResult Delete(int Id, FormCollection collection)
         {
             try

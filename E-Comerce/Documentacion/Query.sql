@@ -557,9 +557,9 @@ go
 
 
 --Vista para el carrito
-create view vw_Carrito
+alter view vw_Carrito
 as
-Select ID_DetalleVenta,ID_Venta,v.ID_Producto,p.NombreProducto,p.Imagen,cantidad,Precio, v.descuento, 
+Select ID_DetalleVenta,ID_Venta,v.ID_Producto,p.NombreProducto,p.Imagen,cantidad,Convert(decimal(16,2),Precio) as Precio, v.descuento, 
 v.Usuario_Inserta,v.Fecha_Inserta,v.Usuario_Actualiza,v.Fecha_Actualiza 
 from DetalleVenta v inner join Productos p on p.ID_Producto=v.ID_Producto
 go
@@ -685,3 +685,84 @@ print 'Error al ingresar el nuevo producto, ya existe un producto con el nombre:
 end
 
 GO
+
+
+
+
+--------------------------------------------------------
+-- kprocedimientos y vista modificado-----
+-----------------------------------------------------+
+--Vista para el carrito
+alter view vw_Carrito
+as
+Select ID_DetalleVenta,ID_Venta,v.ID_Producto,p.NombreProducto,p.Imagen,cantidad,Convert(decimal(16,2),Precio) as Precio, v.descuento, 
+v.Usuario_Inserta,v.Fecha_Inserta,v.Usuario_Actualiza,v.Fecha_Actualiza 
+from DetalleVenta v inner join Productos p on p.ID_Producto=v.ID_Producto
+go
+
+
+--procedure modificado
+Alter proc sp_SumarCarrito(
+@ID_DetalleVenta int
+)
+as
+begin	
+	declare @ID_producto int,@Precio decimal, @Descuento decimal
+	begin try
+		begin tran
+			
+			select @ID_producto= ID_Producto from DetalleVenta
+			where ID_DetalleVenta=@ID_DetalleVenta
+			select @Precio=PrecioVenta, @Descuento=Descuento from Productos
+			where ID_Producto=@ID_producto
+
+			update DetalleVenta
+			set Cantidad=Cantidad+1,Precio=(Cantidad+1)*(@Precio-@Descuento)
+			where ID_DetalleVenta=@ID_DetalleVenta
+
+			update Productos
+			set
+			 cantidadDisponible=cantidadDisponible-1
+			where ID_Producto=@ID_producto
+
+		commit tran
+
+	end try
+	begin catch	
+		rollback 
+	end catch
+end
+go
+
+--procedure modificado
+alter proc sp_RestarCarrito(
+@ID_DetalleVenta int
+)
+as
+begin	
+	declare @ID_producto int,@Precio decimal, @Descuento decimal
+	begin try
+		begin tran
+
+			select @ID_producto= ID_Producto from DetalleVenta
+			where ID_DetalleVenta=@ID_DetalleVenta
+			select @Precio=PrecioVenta, @Descuento=Descuento from Productos
+			where ID_Producto=@ID_producto
+
+			update DetalleVenta 
+			set Cantidad=Cantidad-1,Precio=(Cantidad-1)*(@Precio-@Descuento)
+			where ID_DetalleVenta=@ID_DetalleVenta
+
+			update Productos
+			set
+			 cantidadDisponible=cantidadDisponible+1
+			where ID_Producto=@ID_producto
+
+		commit tran
+
+	end try
+	begin catch	
+		rollback 
+	end catch
+end
+go
