@@ -63,7 +63,7 @@ namespace E_Comerce.Controllers
                 // TODO: Add insert logic here
                 if (Session["Compra"] != null)
                 {
-                    List<Detalle_Compra> detCompras = (List<Detalle_Compra>)Session["Compra"];
+                    List<V_DetalleCompra> detCompras = (List<V_DetalleCompra>)Session["Compra"];
                     if (detCompras.Count > 0)
                     {
                         compras.ID_Usuario = 1;//int.Parse(Session[""].ToString());

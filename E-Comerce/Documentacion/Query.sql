@@ -766,3 +766,24 @@ begin
 	end catch
 end
 go
+
+/************************************************************************************************************/
+/*						Trigger para actualizar Cantida disponible de productos con la compra				*/
+/************************************************************************************************************/
+Create trigger tr_InsertarProductosDeCompra
+  on Detalle_Compra
+  for insert
+  as
+   declare @stock int
+   select @stock= cantidadDisponible 
+		from Productos p
+		 join inserted
+		 on inserted.ID_Producto=p.ID_Producto
+		 where p.ID_Producto=inserted.ID_Producto
+
+	update Productos set cantidadDisponible=@stock + inserted.Cantidad
+     from Productos p
+     join inserted
+     on inserted.ID_Producto=p.ID_Producto
+     where p.ID_Producto =inserted.ID_Producto
+GO
