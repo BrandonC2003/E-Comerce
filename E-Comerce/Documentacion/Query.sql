@@ -787,3 +787,12 @@ Create trigger tr_InsertarProductosDeCompra
      on inserted.ID_Producto=p.ID_Producto
      where p.ID_Producto =inserted.ID_Producto
 GO
+----------se agrego un campo de descripcion a la tabla producto-------
+Alter table Productos add Descripcion Varchar(150)
+
+-----------Vista Detalle productos Tienda-----------
+
+create view Vw_Tienda
+as
+select ID_Producto,NombreProducto,PrecioVenta as Precio,Descuento,cantidadDisponible,Imagen,Descripcion from Productos
+go

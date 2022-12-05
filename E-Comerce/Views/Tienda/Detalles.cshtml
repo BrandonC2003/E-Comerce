@@ -1,0 +1,41 @@
+﻿@model E_Comerce.Vw_Tienda
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/LayoutEcomerce.cshtml";
+}
+
+
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+            <div class="col-md-6">
+                <div class="small mb-1"></div>
+                <h1 class="display-5 fw-bolder">@Html.DisplayFor(model => model.NombreProducto)</h1>
+                <div class="fs-5 mb-5">
+                    @*<span class="text-decoration-line-through">$45.00</span>*@
+                    <span>Precio: $@Html.DisplayFor(model => model.Precio)</span><br />
+                    <span>Descuento: $@Html.DisplayFor(model => model.Descuento)</span>
+                </div>
+                <p class="lead">
+                    Descripcion del Producto:
+                    <br />
+                    @Html.DisplayFor(model => model.Descripcion)
+                </p>
+                <br />
+                <div class="d-flex">
+
+                    <a href="@Url.Action("Index","Tienda")" class="btn btn-danger w-50 text-center me-3">
+                        <i class="fas fa-undo-alt"></i> Volver
+                    </a>
+
+                    <a href="@Url.Action("AgregarCarrito","Carrito",new { id = Model.ID_Producto,Productos = Model.cantidadDisponible})" id="agregarCarrito" class="btn btn-success w-50 text-center me-3">
+                        <i class="fas fa-cart-plus"></i> Agregar al Carrito
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

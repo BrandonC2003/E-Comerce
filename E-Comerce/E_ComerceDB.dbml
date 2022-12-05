@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Ecomerce_StarTech" Class="E_ComerceDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-N72AJUD;Initial Catalog=Ecomerce_StarTech;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Ecomerce_StarTechConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-5M0NB9GN\SQLEXPRESS;Initial Catalog=Ecomerce_StarTech;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Ecomerce_StarTechConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Categorias" Member="Categorias">
     <Type Name="Categorias">
       <Column Name="ID_Categoria" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -290,6 +290,17 @@
       <Column Name="imagen" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="UltimoUsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="UltimoFechaActualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vw_Tienda" Member="Vw_Tienda">
+    <Type Name="Vw_Tienda">
+      <Column Name="ID_Producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NombreProducto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="cantidadDisponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Imagen" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Id="FunctionId1" Name="dbo.sp_EditarDetalleVenta" Method="sp_EditarDetalleVenta">

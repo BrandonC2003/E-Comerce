@@ -268,6 +268,14 @@ namespace E_Comerce
 			}
 		}
 		
+		public System.Data.Linq.Table<Vw_Tienda> Vw_Tienda
+		{
+			get
+			{
+				return this.GetTable<Vw_Tienda>();
+			}
+		}
+		
 		private void InsertVentas(Ventas obj)
 		{
 			this.sp_EditarDetalleVenta(default(System.Nullable<int>), ((System.Nullable<int>)(obj.ID_Venta)), default(System.Nullable<int>), default(System.Nullable<int>), default(string));
@@ -5765,6 +5773,141 @@ namespace E_Comerce
 				if ((this._UltimoFechaActualiza != value))
 				{
 					this._UltimoFechaActualiza = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vw_Tienda")]
+	public partial class Vw_Tienda
+	{
+		
+		private int _ID_Producto;
+		
+		private string _NombreProducto;
+		
+		private System.Nullable<decimal> _Precio;
+		
+		private System.Nullable<decimal> _Descuento;
+		
+		private System.Nullable<int> _cantidadDisponible;
+		
+		private System.Data.Linq.Binary _Imagen;
+		
+		private string _Descripcion;
+		
+		public Vw_Tienda()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Producto", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int ID_Producto
+		{
+			get
+			{
+				return this._ID_Producto;
+			}
+			set
+			{
+				if ((this._ID_Producto != value))
+				{
+					this._ID_Producto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProducto", DbType="VarChar(50)")]
+		public string NombreProducto
+		{
+			get
+			{
+				return this._NombreProducto;
+			}
+			set
+			{
+				if ((this._NombreProducto != value))
+				{
+					this._NombreProducto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Precio", DbType="Money")]
+		public System.Nullable<decimal> Precio
+		{
+			get
+			{
+				return this._Precio;
+			}
+			set
+			{
+				if ((this._Precio != value))
+				{
+					this._Precio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descuento", DbType="Money")]
+		public System.Nullable<decimal> Descuento
+		{
+			get
+			{
+				return this._Descuento;
+			}
+			set
+			{
+				if ((this._Descuento != value))
+				{
+					this._Descuento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cantidadDisponible", DbType="Int")]
+		public System.Nullable<int> cantidadDisponible
+		{
+			get
+			{
+				return this._cantidadDisponible;
+			}
+			set
+			{
+				if ((this._cantidadDisponible != value))
+				{
+					this._cantidadDisponible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagen", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Imagen
+		{
+			get
+			{
+				return this._Imagen;
+			}
+			set
+			{
+				if ((this._Imagen != value))
+				{
+					this._Imagen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(150)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
 				}
 			}
 		}

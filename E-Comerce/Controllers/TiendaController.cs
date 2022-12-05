@@ -14,10 +14,17 @@ namespace E_Comerce.Controllers
         public ActionResult Index()
         {
             IEnumerable<Productos> lista = (from l in E_ComerceDB.Productos
-                                            select l
-                                            
-                                            ).ToList();
+                                            select l).ToList();
             return View(lista);
+        }
+
+        public ActionResult Detalles(int id)
+        {
+            
+            Vw_Tienda detalle = (from d in E_ComerceDB.Vw_Tienda where d.ID_Producto == id select d).Single();
+
+           
+            return View(detalle);
         }
     }
 }
