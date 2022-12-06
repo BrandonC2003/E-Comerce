@@ -49,8 +49,8 @@
       <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Productos_DetalleVenta" Member="Productos" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="Productos" IsForeignKey="true" />
       <Association Name="Ventas_DetalleVenta" Member="Ventas" ThisKey="ID_Venta" OtherKey="ID_Venta" Type="Ventas" IsForeignKey="true" />
+      <Association Name="Productos_DetalleVenta" Member="Productos" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="Productos" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Lugares_Entrega" Member="Lugares_Entrega">
@@ -80,25 +80,6 @@
       <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Municipios_Lugares_Entrega" Member="Lugares_Entrega" ThisKey="ID_Municipio" OtherKey="ID_Municipio" Type="Lugares_Entrega" />
       <Association Name="Departamentos_Municipios" Member="Departamentos" ThisKey="ID_Departamento" OtherKey="ID_Departamento" Type="Departamentos" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Productos" Member="Productos">
-    <Type Name="Productos">
-      <Column Name="ID_Producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_Categoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ID_Proveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NombreProducto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="PrecioCompra" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="Descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="cantidadDisponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Productos_DetalleVenta" Member="DetalleVenta" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="DetalleVenta" />
-      <Association Name="Categorias_Productos" Member="Categorias" ThisKey="ID_Categoria" OtherKey="ID_Categoria" Type="Categorias" IsForeignKey="true" />
-      <Association Name="Proveedores_Productos" Member="Proveedores" ThisKey="ID_Proveedor" OtherKey="ID_Proveedor" Type="Proveedores" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Proveedores" Member="Proveedores">
@@ -244,6 +225,7 @@
       <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Compras_Detalle_Compra" Member="Compras" ThisKey="ID_Compra" OtherKey="ID_Compra" Type="Compras" IsForeignKey="true" />
+      <Association Name="Productos_Detalle_Compra" Member="Productos" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="Productos" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.V_DetalleCompra" Member="V_DetalleCompra">
@@ -259,22 +241,6 @@
       <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.vw_Carrito" Member="vw_Carrito">
-    <Type Name="vw_Carrito">
-      <Column Name="ID_DetalleVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ID_Venta" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ID_Producto" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NombreProducto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Imagen" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.V_Producto" Member="V_Producto">
@@ -301,6 +267,43 @@
       <Column Name="cantidadDisponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Imagen" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Productos" Member="Productos">
+    <Type Name="Productos">
+      <Column Name="ID_Producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Categoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Proveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreProducto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PrecioCompra" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="cantidadDisponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Imagen" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Productos_DetalleVenta" Member="DetalleVenta" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="DetalleVenta" />
+      <Association Name="Productos_Detalle_Compra" Member="Detalle_Compra" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="Detalle_Compra" />
+      <Association Name="Categorias_Productos" Member="Categorias" ThisKey="ID_Categoria" OtherKey="ID_Categoria" Type="Categorias" IsForeignKey="true" />
+      <Association Name="Proveedores_Productos" Member="Proveedores" ThisKey="ID_Proveedor" OtherKey="ID_Proveedor" Type="Proveedores" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_Carrito" Member="vw_Carrito">
+    <Type Name="vw_Carrito">
+      <Column Name="ID_DetalleVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Venta" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Producto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreProducto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Imagen" Type="System.String" DbType="Varchar" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Function Id="FunctionId1" Name="dbo.sp_EditarDetalleVenta" Method="sp_EditarDetalleVenta">

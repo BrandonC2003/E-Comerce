@@ -15,13 +15,13 @@ namespace E_Comerce.Controllers
         public ActionResult Index()
         {
             //consultar detalle venta
-            List<vw_Carrito> ventasV = (from v in carrito.vw_Carrito where v.ID_Venta == null && v.Usuario_Inserta == "jmartinez" select v).ToList();
+            List<vw_Carrito> ventasV = (from v in carrito.vw_Carrito where v.ID_Venta == null && v.Usuario_Inserta == Session["Usuario"].ToString() select v).ToList();
             decimal total = 0;
             foreach (var item in ventasV)
             {
                 total += Convert.ToDecimal(item.Precio - item.descuento);
             }
-            ViewBag.Total = total;
+            ViewBag.Total = total.ToString("0.00");
 
             int cantidad = 0;
             foreach (var item in ventasV)
@@ -37,12 +37,16 @@ namespace E_Comerce.Controllers
         {
             try
             {
-
-                var usu = "jmartinez";
-
-                carrito.sp_RegistrarCarrito(id,1, usu);
-                carrito.SubmitChanges();
-                return RedirectToAction("Index");
+                if (Session["Usuario"]!= null)
+                {
+                    carrito.sp_RegistrarCarrito(id, 1, Session["Usuario"].ToString());
+                    carrito.SubmitChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index","Login");
+                }
             }
             catch
             {
