@@ -26,16 +26,20 @@
                     <li class="nav-item"><a class="nav-link" href="#!">Categorias</a></li>
                 </ul>
                 <div class="d-flex">
+                    <a href="@Url.Action("Index","Login")" class="nav-link text-dark">Iniciar Sesion</a>
+                    <a href="@Url.Action("CambiarClave","Login")" class="nav-link text-dark">Cambiar Clave</a>
+                    <a href="@Url.Action("CerrarSesion","Login")" class="nav-link text-dark">Cerrar Sesion</a>
                     <a class="btn btn-outline-dark" href="@Url.Action("Index","Carrito")">
                         <i class="fa fa-shopping-cart"></i>
                         Carrito
                         <span class="badge bg-dark text-white ms-1 rounded-pill" id="cantidadcarrito">
-                        @{
-                            if (Session["Carrito"] != null)
-                            { 
-                                Session["Carrito"].ToString(); 
+                            @{
+                                if (Session["Carrito"] != null)
+                                {
+                                    Session["Carrito"].ToString();
+                                }
                             }
-                        }</span>
+                        </span>
                     </a>
                 </div>
             </div>

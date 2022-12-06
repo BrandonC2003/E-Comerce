@@ -1,0 +1,41 @@
+﻿@model E_Comerce.ServiceReference1.RespuestaUsuario
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Inicio de Sesión</h3></div>
+                <div class="card-body">
+
+                    @using (Html.BeginForm("Login","Login",FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Usuario, new { HtmlAttributes = new { @class = "form-control", @id = "inputUsuario", @placeholder = "Usuario" } })
+                            <label for="inputUsuario">Usuario</label>
+                            @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            @Html.EditorFor(model => model.Contrasena, new { HtmlAttributes = new { @class = "form-control", @id = "inputClave", @placeholder = "Contraseña" } })
+                            <label for="inputClave">Contraseña</label>
+                            @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <input type="submit" value="Iniciar Sesión" class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+                <div class="card-footer text-center py-3">
+                    <div class="small"><a href="@Url.Action("CrearCuenta")">Necesitas crear una cuenta?</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

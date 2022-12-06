@@ -790,11 +790,61 @@ Create trigger tr_InsertarProductosDeCompra
      where p.ID_Producto =inserted.ID_Producto
 GO
 ----------se agrego un campo de descripcion a la tabla producto-------
-Alter table Productos add Descripcion Varchar(150)
+Alter table Productos add Descripcion Varchar(150) go
 
 -----------Vista Detalle productos Tienda-----------
 
 create view Vw_Tienda
 as
 select ID_Producto,NombreProducto,PrecioVenta as Precio,Descuento,cantidadDisponible,Imagen,Descripcion from Productos
+go
+
+
+--Procedimiento almacenado para cambiar contrasenia
+create proc sp_CambiarClave(
+@ID_Usuario int,
+@ClaveAct varchar(50),
+@ClaveNew varchar(50)
+)
+as
+begin
+	begin try
+		if not exists(select * from Usuarios where ID_Usuario=@ID_Usuario and Clave=@ClaveAct)
+		begin
+			Raiserror('El la clave actual es incorrecta',16,1)
+		end
+		else
+		begin
+			update Usuarios set Clave=@ClaveNew where ID_Usuario=@ID_Usuario
+			select 'Usuario insertado exitosamente' as Mensaje
+		end
+	end try
+	begin catch
+		Select Error_Message() as Mensaje
+	end catch
+end
+go
+
+--Procedimiento almacenado para que los clientes creen un usuario
+create proc sp_RegistrarUsuario(
+	@nombre varchar(50),
+	@apellido varchar(50),
+	@Correo varchar(50),
+	@usuario varchar(50),
+	@Clave varchar(30)
+)
+as 
+begin 
+	begin try
+		if exists(select * from Usuarios where Usuario=@usuario or CorreoElectronico=@correo)
+		begin
+			raiserror('El nombre de usuario no puede ser repetido',16,1)
+		end
+		insert into Usuarios(ID_Rol,CorreoElectronico,Usuario,Nombre,Apellido,Clave,Usuario_Inserta,Fecha_Inserta)
+		values(3,@Correo,@usuario,@nombre,@apellido,@Clave,'usuario',GETDATE())
+	end try
+	begin catch
+		select ERROR_MESSAGE() as Mensaje
+	end catch
+end 
 go
