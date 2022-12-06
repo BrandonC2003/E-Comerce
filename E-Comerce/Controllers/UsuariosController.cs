@@ -34,6 +34,11 @@ namespace E_Comerce.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            var rol = (from r in E_ComerceDB.Rol
+                       select r).ToList();
+
+            ViewBag.rol = rol;
+
             return View();
         }
 
