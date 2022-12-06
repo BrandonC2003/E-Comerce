@@ -66,6 +66,10 @@ namespace E_Comerce.Controllers
         // GET: Producto/Edit/5
         public ActionResult Edit(int id)
         {
+            Productos objproductos = (from cp in comerce.Productos
+                                      where cp.ID_Producto == id
+                                      select cp).Single();
+
             var listacate = (from c in comerce.Categorias
                              select c).ToList();
 
@@ -75,17 +79,16 @@ namespace E_Comerce.Controllers
                              select c).ToList();
 
             ViewBag.listaprov = listaprov;
-            return View();
+            return View(objproductos);
         }
 
         // POST: Producto/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection, Productos datos)
         {
-            datos.Usuario_Inserta = "rodrigo";
-            datos.Fecha_Inserta = DateTime.Now;
-
-            comerce.Productos.InsertOnSubmit(datos);
+            string usuario = "rodrigo";
+            comerce.SP_ACTUALIZAR_PRODUCTO(datos.ID_Producto, datos.ID_Categoria, datos.ID_Proveedor, datos.NombreProducto, datos.PrecioCompra,
+                                            datos.PrecioVenta, datos.Descuento, datos.cantidadDisponible, usuario);
             comerce.SubmitChanges();
             try
             {
@@ -102,7 +105,10 @@ namespace E_Comerce.Controllers
         // GET: Producto/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Productos objproductos = (from cp in comerce.Productos
+                                      where cp.ID_Producto == id
+                                      select cp).Single();
+            return View(objproductos);
         }
 
         // POST: Producto/Delete/5
@@ -111,6 +117,14 @@ namespace E_Comerce.Controllers
         {
             try
             {
+
+                Productos objproductos = (from cp in comerce.Productos
+                                          where cp.ID_Producto == id
+                                          select cp).Single();
+
+                comerce.Productos.DeleteOnSubmit(objproductos);
+                comerce.SubmitChanges();
+
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");

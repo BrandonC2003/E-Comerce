@@ -4,10 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2> <i class="fa fa-list-alt"></i> Productos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a class="btn btn-success" href="@Url.Action("Create", "Producto")">
+        <i class="fa fa-plus-circle"></i>
+        Agregar Producto
+    </a>
+
 </p>
 <table class="table">
     <tr>
@@ -44,44 +48,52 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_Producto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreProducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreEmpresa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioCompra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioVenta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descuento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cantidadDisponible)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UltimoUsuarioActualiza)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UltimoFechaActualiza)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID_Producto }) |
-            @Html.ActionLink("Details", "Details", new { id= item.ID_Producto }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_Producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descuento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidadDisponible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UltimoUsuarioActualiza)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UltimoFechaActualiza)
+            </td>
+            <td>
+                <a class="btn btn-dark" href="@Url.Action("Details", "Producto", new { id = item.ID_Producto })">
+                    Detalles
+                    <i class="fa fa-book"></i>
+                </a>
+                <a class="btn btn-info" href="@Url.Action("Edit", "Producto", new { id = item.ID_Producto })">
+                    <i class="fa fa-pen"></i>
+                </a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Producto", new { id = item.ID_Producto })">
+                    <i class="fa fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
 
+    }
 </table>

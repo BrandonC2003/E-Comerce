@@ -24,7 +24,7 @@ namespace E_Comerce.Controllers
 
             Vw_Proveedor dtll = (from dp in dbproveedor.Vw_Proveedor
                                  where dp.ID_Proveedor == id
-                                 select dp).First();
+                                 select dp).Single();
             return View(dtll);
         }
 

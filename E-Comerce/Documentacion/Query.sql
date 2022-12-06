@@ -608,15 +608,17 @@ as
 GO
 
 --SP que actualiza productos
-create proc [dbo].[SP_ACTUALIZAR_PRODUCTOS](
+
+create proc SP_ACTUALIZAR_PRODUCTO(
 @ID_Producto int,
 @ID_Categoria int,
 @ID_Proveedor int,
+@NombreProducto varchar(50),
 @PrecioCompra money,
 @PrecioVenta money,
 @Descuento money,
 @cantidadDisponible int,
-@Usuario_Actualiza varchar(50)
+@usuario varchar(50)
 )
 as
 begin
@@ -624,9 +626,9 @@ begin
 if(select count(*) from Productos
 where ID_Producto = @ID_Producto) = 1 --si el ID existe procede a actualizar
 update Productos
-set ID_Categoria = @ID_Categoria, ID_Proveedor = @ID_Proveedor, PrecioCompra = @PrecioCompra, 
-PrecioVenta = @PrecioVenta, Descuento = @Descuento, cantidadDisponible = @cantidadDisponible, 
-Usuario_Actualiza = @Usuario_Actualiza, Fecha_Actualiza = getdate()
+set ID_Categoria = @ID_Categoria, ID_Proveedor = @ID_Proveedor, NombreProducto=@NombreProducto, PrecioCompra = @PrecioCompra, 
+PrecioVenta=@PrecioVenta, Descuento = @Descuento, cantidadDisponible = @cantidadDisponible, 
+Usuario_Actualiza = @Usuario, Fecha_Actualiza = getdate()
 where ID_Producto = @ID_Producto
 else  --si el ID no existe, envia un mensaje de error que el ID no existe
 print 'Error, no se pudo actualizar porque el ID del producto no existe' 

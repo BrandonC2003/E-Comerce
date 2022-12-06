@@ -1,11 +1,12 @@
 ﻿@model E_Comerce.Productos
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2><i class="fa fa-book"></i> Detalles</h2>
+<h2><i class="fa fa-trash-alt"></i> Borrar registro</h2>
 
+<h3>Estas seguro de querer eliminar este registro?</h3>
 <div>
     <h4>Productos</h4>
     <hr />
@@ -99,14 +100,19 @@
         </dd>
 
     </dl>
-</div>
-<p>
-    <a class="btn btn-dark" href="@Url.Action("Index", "Producto")">
-        <i class="fa fa-arrow-circle-left"></i>
-        volver
-    </a>
-    <a class="btn btn-warning" href="@Url.Action("Edit", "Producto", new { id = Model.ID_Producto })">
-        Editar
-    </a>
 
-</p>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col-md-offset-2 col-md-10">
+            <a class="btn btn-dark" href="@Url.Action("Index", "Producto")">
+                <i class="fa fa-arrow-circle-left"></i>
+                volver
+            </a>
+            <input type="submit" value="Eliminar" class="btn btn-warning" />
+        </div>
+
+    }
+</div>
+
