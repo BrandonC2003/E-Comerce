@@ -4985,7 +4985,7 @@ namespace E_Comerce
 		
 		private System.Nullable<int> _cantidadDisponible;
 		
-		private System.Data.Linq.Binary _imagen;
+		private string _imagen;
 		
 		private string _UltimoUsuarioActualiza;
 		
@@ -5123,8 +5123,8 @@ namespace E_Comerce
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imagen", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary imagen
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imagen", DbType="Varchar", UpdateCheck=UpdateCheck.Never)]
+		public string imagen
 		{
 			get
 			{

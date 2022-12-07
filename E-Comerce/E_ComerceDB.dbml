@@ -253,7 +253,7 @@
       <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="Descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="cantidadDisponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="imagen" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="imagen" Type="System.String" DbType="Varchar" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="UltimoUsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="UltimoFechaActualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
