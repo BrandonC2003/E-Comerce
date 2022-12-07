@@ -5186,7 +5186,7 @@ namespace E_Comerce
 		
 		private System.Nullable<int> _cantidadDisponible;
 		
-		private System.Data.Linq.Binary _Imagen;
+		private string _Imagen;
 		
 		private string _Descripcion;
 		
@@ -5274,8 +5274,8 @@ namespace E_Comerce
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagen", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Imagen
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagen", DbType="Varchar", UpdateCheck=UpdateCheck.Never)]
+		public string Imagen
 		{
 			get
 			{

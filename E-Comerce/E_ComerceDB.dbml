@@ -265,7 +265,7 @@
       <Column Name="Precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="Descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="cantidadDisponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Imagen" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Imagen" Type="System.String" DbType="Varchar" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </Type>
   </Table>
