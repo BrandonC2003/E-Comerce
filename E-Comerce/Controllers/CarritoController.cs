@@ -110,5 +110,10 @@ namespace E_Comerce.Controllers
                 return View();
             }
         }
+
+        public ActionResult FinalizarCompra()
+        {
+            return View();
+        }
     }
 }
