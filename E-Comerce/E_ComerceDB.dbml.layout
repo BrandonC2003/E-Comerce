@@ -191,7 +191,7 @@
         <elementListCompartment Id="486e63d6-cd2e-494a-9827-446178c4ca52" absoluteBounds="3.2649999999999997, 3.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.25 : 5.10659912109375); (12.75 : 5.10659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.25 : 5.10659912109375); (6.01041916666667 : 5.10659912109375 : JumpStart); (6.17708583333333 : 5.10659912109375 : JumpEnd); (12.75 : 5.10659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/E_ComerceDBDataContext/Productos/Productos_DetalleVenta" />
       <nodes>
         <classShapeMoniker Id="06da83f7-85b2-4f53-915d-111d0681fdca" />

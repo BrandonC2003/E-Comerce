@@ -483,6 +483,13 @@ namespace E_Comerce
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, apellido, correo, usuario, clave);
 			return ((ISingleResult<sp_RegistrarUsuarioResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Sp_EditarUsuarioss")]
+		public ISingleResult<Sp_EditarUsuariossResult> Sp_EditarUsuarioss([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Rol", DbType="Int")] System.Nullable<int> iD_Rol, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CorreoElectronico", DbType="VarChar(50)")] string correoElectronico, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario", DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Apellido", DbType="VarChar(50)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(30)")] string clave, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Rol, correoElectronico, usuario, nombre, apellido, clave, iD_Usuario);
+			return ((ISingleResult<Sp_EditarUsuariossResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
@@ -6986,6 +6993,32 @@ namespace E_Comerce
 				if ((this._Mensaje != value))
 				{
 					this._Mensaje = value;
+				}
+			}
+		}
+	}
+	
+	public partial class Sp_EditarUsuariossResult
+	{
+		
+		private string _Error;
+		
+		public Sp_EditarUsuariossResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error", DbType="NVarChar(4000)")]
+		public string Error
+		{
+			get
+			{
+				return this._Error;
+			}
+			set
+			{
+				if ((this._Error != value))
+				{
+					this._Error = value;
 				}
 			}
 		}
