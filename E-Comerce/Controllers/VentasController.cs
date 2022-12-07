@@ -14,8 +14,7 @@ namespace E_Comerce.Controllers
         // GET: Ventas
         public ActionResult Index()
         {
-            int rol = Convert.ToInt32(Session["Usuario"]);
-            if (rol==1 || rol==2)
+            if (Convert.ToInt32(Session["Rol_Usuario"])== 1 || Convert.ToInt32(Session["Rol_Usuario"])== 2)
             {
                 List<vw_DetalleVenta> ventasV = (from v in ventas.vw_DetalleVenta where v.ID_Venta == null select v).ToList();
                 decimal total = 0;

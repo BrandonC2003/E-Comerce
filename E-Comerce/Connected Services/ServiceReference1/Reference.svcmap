@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="7fafc677-9e9f-46ef-a7d5-7b5772ec94a2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="a9052fa0-b9b1-4ef5-b6eb-34e213e4cc6b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:51034/Service1.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://wcfloginprogra2.somee.com/Service1.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="ecbf3dba-d8cb-457c-8c76-7ffa2a4d992f" SourceId="1" SourceUrl="http://localhost:51034/Service1.svc?wsdl" />
-    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="d8916c37-39e2-473f-a011-f62f8b8d2d35" SourceId="1" SourceUrl="http://localhost:51034/Service1.svc?xsd=xsd2" />
-    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="8eab6d33-2284-4bdd-962e-5068ee4c6561" SourceId="1" SourceUrl="http://localhost:51034/Service1.svc?xsd=xsd1" />
-    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="00d732de-e9bf-403d-8b5d-34c30241b108" SourceId="1" SourceUrl="http://localhost:51034/Service1.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="8aba9383-4346-462b-927b-d761a86e20a3" SourceId="1" SourceUrl="http://wcfloginprogra2.somee.com/Service1.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="e2f1088b-26c7-466f-8f70-a8ab3f85edb5" SourceId="1" SourceUrl="http://wcfloginprogra2.somee.com/Service1.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="15cb2d98-d294-4e89-bd59-85de447e1746" SourceId="1" SourceUrl="http://wcfloginprogra2.somee.com/Service1.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="53302698-c64f-4da6-910e-8607d73ffba6" SourceId="1" SourceUrl="http://wcfloginprogra2.somee.com/Service1.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
