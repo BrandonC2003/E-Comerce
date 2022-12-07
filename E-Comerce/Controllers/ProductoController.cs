@@ -84,11 +84,10 @@ namespace E_Comerce.Controllers
 
         // POST: Producto/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection, Productos datos)
+        public ActionResult Edit(int id, Productos datos)
         {
             string usuario = "rodrigo";
-            comerce.SP_ACTUALIZAR_PRODUCTO(datos.ID_Producto, datos.ID_Categoria, datos.ID_Proveedor, datos.NombreProducto, datos.PrecioCompra,
-                                            datos.PrecioVenta, datos.Descuento, datos.cantidadDisponible, usuario);
+            comerce.SP_ACTUALIZAR_PRODUCTOS(id,datos.ID_Categoria,datos.ID_Proveedor,datos.PrecioCompra,datos.PrecioVenta,datos.Descuento,datos.Imagen,datos.cantidadDisponible,usuario);
             comerce.SubmitChanges();
             try
             {

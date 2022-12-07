@@ -22,7 +22,7 @@ namespace E_Comerce
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Ecomerce_StarTech")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="EcomerceStarTech")]
 	public partial class E_ComerceDBDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -71,7 +71,7 @@ namespace E_Comerce
     #endregion
 		
 		public E_ComerceDBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["Ecomerce_StarTechConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["EcomerceStarTechConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -470,13 +470,6 @@ namespace E_Comerce
 			return ((ISingleResult<sp_ProMasVResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACTUALIZAR_PRODUCTO")]
-		public int SP_ACTUALIZAR_PRODUCTO([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Producto", DbType="Int")] System.Nullable<int> iD_Producto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Proveedor", DbType="Int")] System.Nullable<int> iD_Proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NombreProducto", DbType="VarChar(50)")] string nombreProducto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioCompra", DbType="Money")] System.Nullable<decimal> precioCompra, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioVenta", DbType="Money")] System.Nullable<decimal> precioVenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descuento", DbType="Money")] System.Nullable<decimal> descuento, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> cantidadDisponible, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string usuario)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Producto, iD_Categoria, iD_Proveedor, nombreProducto, precioCompra, precioVenta, descuento, cantidadDisponible, usuario);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_RegistrarUsuario")]
 		public ISingleResult<sp_RegistrarUsuarioResult> sp_RegistrarUsuario([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Correo", DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Clave", DbType="VarChar(30)")] string clave)
 		{
@@ -489,6 +482,13 @@ namespace E_Comerce
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Rol, correoElectronico, usuario, nombre, apellido, clave, iD_Usuario);
 			return ((ISingleResult<Sp_EditarUsuariossResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACTUALIZAR_PRODUCTOS")]
+		public int SP_ACTUALIZAR_PRODUCTOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Producto", DbType="Int")] System.Nullable<int> iD_Producto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Proveedor", DbType="Int")] System.Nullable<int> iD_Proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioCompra", DbType="Money")] System.Nullable<decimal> precioCompra, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioVenta", DbType="Money")] System.Nullable<decimal> precioVenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descuento", DbType="Money")] System.Nullable<decimal> descuento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Imagen", DbType="VarChar(MAX)")] string imagen, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> cantidadDisponible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Actualiza", DbType="VarChar(50)")] string usuario_Actualiza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Producto, iD_Categoria, iD_Proveedor, precioCompra, precioVenta, descuento, imagen, cantidadDisponible, usuario_Actualiza);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

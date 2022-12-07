@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Ecomerce_StarTech" Class="E_ComerceDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-BQHIAAL\SQLEXPRESS01;Initial Catalog=Ecomerce_StarTech;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Ecomerce_StarTechConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EcomerceStarTech" Class="E_ComerceDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=EcomerceStarTech.mssql.somee.com;Initial Catalog=EcomerceStarTech;Persist Security Info=False;User ID=BrandonCC2003_SQLLogin_1;Packet Size=4096;Workstation ID=EcomerceStarTech.mssql.somee.com" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EcomerceStarTechConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Categorias" Member="Categorias">
     <Type Name="Categorias">
       <Column Name="ID_Categoria" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -517,18 +517,6 @@
       <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_ACTUALIZAR_PRODUCTO" Method="SP_ACTUALIZAR_PRODUCTO">
-    <Parameter Name="ID_Producto" Parameter="iD_Producto" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ID_Categoria" Parameter="iD_Categoria" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ID_Proveedor" Parameter="iD_Proveedor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="NombreProducto" Parameter="nombreProducto" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="PrecioCompra" Parameter="precioCompra" Type="System.Decimal" DbType="Money" />
-    <Parameter Name="PrecioVenta" Parameter="precioVenta" Type="System.Decimal" DbType="Money" />
-    <Parameter Name="Descuento" Parameter="descuento" Type="System.Decimal" DbType="Money" />
-    <Parameter Name="cantidadDisponible" Type="System.Int32" DbType="Int" />
-    <Parameter Name="usuario" Type="System.String" DbType="VarChar(50)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.sp_RegistrarUsuario" Method="sp_RegistrarUsuario">
     <Parameter Name="nombre" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="apellido" Type="System.String" DbType="VarChar(50)" />
@@ -550,5 +538,17 @@
     <ElementType Name="Sp_EditarUsuariossResult">
       <Column Name="Error" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ACTUALIZAR_PRODUCTOS" Method="SP_ACTUALIZAR_PRODUCTOS">
+    <Parameter Name="ID_Producto" Parameter="iD_Producto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Categoria" Parameter="iD_Categoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Proveedor" Parameter="iD_Proveedor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrecioCompra" Parameter="precioCompra" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="PrecioVenta" Parameter="precioVenta" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Descuento" Parameter="descuento" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Imagen" Parameter="imagen" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="cantidadDisponible" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario_Actualiza" Parameter="usuario_Actualiza" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>
