@@ -32,21 +32,25 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">@item.NombreProducto</h5>
                                     <!-- Product price-->
-                                    @item.PrecioVenta
+                                    @String.Format("{0:C}", item.PrecioVenta)
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <a class="btn btn-success" type="submit" href="@Url.Action("AgregarCarrito","Carrito",
+                                @if (Session["Usuarios"] != null)
+                                {
+                                    <div class="text-center">
+                                        <a class="btn btn-success" type="submit" href="@Url.Action("AgregarCarrito","Carrito",
                                                     new { id = item.ID_Producto,Productos = item.cantidadDisponible})" id="agregarCarrito">Agregar al carrito</a>
+                                    </div>
+                                    }
                                 </div>
-                            </div>
+                           
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <a class="btn btn-outline-secondary mt-auto" href="@Url.Action("Detalles","Tienda",
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-secondary mt-auto" href="@Url.Action("Detalles","Tienda",
                                                     new { id = item.ID_Producto})" id="verDetalle">Ver detalles</a>
-                                </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
