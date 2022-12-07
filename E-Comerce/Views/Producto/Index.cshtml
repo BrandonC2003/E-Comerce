@@ -6,110 +6,122 @@
 
 <h2> <i class="fa fa-list-alt"></i> Productos</h2>
 
-<p>
-    <a class="btn btn-success" href="@Url.Action("Create", "Producto")">
-        <i class="fa fa-plus-circle"></i>
-        Agregar Producto
-    </a>
+<div class="card mt-2">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <i class="fa fa-cash-register"></i>
+                Productos
+            </div>
+            <div class="col-6 d-md-flex justify-content-md-end">
+                <a class="btn btn-success" href="@Url.Action("Create", "Producto")">
+                    <i class="fa fa-plus-circle"></i>
+                    Agregar Producto
+                </a>
 
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ID_Producto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreProducto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreEmpresa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrecioCompra)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrecioVenta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descuento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cantidadDisponible)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.imagen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UltimoUsuarioActualiza)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UltimoFechaActualiza)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID_Producto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreProducto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categoria)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreEmpresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PrecioCompra)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PrecioVenta)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descuento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.cantidadDisponible)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.imagen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UltimoUsuarioActualiza)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UltimoFechaActualiza)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID_Producto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreProducto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Categoria)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreEmpresa)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrecioCompra)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrecioVenta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descuento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cantidadDisponible)
-                </td>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.imagen)" width="80" height="80" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UltimoUsuarioActualiza)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UltimoFechaActualiza)
-                </td>
-                <td>
-                    <a class="btn btn-dark" href="@Url.Action("Details", "Producto", new { id = item.ID_Producto })">
-                        <i class="fa fa-book"></i>
-                    </a>
-                    <a class="btn btn-info" href="@Url.Action("Edit", "Producto", new { id = item.ID_Producto })">
-                        <i class="fa fa-pen"></i>
-                    </a>
-                    <a class="btn btn-danger" href="@Url.Action("Delete", "Producto", new { id = item.ID_Producto })">
-                        <i class="fa fa-trash-alt"></i>
-                    </a>
-                </td>
-            </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID_Producto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreProducto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreEmpresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrecioCompra)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrecioVenta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descuento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cantidadDisponible)
+                        </td>
+                        <td>
+                            <img src="@Html.DisplayFor(modelItem => item.imagen)" width="80" height="80" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UltimoUsuarioActualiza)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UltimoFechaActualiza)
+                        </td>
+                        <td>
+                            <a class="btn btn-dark" href="@Url.Action("Details", "Producto", new { id = item.ID_Producto })">
+                                <i class="fa fa-book"></i>
+                            </a>
+                            <a class="btn btn-info" href="@Url.Action("Edit", "Producto", new { id = item.ID_Producto })">
+                                <i class="fa fa-pen"></i>
+                            </a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Producto", new { id = item.ID_Producto })">
+                                <i class="fa fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
 
-        }
-    </tbody>
-</table>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 @section scripts{
     <script>
-       $('.table').DataTable({
+        $('.table').DataTable({
             responsive: true,
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"

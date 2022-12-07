@@ -269,27 +269,6 @@
       <Column Name="Descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Productos" Member="Productos">
-    <Type Name="Productos">
-      <Column Name="ID_Producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_Categoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ID_Proveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NombreProducto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="PrecioCompra" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="Descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="cantidadDisponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Imagen" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Association Name="Productos_DetalleVenta" Member="DetalleVenta" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="DetalleVenta" />
-      <Association Name="Productos_Detalle_Compra" Member="Detalle_Compra" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="Detalle_Compra" />
-      <Association Name="Categorias_Productos" Member="Categorias" ThisKey="ID_Categoria" OtherKey="ID_Categoria" Type="Categorias" IsForeignKey="true" />
-      <Association Name="Proveedores_Productos" Member="Proveedores" ThisKey="ID_Proveedor" OtherKey="ID_Proveedor" Type="Proveedores" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.vw_Carrito" Member="vw_Carrito">
     <Type Name="vw_Carrito">
       <Column Name="ID_DetalleVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -304,6 +283,28 @@
       <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Productos" Member="Productos">
+    <Type Name="Productos">
+      <Column Name="ID_Producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Categoria" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Proveedor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NombreProducto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PrecioCompra" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PrecioVenta" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="cantidadDisponible" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Imagen" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Productos_DetalleVenta" Member="DetalleVenta" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="DetalleVenta" />
+      <Association Name="Productos_Detalle_Compra" Member="Detalle_Compra" ThisKey="ID_Producto" OtherKey="ID_Producto" Type="Detalle_Compra" />
+      <Association Name="Categorias_Productos" Member="Categorias" ThisKey="ID_Categoria" OtherKey="ID_Categoria" Type="Categorias" IsForeignKey="true" />
+      <Association Name="Proveedores_Productos" Member="Proveedores" ThisKey="ID_Proveedor" OtherKey="ID_Proveedor" Type="Proveedores" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Id="FunctionId1" Name="dbo.sp_EditarDetalleVenta" Method="sp_EditarDetalleVenta">
@@ -547,6 +548,19 @@
     <Parameter Name="PrecioVenta" Parameter="precioVenta" Type="System.Decimal" DbType="Money" />
     <Parameter Name="Descuento" Parameter="descuento" Type="System.Decimal" DbType="Money" />
     <Parameter Name="Imagen" Parameter="imagen" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="cantidadDisponible" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario_Actualiza" Parameter="usuario_Actualiza" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_ACTUALIZAR_PRODUCTOS" Method="SP_ACTUALIZAR_PRODUCTOS1">
+    <Parameter Name="ID_Producto" Parameter="iD_Producto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Categoria" Parameter="iD_Categoria" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Proveedor" Parameter="iD_Proveedor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PrecioCompra" Parameter="precioCompra" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="PrecioVenta" Parameter="precioVenta" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Descuento" Parameter="descuento" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="Imagen" Parameter="imagen" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(MAX)" />
     <Parameter Name="cantidadDisponible" Type="System.Int32" DbType="Int" />
     <Parameter Name="Usuario_Actualiza" Parameter="usuario_Actualiza" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />

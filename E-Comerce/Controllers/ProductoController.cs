@@ -86,12 +86,11 @@ namespace E_Comerce.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Productos datos)
         {
-            string usuario = "rodrigo";
-            comerce.SP_ACTUALIZAR_PRODUCTOS(id,datos.ID_Categoria,datos.ID_Proveedor,datos.PrecioCompra,datos.PrecioVenta,datos.Descuento,datos.Imagen,datos.cantidadDisponible,usuario);
-            comerce.SubmitChanges();
             try
             {
-                // TODO: Add update logic here
+                string usuario = "rodrigo";
+                comerce.SP_ACTUALIZAR_PRODUCTOS1(id, datos.ID_Categoria, datos.ID_Proveedor, datos.PrecioCompra, datos.PrecioVenta, datos.Descuento, datos.Imagen, datos.Descripcion, datos.cantidadDisponible, usuario);
+                comerce.SubmitChanges();
 
                 return RedirectToAction("Index");
             }

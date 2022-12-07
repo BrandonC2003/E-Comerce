@@ -67,6 +67,11 @@ namespace E_Comerce.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int id)
         {
+            var rol = (from r in E_ComerceDB.Rol
+                       select r).ToList();
+
+            ViewBag.rol = rol;
+
             Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
                                     where u.ID_Usuario == id
                                     select u).Single();

@@ -20,8 +20,8 @@ namespace E_Comerce
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	
-	
+	using System.ComponentModel.DataAnnotations;
+
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="EcomerceStarTech")]
 	public partial class E_ComerceDBDataContext : System.Data.Linq.DataContext
 	{
@@ -260,19 +260,19 @@ namespace E_Comerce
 			}
 		}
 		
-		public System.Data.Linq.Table<Productos> Productos
-		{
-			get
-			{
-				return this.GetTable<Productos>();
-			}
-		}
-		
 		public System.Data.Linq.Table<vw_Carrito> vw_Carrito
 		{
 			get
 			{
 				return this.GetTable<vw_Carrito>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Productos> Productos
+		{
+			get
+			{
+				return this.GetTable<Productos>();
 			}
 		}
 		
@@ -488,6 +488,13 @@ namespace E_Comerce
 		public int SP_ACTUALIZAR_PRODUCTOS([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Producto", DbType="Int")] System.Nullable<int> iD_Producto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Proveedor", DbType="Int")] System.Nullable<int> iD_Proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioCompra", DbType="Money")] System.Nullable<decimal> precioCompra, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioVenta", DbType="Money")] System.Nullable<decimal> precioVenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descuento", DbType="Money")] System.Nullable<decimal> descuento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Imagen", DbType="VarChar(MAX)")] string imagen, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> cantidadDisponible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Actualiza", DbType="VarChar(50)")] string usuario_Actualiza)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Producto, iD_Categoria, iD_Proveedor, precioCompra, precioVenta, descuento, imagen, cantidadDisponible, usuario_Actualiza);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ACTUALIZAR_PRODUCTOS")]
+		public int SP_ACTUALIZAR_PRODUCTOS1([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Producto", DbType="Int")] System.Nullable<int> iD_Producto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Categoria", DbType="Int")] System.Nullable<int> iD_Categoria, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Proveedor", DbType="Int")] System.Nullable<int> iD_Proveedor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioCompra", DbType="Money")] System.Nullable<decimal> precioCompra, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrecioVenta", DbType="Money")] System.Nullable<decimal> precioVenta, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descuento", DbType="Money")] System.Nullable<decimal> descuento, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Imagen", DbType="VarChar(MAX)")] string imagen, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Descripcion", DbType="VarChar(MAX)")] string descripcion, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> cantidadDisponible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Actualiza", DbType="VarChar(50)")] string usuario_Actualiza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Producto, iD_Categoria, iD_Proveedor, precioCompra, precioVenta, descuento, imagen, descripcion, cantidadDisponible, usuario_Actualiza);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -5307,6 +5314,231 @@ namespace E_Comerce
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vw_Carrito")]
+	public partial class vw_Carrito
+	{
+		
+		private int _ID_DetalleVenta;
+		
+		private System.Nullable<int> _ID_Venta;
+		
+		private System.Nullable<int> _ID_Producto;
+		
+		private string _NombreProducto;
+		
+		private string _Imagen;
+		
+		private System.Nullable<int> _cantidad;
+		
+		private System.Nullable<decimal> _Precio;
+		
+		private System.Nullable<decimal> _descuento;
+		
+		private string _Usuario_Inserta;
+		
+		private System.Nullable<System.DateTime> _Fecha_Inserta;
+		
+		private string _Usuario_Actualiza;
+		
+		private System.Nullable<System.DateTime> _Fecha_Actualiza;
+		
+		public vw_Carrito()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_DetalleVenta", DbType="Int NOT NULL")]
+		public int ID_DetalleVenta
+		{
+			get
+			{
+				return this._ID_DetalleVenta;
+			}
+			set
+			{
+				if ((this._ID_DetalleVenta != value))
+				{
+					this._ID_DetalleVenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Venta", DbType="Int")]
+		public System.Nullable<int> ID_Venta
+		{
+			get
+			{
+				return this._ID_Venta;
+			}
+			set
+			{
+				if ((this._ID_Venta != value))
+				{
+					this._ID_Venta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Producto", DbType="Int")]
+		public System.Nullable<int> ID_Producto
+		{
+			get
+			{
+				return this._ID_Producto;
+			}
+			set
+			{
+				if ((this._ID_Producto != value))
+				{
+					this._ID_Producto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProducto", DbType="VarChar(50)")]
+		public string NombreProducto
+		{
+			get
+			{
+				return this._NombreProducto;
+			}
+			set
+			{
+				if ((this._NombreProducto != value))
+				{
+					this._NombreProducto = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagen", DbType="Varchar", UpdateCheck=UpdateCheck.Never)]
+		public string Imagen
+		{
+			get
+			{
+				return this._Imagen;
+			}
+			set
+			{
+				if ((this._Imagen != value))
+				{
+					this._Imagen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cantidad", DbType="Int")]
+		public System.Nullable<int> cantidad
+		{
+			get
+			{
+				return this._cantidad;
+			}
+			set
+			{
+				if ((this._cantidad != value))
+				{
+					this._cantidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Precio", DbType="Money")]
+		public System.Nullable<decimal> Precio
+		{
+			get
+			{
+				return this._Precio;
+			}
+			set
+			{
+				if ((this._Precio != value))
+				{
+					this._Precio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descuento", DbType="Money")]
+		public System.Nullable<decimal> descuento
+		{
+			get
+			{
+				return this._descuento;
+			}
+			set
+			{
+				if ((this._descuento != value))
+				{
+					this._descuento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Inserta", DbType="VarChar(50)")]
+		public string Usuario_Inserta
+		{
+			get
+			{
+				return this._Usuario_Inserta;
+			}
+			set
+			{
+				if ((this._Usuario_Inserta != value))
+				{
+					this._Usuario_Inserta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Inserta", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Inserta
+		{
+			get
+			{
+				return this._Fecha_Inserta;
+			}
+			set
+			{
+				if ((this._Fecha_Inserta != value))
+				{
+					this._Fecha_Inserta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Actualiza", DbType="VarChar(50)")]
+		public string Usuario_Actualiza
+		{
+			get
+			{
+				return this._Usuario_Actualiza;
+			}
+			set
+			{
+				if ((this._Usuario_Actualiza != value))
+				{
+					this._Usuario_Actualiza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Actualiza", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Actualiza
+		{
+			get
+			{
+				return this._Fecha_Actualiza;
+			}
+			set
+			{
+				if ((this._Fecha_Actualiza != value))
+				{
+					this._Fecha_Actualiza = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Productos")]
 	public partial class Productos : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5328,6 +5560,8 @@ namespace E_Comerce
 		private System.Nullable<decimal> _Descuento;
 		
 		private System.Nullable<int> _cantidadDisponible;
+		
+		private string _Descripcion;
 		
 		private string _Usuario_Inserta;
 		
@@ -5367,6 +5601,8 @@ namespace E_Comerce
     partial void OnDescuentoChanged();
     partial void OncantidadDisponibleChanging(System.Nullable<int> value);
     partial void OncantidadDisponibleChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
     partial void OnUsuario_InsertaChanging(string value);
     partial void OnUsuario_InsertaChanged();
     partial void OnFecha_InsertaChanging(System.Nullable<System.DateTime> value);
@@ -5552,6 +5788,27 @@ namespace E_Comerce
 					this._cantidadDisponible = value;
 					this.SendPropertyChanged("cantidadDisponible");
 					this.OncantidadDisponibleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(200)")]
+		[DataType(DataType.MultilineText)]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
 				}
 			}
 		}
@@ -5792,231 +6049,6 @@ namespace E_Comerce
 		{
 			this.SendPropertyChanging();
 			entity.Productos = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vw_Carrito")]
-	public partial class vw_Carrito
-	{
-		
-		private int _ID_DetalleVenta;
-		
-		private System.Nullable<int> _ID_Venta;
-		
-		private System.Nullable<int> _ID_Producto;
-		
-		private string _NombreProducto;
-		
-		private string _Imagen;
-		
-		private System.Nullable<int> _cantidad;
-		
-		private System.Nullable<decimal> _Precio;
-		
-		private System.Nullable<decimal> _descuento;
-		
-		private string _Usuario_Inserta;
-		
-		private System.Nullable<System.DateTime> _Fecha_Inserta;
-		
-		private string _Usuario_Actualiza;
-		
-		private System.Nullable<System.DateTime> _Fecha_Actualiza;
-		
-		public vw_Carrito()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_DetalleVenta", DbType="Int NOT NULL")]
-		public int ID_DetalleVenta
-		{
-			get
-			{
-				return this._ID_DetalleVenta;
-			}
-			set
-			{
-				if ((this._ID_DetalleVenta != value))
-				{
-					this._ID_DetalleVenta = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Venta", DbType="Int")]
-		public System.Nullable<int> ID_Venta
-		{
-			get
-			{
-				return this._ID_Venta;
-			}
-			set
-			{
-				if ((this._ID_Venta != value))
-				{
-					this._ID_Venta = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Producto", DbType="Int")]
-		public System.Nullable<int> ID_Producto
-		{
-			get
-			{
-				return this._ID_Producto;
-			}
-			set
-			{
-				if ((this._ID_Producto != value))
-				{
-					this._ID_Producto = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NombreProducto", DbType="VarChar(50)")]
-		public string NombreProducto
-		{
-			get
-			{
-				return this._NombreProducto;
-			}
-			set
-			{
-				if ((this._NombreProducto != value))
-				{
-					this._NombreProducto = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagen", DbType="Varchar", UpdateCheck=UpdateCheck.Never)]
-		public string Imagen
-		{
-			get
-			{
-				return this._Imagen;
-			}
-			set
-			{
-				if ((this._Imagen != value))
-				{
-					this._Imagen = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cantidad", DbType="Int")]
-		public System.Nullable<int> cantidad
-		{
-			get
-			{
-				return this._cantidad;
-			}
-			set
-			{
-				if ((this._cantidad != value))
-				{
-					this._cantidad = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Precio", DbType="Money")]
-		public System.Nullable<decimal> Precio
-		{
-			get
-			{
-				return this._Precio;
-			}
-			set
-			{
-				if ((this._Precio != value))
-				{
-					this._Precio = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descuento", DbType="Money")]
-		public System.Nullable<decimal> descuento
-		{
-			get
-			{
-				return this._descuento;
-			}
-			set
-			{
-				if ((this._descuento != value))
-				{
-					this._descuento = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Inserta", DbType="VarChar(50)")]
-		public string Usuario_Inserta
-		{
-			get
-			{
-				return this._Usuario_Inserta;
-			}
-			set
-			{
-				if ((this._Usuario_Inserta != value))
-				{
-					this._Usuario_Inserta = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Inserta", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Inserta
-		{
-			get
-			{
-				return this._Fecha_Inserta;
-			}
-			set
-			{
-				if ((this._Fecha_Inserta != value))
-				{
-					this._Fecha_Inserta = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Actualiza", DbType="VarChar(50)")]
-		public string Usuario_Actualiza
-		{
-			get
-			{
-				return this._Usuario_Actualiza;
-			}
-			set
-			{
-				if ((this._Usuario_Actualiza != value))
-				{
-					this._Usuario_Actualiza = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Actualiza", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha_Actualiza
-		{
-			get
-			{
-				return this._Fecha_Actualiza;
-			}
-			set
-			{
-				if ((this._Fecha_Actualiza != value))
-				{
-					this._Fecha_Actualiza = value;
-				}
-			}
 		}
 	}
 	

@@ -11,7 +11,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">StarTech</h1>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="form">
+            <div class="form modal-body">
                 Cargando...
             </div>
         </div>
@@ -19,72 +19,79 @@
 </div>
 
 
-<h2>Proveedores</h2>
 
-
-<a class="btnAgrega btn btn-outline-dark" href="#demo" data-bs-toggle="modal">
-    <i class="fas fa-truck"></i>
-</a>
-
-
-
-@*<a class="btnAgrega btn btn-outline-dark" href="#demo" data-bs-toggle="modal">
-        <i class="fas fa-truck"></i>
-    </a>*@
-
-@*<p>
-        @Html.ActionLink("Crear", "Create", new { @class = "btn btn-success" })
-    </p>*@
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_Proveedor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NombreEmpresa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.ID_Proveedor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreEmpresa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            @*<td>
-                    @Html.ActionLink("Actualizar", "Edit", new { id = item.ID_Proveedor }, new { @class = "btn btn-warning btn-sm" })|
-                    @Html.ActionLink("Detalle", "Details", new { id = item.ID_Proveedor }, new { @class = "btn btn-info btn-sm" })|
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_Proveedor }, new { @class = "btn btn-danger btn-sm" })
-                </td>*@
-            <td>
-                <a class="btnUpdate btn btn-outline-dark" href="#demo" data-bs-toggle="modal" data-id="@item.ID_Proveedor">
-                    <i class="fa fa-undo-alt"></i>
+<div class="card mt-2">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <i class="fas fa-truck me-1"></i>
+                Proveedores
+            </div>
+            <div class="col-6 d-md-flex justify-content-md-end">
+                <a class="btnAgrega btn btn-success" href="#demo" data-bs-toggle="modal">
+                    <i class="fas fa-plus-circle"></i>Agregar Proveedor
                 </a>
-                <a class="btnDetail btn btn-outline-primary" href="#demo" data-bs-toggle="modal" data-id="@item.ID_Proveedor">
-                    <i class="fas fa-eye"></i>
-                </a>
-                <a class="btnDelete btn btn-outline-dark btnDelete" href="#demo" data-bs-toggle="modal" data-id="@item.ID_Proveedor">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
-            </td>
-
-
-        </tr>
-    }
-
-</table>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID_Proveedor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreEmpresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Telefono)
+                    </th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.ID_Proveedor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreEmpresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            <a class="btnUpdate btn btn-outline-dark" href="#demo" data-bs-toggle="modal" data-id="@item.ID_Proveedor">
+                                <i class="fa fa-undo-alt"></i>
+                            </a>
+                            <a class="btnDetail btn btn-outline-primary" href="#demo" data-bs-toggle="modal" data-id="@item.ID_Proveedor">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a class="btnDelete btn btn-outline-dark btnDelete" href="#demo" data-bs-toggle="modal" data-id="@item.ID_Proveedor">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 @section scripts{
 
     <script src="~/Scripts/JSPersonalizados/ModalProveedor.js"></script>
+
+    <script>
+        $('.table').DataTable({
+            responsive: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    </script>
+
 }
