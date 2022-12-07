@@ -20,8 +20,8 @@ namespace E_Comerce
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	using System.ComponentModel.DataAnnotations;
-
+	
+	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="EcomerceStarTech")]
 	public partial class E_ComerceDBDataContext : System.Data.Linq.DataContext
 	{
@@ -276,6 +276,14 @@ namespace E_Comerce
 			}
 		}
 		
+		public System.Data.Linq.Table<vw_LugaresEntrega> vw_LugaresEntrega
+		{
+			get
+			{
+				return this.GetTable<vw_LugaresEntrega>();
+			}
+		}
+		
 		private void InsertVentas(Ventas obj)
 		{
 			this.sp_EditarDetalleVenta(default(System.Nullable<int>), ((System.Nullable<int>)(obj.ID_Venta)), default(System.Nullable<int>), default(System.Nullable<int>), default(string));
@@ -496,6 +504,27 @@ namespace E_Comerce
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Producto, iD_Categoria, iD_Proveedor, precioCompra, precioVenta, descuento, imagen, descripcion, cantidadDisponible, usuario_Actualiza);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_InsertLugaresEntrega")]
+		public ISingleResult<sp_InsertLugaresEntregaResult> sp_InsertLugaresEntrega([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Repartidor", DbType="Int")] System.Nullable<int> iD_Repartidor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Municipio", DbType="Int")] System.Nullable<int> iD_Municipio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoEntrega", DbType="Decimal(16,2)")] System.Nullable<decimal> montoEntrega, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioInserta", DbType="VarChar(50)")] string usuarioInserta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Repartidor, iD_Municipio, montoEntrega, usuarioInserta);
+			return ((ISingleResult<sp_InsertLugaresEntregaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ModificarLugaresEntrega")]
+		public ISingleResult<sp_ModificarLugaresEntregaResult> sp_ModificarLugaresEntrega([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Entrega", DbType="Int")] System.Nullable<int> iD_Entrega, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Repartidor", DbType="Int")] System.Nullable<int> iD_Repartidor, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Municipio", DbType="Int")] System.Nullable<int> iD_Municipio, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MontoEntrega", DbType="Decimal(16,2)")] System.Nullable<decimal> montoEntrega, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioActualiza", DbType="VarChar(50)")] string usuarioActualiza)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Entrega, iD_Repartidor, iD_Municipio, montoEntrega, usuarioActualiza);
+			return ((ISingleResult<sp_ModificarLugaresEntregaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_EliminarLugaresEntrega")]
+		public ISingleResult<sp_EliminarLugaresEntregaResult> sp_EliminarLugaresEntrega([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Entrega", DbType="Int")] System.Nullable<int> iD_Entrega)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Entrega);
+			return ((ISingleResult<sp_EliminarLugaresEntregaResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -5793,7 +5822,6 @@ namespace E_Comerce
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(200)")]
-		[DataType(DataType.MultilineText)]
 		public string Descripcion
 		{
 			get
@@ -6049,6 +6077,195 @@ namespace E_Comerce
 		{
 			this.SendPropertyChanging();
 			entity.Productos = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vw_LugaresEntrega")]
+	public partial class vw_LugaresEntrega
+	{
+		
+		private int _ID_Entrega;
+		
+		private int _ID_Repartidor;
+		
+		private string _Repartidor;
+		
+		private int _ID_Municipio;
+		
+		private string _Municipio;
+		
+		private System.Nullable<decimal> _MontoEntrega;
+		
+		private string _Usuario_Inserta;
+		
+		private System.Nullable<System.DateTime> _Fecha_Inserta;
+		
+		private string _Usuario_Actualiza;
+		
+		private System.Nullable<System.DateTime> _Fecha_Actualiza;
+		
+		public vw_LugaresEntrega()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Entrega", DbType="Int NOT NULL")]
+		public int ID_Entrega
+		{
+			get
+			{
+				return this._ID_Entrega;
+			}
+			set
+			{
+				if ((this._ID_Entrega != value))
+				{
+					this._ID_Entrega = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Repartidor", DbType="Int NOT NULL")]
+		public int ID_Repartidor
+		{
+			get
+			{
+				return this._ID_Repartidor;
+			}
+			set
+			{
+				if ((this._ID_Repartidor != value))
+				{
+					this._ID_Repartidor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Repartidor", DbType="VarChar(101) NOT NULL", CanBeNull=false)]
+		public string Repartidor
+		{
+			get
+			{
+				return this._Repartidor;
+			}
+			set
+			{
+				if ((this._Repartidor != value))
+				{
+					this._Repartidor = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Municipio", DbType="Int NOT NULL")]
+		public int ID_Municipio
+		{
+			get
+			{
+				return this._ID_Municipio;
+			}
+			set
+			{
+				if ((this._ID_Municipio != value))
+				{
+					this._ID_Municipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Municipio", DbType="VarChar(50)")]
+		public string Municipio
+		{
+			get
+			{
+				return this._Municipio;
+			}
+			set
+			{
+				if ((this._Municipio != value))
+				{
+					this._Municipio = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MontoEntrega", DbType="Money")]
+		public System.Nullable<decimal> MontoEntrega
+		{
+			get
+			{
+				return this._MontoEntrega;
+			}
+			set
+			{
+				if ((this._MontoEntrega != value))
+				{
+					this._MontoEntrega = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Inserta", DbType="VarChar(50)")]
+		public string Usuario_Inserta
+		{
+			get
+			{
+				return this._Usuario_Inserta;
+			}
+			set
+			{
+				if ((this._Usuario_Inserta != value))
+				{
+					this._Usuario_Inserta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Inserta", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Inserta
+		{
+			get
+			{
+				return this._Fecha_Inserta;
+			}
+			set
+			{
+				if ((this._Fecha_Inserta != value))
+				{
+					this._Fecha_Inserta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_Actualiza", DbType="VarChar(50)")]
+		public string Usuario_Actualiza
+		{
+			get
+			{
+				return this._Usuario_Actualiza;
+			}
+			set
+			{
+				if ((this._Usuario_Actualiza != value))
+				{
+					this._Usuario_Actualiza = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_Actualiza", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha_Actualiza
+		{
+			get
+			{
+				return this._Fecha_Actualiza;
+			}
+			set
+			{
+				if ((this._Fecha_Actualiza != value))
+				{
+					this._Fecha_Actualiza = value;
+				}
+			}
 		}
 	}
 	
@@ -7036,6 +7253,84 @@ namespace E_Comerce
 		private string _Error;
 		
 		public Sp_EditarUsuariossResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error", DbType="NVarChar(4000)")]
+		public string Error
+		{
+			get
+			{
+				return this._Error;
+			}
+			set
+			{
+				if ((this._Error != value))
+				{
+					this._Error = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_InsertLugaresEntregaResult
+	{
+		
+		private string _Error;
+		
+		public sp_InsertLugaresEntregaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error", DbType="NVarChar(4000)")]
+		public string Error
+		{
+			get
+			{
+				return this._Error;
+			}
+			set
+			{
+				if ((this._Error != value))
+				{
+					this._Error = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_ModificarLugaresEntregaResult
+	{
+		
+		private string _Error;
+		
+		public sp_ModificarLugaresEntregaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Error", DbType="NVarChar(4000)")]
+		public string Error
+		{
+			get
+			{
+				return this._Error;
+			}
+			set
+			{
+				if ((this._Error != value))
+				{
+					this._Error = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_EliminarLugaresEntregaResult
+	{
+		
+		private string _Error;
+		
+		public sp_EliminarLugaresEntregaResult()
 		{
 		}
 		

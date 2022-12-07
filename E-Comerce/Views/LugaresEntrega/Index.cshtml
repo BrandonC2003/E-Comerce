@@ -1,0 +1,83 @@
+﻿@model IEnumerable<E_Comerce.vw_LugaresEntrega>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card mt-2">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <i class="fa fa-truck-moving"></i>
+                Lugares de Entrega
+            </div>
+            <div class="col-6 d-md-flex justify-content-md-end">
+                <a class="btn btn-success" href="@Url.Action("Create", "LugaresEntrega")">
+                    <i class="fa fa-plus-circle"></i>
+                    Agregar Lugar de Entrega
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Repartidor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Municipio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MontoEntrega)
+                    </th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Repartidor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Municipio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MontoEntrega)
+                        </td>
+                        <td>
+                            <a class="btn btn-dark" href="@Url.Action("Details", "Producto", new { id = item.ID_Entrega})">
+                                <i class="fa fa-book"></i>
+                            </a>
+                            <a class="btn btn-info" href="@Url.Action("Edit", "Producto", new { id = item.ID_Entrega})">
+                                <i class="fa fa-pen"></i>
+                            </a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Producto", new { id = item.ID_Entrega})">
+                                <i class="fa fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('.table').DataTable({
+            responsive: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    </script>
+}

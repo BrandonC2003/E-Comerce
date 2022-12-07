@@ -1,0 +1,79 @@
+﻿@model E_Comerce.Lugares_Entrega
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <br />
+    <h4 class="text-center">Agregar Lugares de Entrega</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="mb-3 row">
+        <label class="form-label col-md-2">Repartidor</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ID_Repartidor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ID_Repartidor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label class="form-label col-md-2">Departamento</label>
+        <div class="col-md-10">
+            <select class="form-select" id="Departamento">
+                @foreach (var item in ViewBag.Departamentos) 
+                { 
+                    <option value="@item.ID_Departamento">@item.Nombre</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label class="form-label col-md-2">Municipio</label>
+        <div class="col-md-10">
+            <select id="ID_Municipio" name="ID_Municipio" class="form-select">
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        @Html.LabelFor(model => model.MontoEntrega, htmlAttributes: new { @class = "form-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MontoEntrega, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MontoEntrega, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts{
+    <script>
+        var cboDepartamento = document.getElementById("Departamento");
+        cboDepartamento.addEventListener("Change", Refresh);
+        Refresh();
+        function Refresh() {
+            fetch("@Url.Content("~/LugaresEntrega/LlenarMun")" + "?id=" + cboDepartamento.value)
+                .then(function (result) {
+                    if (result.ok) {
+                        return result.json();
+                    }
+                })
+                .then(function (data) {
+                    console.log(data);
+                })
+            
+        }
+    </script>
+}

@@ -135,6 +135,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LugaresEntregaController.cs" />
     <Compile Include="Controllers\ModificarVentasController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
@@ -608,6 +609,8 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Login\CrearCuenta.cshtml" />
     <Content Include="Views\Login\Cambiarclave.cshtml" />
+    <Content Include="Views\LugaresEntrega\Index.cshtml" />
+    <Content Include="Views\LugaresEntrega\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

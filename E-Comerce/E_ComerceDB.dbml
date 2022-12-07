@@ -307,6 +307,20 @@
       <Association Name="Proveedores_Productos" Member="Proveedores" ThisKey="ID_Proveedor" OtherKey="ID_Proveedor" Type="Proveedores" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vw_LugaresEntrega" Member="vw_LugaresEntrega">
+    <Type Name="vw_LugaresEntrega">
+      <Column Name="ID_Entrega" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Repartidor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Repartidor" Type="System.String" DbType="VarChar(101) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Municipio" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Municipio" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MontoEntrega" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Id="FunctionId1" Name="dbo.sp_EditarDetalleVenta" Method="sp_EditarDetalleVenta">
     <Parameter Name="ID_DetalleVenta" Parameter="iD_DetalleVenta" Type="System.Int32" DbType="Int" />
     <Parameter Name="ID_Venta" Parameter="iD_Venta" Type="System.Int32" DbType="Int" />
@@ -564,5 +578,30 @@
     <Parameter Name="cantidadDisponible" Type="System.Int32" DbType="Int" />
     <Parameter Name="Usuario_Actualiza" Parameter="usuario_Actualiza" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_InsertLugaresEntrega" Method="sp_InsertLugaresEntrega">
+    <Parameter Name="ID_Repartidor" Parameter="iD_Repartidor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Municipio" Parameter="iD_Municipio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MontoEntrega" Parameter="montoEntrega" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="UsuarioInserta" Parameter="usuarioInserta" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_InsertLugaresEntregaResult">
+      <Column Name="Error" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ModificarLugaresEntrega" Method="sp_ModificarLugaresEntrega">
+    <Parameter Name="ID_Entrega" Parameter="iD_Entrega" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Repartidor" Parameter="iD_Repartidor" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Municipio" Parameter="iD_Municipio" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MontoEntrega" Parameter="montoEntrega" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="UsuarioActualiza" Parameter="usuarioActualiza" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_ModificarLugaresEntregaResult">
+      <Column Name="Error" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_EliminarLugaresEntrega" Method="sp_EliminarLugaresEntrega">
+    <Parameter Name="ID_Entrega" Parameter="iD_Entrega" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_EliminarLugaresEntregaResult">
+      <Column Name="Error" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>
