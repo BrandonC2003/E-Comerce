@@ -14,15 +14,23 @@ namespace E_Comerce.Controllers
         // GET: Ventas
         public ActionResult Index()
         {
-            List<vw_DetalleVenta> ventasV = (from v in ventas.vw_DetalleVenta where v.ID_Venta==null select v).ToList();
-            decimal total = 0;
-            foreach (var item in ventasV)
+            int rol = Convert.ToInt32(Session["Usuario"]);
+            if (rol==1 || rol==2)
             {
-                total += Convert.ToDecimal(item.Precio-item.descuento);
-            }
-            ViewBag.Total = total;
+                List<vw_DetalleVenta> ventasV = (from v in ventas.vw_DetalleVenta where v.ID_Venta == null select v).ToList();
+                decimal total = 0;
+                foreach (var item in ventasV)
+                {
+                    total += Convert.ToDecimal(item.Precio - item.descuento);
+                }
+                ViewBag.Total = total;
 
-            return View(ventasV);
+                return View(ventasV);
+            }
+            else
+            {
+                return RedirectToAction("Index","Login");
+            }
         }
         // GET: Ventas/Create
         public ActionResult Create()

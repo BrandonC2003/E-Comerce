@@ -14,22 +14,29 @@ namespace E_Comerce.Controllers
         // GET: Carrito
         public ActionResult Index()
         {
-            //consultar detalle venta
-            List<vw_Carrito> ventasV = (from v in carrito.vw_Carrito where v.ID_Venta == null && v.Usuario_Inserta == Session["Usuario"].ToString() select v).ToList();
-            decimal total = 0;
-            foreach (var item in ventasV)
+            if (Session["Usuario"] != null)
             {
-                total += Convert.ToDecimal(item.Precio - item.descuento);
-            }
-            ViewBag.Total = total.ToString("0.00");
+                //consultar detalle venta
+                List<vw_Carrito> ventasV = (from v in carrito.vw_Carrito where v.ID_Venta == null && v.Usuario_Inserta == Session["Usuario"].ToString() select v).ToList();
+                decimal total = 0;
+                foreach (var item in ventasV)
+                {
+                    total += Convert.ToDecimal(item.Precio - item.descuento);
+                }
+                ViewBag.Total = total.ToString("0.00");
 
-            int cantidad = 0;
-            foreach (var item in ventasV)
-            {
-                cantidad += Convert.ToInt32(item.cantidad);
+                int cantidad = 0;
+                foreach (var item in ventasV)
+                {
+                    cantidad += Convert.ToInt32(item.cantidad);
+                }
+                Session["Carrito"] = cantidad;
+                return View(ventasV);
             }
-            Session["Carrito"] = cantidad;
-            return View(ventasV);           
+            else
+            {
+                return RedirectToAction("Index","Login");
+            }
         }
 
         [HttpGet]
