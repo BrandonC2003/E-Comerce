@@ -20,7 +20,8 @@ namespace WCFLogin
 
         public string GetData(int value)
         {
-            return string.Format("You entered: {0}", value);
+            value = Convert.ToInt32(value); 
+            return string.Format("You1 entered: {0}", value);
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
