@@ -848,3 +848,24 @@ begin
 	end catch
 end 
 go
+
+----------Modificacion sp Producto mas Vendido----
+ alter procedure sp_ProMasV
+as
+begin
+  begin try
+    if not exists(select*from DetalleVenta)
+	begin
+	raiserror('No hay Productos Vendidos',16,1)
+	end
+     select top 5 p.NombreProducto as Producto,sum(d.cantidad)as Total from DetalleVenta d inner join Productos p
+     on d.ID_Producto=p.ID_Producto
+     group by p.NombreProducto
+     order by total desc
+	 end try
+	 begin catch
+	 select ERROR_MESSAGE() Mensaje
+	 end catch
+	end
+go
+
