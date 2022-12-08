@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Comerce", "E-Comerce\E-Co
 		{6BBD3503-BDA1-4CD2-8EEC-61E38E82F0DA} = {6BBD3503-BDA1-4CD2-8EEC-61E38E82F0DA}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFLogin", "..\..\..\..\Downloads\WCFLogin\WCFLogin\WCFLogin.csproj", "{6BBD3503-BDA1-4CD2-8EEC-61E38E82F0DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFLogin", "WCFLogin\WCFLogin.csproj", "{6BBD3503-BDA1-4CD2-8EEC-61E38E82F0DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
