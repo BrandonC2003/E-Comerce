@@ -604,4 +604,10 @@
       <Column Name="Error" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.sp_RegistrarVentaCliente" Method="sp_RegistrarVentaCliente">
+    <Parameter Name="ID_Usuario" Parameter="iD_Usuario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Entrega" Parameter="iD_Entrega" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Usuario_Inserta" Parameter="usuario_Inserta" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

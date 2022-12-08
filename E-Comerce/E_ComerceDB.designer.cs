@@ -526,6 +526,13 @@ namespace E_Comerce
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Entrega);
 			return ((ISingleResult<sp_EliminarLugaresEntregaResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_RegistrarVentaCliente")]
+		public int sp_RegistrarVentaCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Entrega", DbType="Int")] System.Nullable<int> iD_Entrega, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Inserta", DbType="VarChar(50)")] string usuario_Inserta)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Usuario, iD_Entrega, usuario_Inserta);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]

@@ -204,7 +204,7 @@
         <classShapeMoniker Id="5ef403ad-fb70-4c8b-8510-5547e365492f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.84375 : 5.87660970052083); (3.84375 : 6.9295073359375); (4.875 : 6.9295073359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.84375 : 5.87660970052083); (3.84375 : 6.9295073359375); (4.875 : 6.9295073359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/E_ComerceDBDataContext/Productos/Productos_Detalle_Compra" />
       <nodes>
         <classShapeMoniker Id="3d0e1277-6ba8-4860-8880-0cf920918f66" />
@@ -218,7 +218,7 @@
         <classShapeMoniker Id="3d0e1277-6ba8-4860-8880-0cf920918f66" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.64024983723958); (2.875 : 2.64024983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.64024983723958); (2.875 : 2.64024983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/E_ComerceDBDataContext/Proveedores/Proveedores_Productos" />
       <nodes>
         <classShapeMoniker Id="c9f1ca30-a1f3-44a7-ac90-0df81b1112e1" />

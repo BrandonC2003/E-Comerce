@@ -64,8 +64,14 @@
 
                                     <div class="card">
                                         <div class="card-body row text-center">
-                                            <div id="paypal-button-container"></div>
-                                            @*<button type="button" class="btn btn-warning btn-block btn-lg">Pagar</button>*@
+                                            @if (Session["ID_Entrega"] != null && Session["Monto"] != null)
+                                            {
+                                                <div id="paypal-button-container"></div>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-warning btn-block btn-lg" href="@Url.Action("SeleccionarEntrega")">Seleccionar entrega</a>
+                                            }
                                         </div>
                                     </div>
 
@@ -86,29 +92,28 @@
                 shape: 'pill',
                 label:'pay'
             },
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units:[{
-                        amount: {
-                            value: @ViewBag.Total 
-                        }
-                    }]
-                });
-            },
-            onApprove: function (data,actions) {
-                actions.order.capture().then(function (detalles) {
-                    console.log(detalles)
-                    window.location.href="@Url.Action("Index","Tienda")"
-                });
-            },
-            onCancel: function (data) {
-                alert("Pago cancelado")
-                console.log(data)
-            }
-        }).render("#paypal-button-container");
-    </script>    
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units:[{
+                    amount: {
+                        value: @ViewBag.Total
+                    }
+                }]
+            });
+        },
+        onApprove: function (data,actions) {
+            actions.order.capture().then(function (detalles) {
+                console.log(detalles)
+                window.location.href="@Url.Action("FinalizarCompra","Carrito")"
+            });
+        },
+        onCancel: function (data) {
+            alert("Pago cancelado")
+            console.log(data)
+        }
+    }).render("#paypal-button-container");
+    </script>
 }
-
 
 
 

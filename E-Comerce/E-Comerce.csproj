@@ -152,6 +152,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CrearCuenta.cs" />
+    <Compile Include="Models\ElementJson.cs" />
+    <Compile Include="Models\SelectRepartidor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -611,6 +613,9 @@
     <Content Include="Views\Login\Cambiarclave.cshtml" />
     <Content Include="Views\LugaresEntrega\Index.cshtml" />
     <Content Include="Views\LugaresEntrega\Create.cshtml" />
+    <Content Include="Views\LugaresEntrega\Edit.cshtml" />
+    <Content Include="Views\LugaresEntrega\Delete.cshtml" />
+    <Content Include="Views\Carrito\SeleccionarEntrega.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

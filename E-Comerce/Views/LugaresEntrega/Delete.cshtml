@@ -1,0 +1,25 @@
+﻿@model E_Comerce.Lugares_Entrega
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estas seguro de eliminar este lugar de entrega?</h3>
+<div>
+    <hr />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(Model => Model.ID_Entrega)
+
+        <div class="col-md-offset-2 col-md-10">
+            <a class="btn btn-dark" href="@Url.Action("Index")">
+                <i class="fa fa-arrow-circle-left"></i>
+                volver
+            </a>
+            <input type="submit" value="Eliminar" class="btn btn-warning" />
+        </div>
+    }
+</div>
