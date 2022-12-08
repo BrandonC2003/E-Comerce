@@ -1,0 +1,7 @@
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\bin\WCFLogin.dll.config
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\bin\WCFLogin.dll
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\bin\WCFLogin.pdb
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Release\WCFLogin.csproj.AssemblyReference.cache
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Release\WCFLogin.csproj.CoreCompileInputs.cache
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Release\WCFLogin.dll
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Release\WCFLogin.pdb

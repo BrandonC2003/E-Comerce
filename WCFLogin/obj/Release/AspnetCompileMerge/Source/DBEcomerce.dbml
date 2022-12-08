@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Ecomerce_StarTech" Class="DBEcomerceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=Ecomerce_StarTech;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Ecomerce_StarTechConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Usuarios" Member="Usuarios">
+    <Type Name="Usuarios">
+      <Column Name="ID_Usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Rol" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CorreoElectronico" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_CambiarClave" Method="sp_CambiarClave">
+    <Parameter Name="ID_Usuario" Parameter="iD_Usuario" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ClaveAct" Parameter="claveAct" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ClaveNew" Parameter="claveNew" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_CambiarClaveResult">
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

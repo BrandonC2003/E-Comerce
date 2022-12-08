@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAr0Qxntfx1U2MijVhT3b6FAAAAAACAAAAAAAQZgAAAAEAACAAAACBgVg55yxVUmZaz/N5qHv+/oRDS0zcw/oPDBgVfsFqZQAAAAAOgAAAAAIAACAAAAAj0KJw2AidYuELlUOf2UibiuGxPBwL5gfgIK2jZzlmyCAAAACopc4U5wedyDNaVHI63CRcZReaww2BdGcCw/6DwfPUtkAAAAAUACSWEm+MJczGD0IelM4AXbzTbNjorxE/FccocPsSnaKz6GA/4OFy6FeKOiTq7q4kWbZGdU75L8c60LBHf4Ns</EncryptedPassword>
+    <_PublishTargetUrl>ftp://WCFLoginProgra2.somee.com/www.WCFLoginProgra2.somee.com</_PublishTargetUrl>
+    <History>True|2022-12-07T01:56:59.4400183Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/WCFLogin.dll">
+      <publishTime>12/06/2022 19:56:31</publishTime>
+    </File>
+    <File Include="bin/WCFLogin.pdb">
+      <publishTime>12/06/2022 19:56:31</publishTime>
+    </File>
+    <File Include="DBEcomerce.dbml">
+      <publishTime>12/06/2022 12:43:17</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>12/06/2022 19:56:38</publishTime>
+    </File>
+    <File Include="Service1.svc">
+      <publishTime>11/26/2022 19:25:40</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>12/06/2022 19:56:36</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+C:\Users\flawl\Source\Repos\BrandonC2003\E-Comerce\WCFLogin\bin\WCFLogin.dll.config
+C:\Users\flawl\Source\Repos\BrandonC2003\E-Comerce\WCFLogin\bin\WCFLogin.dll
+C:\Users\flawl\Source\Repos\BrandonC2003\E-Comerce\WCFLogin\bin\WCFLogin.pdb
+C:\Users\flawl\Source\Repos\BrandonC2003\E-Comerce\WCFLogin\obj\Debug\WCFLogin.csproj.AssemblyReference.cache
+C:\Users\flawl\Source\Repos\BrandonC2003\E-Comerce\WCFLogin\obj\Debug\WCFLogin.csproj.CoreCompileInputs.cache
+C:\Users\flawl\Source\Repos\BrandonC2003\E-Comerce\WCFLogin\obj\Debug\WCFLogin.dll
+C:\Users\flawl\Source\Repos\BrandonC2003\E-Comerce\WCFLogin\obj\Debug\WCFLogin.pdb
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\bin\WCFLogin.dll.config
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\bin\WCFLogin.dll
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\bin\WCFLogin.pdb
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Debug\WCFLogin.csproj.AssemblyReference.cache
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Debug\WCFLogin.csproj.CoreCompileInputs.cache
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Debug\WCFLogin.dll
+C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Debug\WCFLogin.pdb
