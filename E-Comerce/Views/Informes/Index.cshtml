@@ -109,7 +109,8 @@
 @section scripts{
     <script>
 
-
+        //Chart.js
+        //Grafico de pastel
         jQuery.ajax({
             url: '@Url.Action("Grafico","Informes")',
             type: "GET",
@@ -122,7 +123,6 @@
                 for (var i = 0; i < data.length; i++) {
                     productos.push(data[i].Producto)
                     total.push(data[i].Total)
-
                 }
                 var controlpas = document.getElementById("pastel");
                 var graficopie = new Chart(controlpas, {
@@ -147,6 +147,7 @@
 
         });
 
+        //Grafico de barras
        jQuery.ajax({
             url: '@Url.Action("Graficobar","Informes")',
             type: "GET",

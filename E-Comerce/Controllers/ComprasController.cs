@@ -66,8 +66,8 @@ namespace E_Comerce.Controllers
                     List<V_DetalleCompra> detCompras = (List<V_DetalleCompra>)Session["Compra"];
                     if (detCompras.Count > 0)
                     {
-                        compras.ID_Usuario = 1;//int.Parse(Session[""].ToString());
-                        compras.Usuario_Inserta = "Eduardo"; //Session[""].ToString();
+                        compras.ID_Usuario = int.Parse(Session["ID_Usuario"].ToString());
+                        compras.Usuario_Inserta =Session["Usuario"].ToString();
                         compras.PrecioTotal = detCompras.Sum(x => x.Cantidad * x.PrecioUnitario);
 
                         var resultado = E_ComerceDB.SP_GuardarCompra(compras.ID_Usuario, compras.PrecioTotal, compras.Usuario_Inserta).Single();
