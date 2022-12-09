@@ -14,31 +14,52 @@ namespace E_Comerce.Controllers
         // GET: Ventas
         public ActionResult Index()
         {
-            if (Convert.ToInt32(Session["Rol_Usuario"])== 1 || Convert.ToInt32(Session["Rol_Usuario"])== 2)
+            if (Session["Usuario"] != null)
             {
-                List<vw_DetalleVenta> ventasV = (from v in ventas.vw_DetalleVenta where v.ID_Venta == null select v).ToList();
-                decimal total = 0;
-                foreach (var item in ventasV)
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1 || Convert.ToInt32(Session["Rol_Usuario"]) == 2)
                 {
-                    total += Convert.ToDecimal(item.Precio - item.descuento);
-                }
-                ViewBag.Total = total;
+                    List<vw_DetalleVenta> ventasV = (from v in ventas.vw_DetalleVenta where v.ID_Venta == null && v.Usuario_Inserta == Session["Usuario"].ToString() select v).ToList();
+                    decimal total = 0;
+                    foreach (var item in ventasV)
+                    {
+                        total += Convert.ToDecimal(item.Precio - item.descuento);
+                    }
+                    ViewBag.Total = total;
 
-                return View(ventasV);
+                    return View(ventasV);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
             }
             else
             {
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Tienda");
             }
         }
         // GET: Ventas/Create
         public ActionResult Create()
         {
-            List<Productos> products = (from p in ventas.Productos select p).ToList();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1 || Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    List<Productos> products = (from p in ventas.Productos select p).ToList();
 
-            ViewBag.Lista = products;
+                    ViewBag.Lista = products;
 
-            return View();
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Ventas/Create
@@ -47,7 +68,7 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                ventas.sp_RegistrarDetalleVenta(detalleV.ID_Producto,detalleV.Cantidad);
+                ventas.sp_RegistrarDetalleVenta(detalleV.ID_Producto,detalleV.Cantidad, Session["Usuario"].ToString());
                 ventas.SubmitChanges();
                 return RedirectToAction("Index");
             }
@@ -60,11 +81,25 @@ namespace E_Comerce.Controllers
         // GET: Ventas/Edit/5
         public ActionResult Edit(int id)
         {
-            DetalleVenta dtV = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta==id select dv).Single();
-            List<Productos> products = (from p in ventas.Productos select p).ToList();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1 || Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    DetalleVenta dtV = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta == id select dv).Single();
+                    List<Productos> products = (from p in ventas.Productos select p).ToList();
 
-            ViewBag.Lista = products;
-            return View(dtV);
+                    ViewBag.Lista = products;
+                    return View(dtV);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Ventas/Edit/5
@@ -87,8 +122,21 @@ namespace E_Comerce.Controllers
         // GET: Ventas/Delete/5
         public ActionResult Delete(int id)
         {
-
-            return View();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1 || Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Ventas/Delete/5
@@ -111,7 +159,21 @@ namespace E_Comerce.Controllers
         [HttpGet]
         public ActionResult Finalizar()
         {
-            return View();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1 || Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         [HttpPost]

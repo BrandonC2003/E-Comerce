@@ -4,80 +4,83 @@
     ViewBag.Title = "Index";
 }
 
-
-<h2> <i class="fa fa-list-alt"></i> Categorias</h2>
-
-<p>
-    &nbsp;
-</p>
-<p>
-    <a class="btn btn-success" href="@Url.Action("Create", "Categoria")">
-        <i class="fa fa-plus-circle"></i>
-        Agregar categoria
-    </a>
-
-</p>
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario_Inserta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Inserta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Usuario_Actualiza)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Actualiza)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario_Inserta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_Inserta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario_Actualiza)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_Actualiza)
-            </td>
-            <td>
-
-                <a class="btn btn-dark" href="@Url.Action("Details", "Categoria", new { id = item.ID_Categoria })">
-                    Detalles
-                    <i class="fa fa-book"></i>
+<div class="card mt-2">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-6">
+                <i class="fas fa-list-alt me-1"></i>
+                    Categorias
+            </div>
+            <div class="col-6 d-md-flex justify-content-md-end">
+                <a class="btn btn-success" href="@Url.Action("Create", "Categoria")">
+                    <i class="fa fa-plus-circle"></i>
+                    Agregar categoria
                 </a>
-                <a class="btn btn-info" href="@Url.Action("Edit", "Categoria", new { id = item.ID_Categoria })">
-                    <i class="fa fa-pen"></i>
-                </a>
-                <a class="btn btn-danger" href="@Url.Action("Delete", "Categoria", new { id = item.ID_Categoria })">
-                    <i class="fa fa-trash-alt"></i>
-                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categoria)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Usuario_Inserta)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha_Inserta)
+                    </th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            </td>
-        </tr>
-    }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Usuario_Inserta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha_Inserta)
+                        </td>
+                        <td>
+                            <a class="btn btn-info" href="@Url.Action("Edit", "Categoria", new { id = item.ID_Categoria })">
+                                <i class="fa fa-pen"></i>
+                            </a>
+                            <a class="btn btn-dark" href="@Url.Action("Details", "Categoria", new { id = item.ID_Categoria })">
+                                <i class="fa fa-book"></i>
+                            </a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Categoria", new { id = item.ID_Categoria })">
+                                <i class="fa fa-trash-alt"></i>
+                            </a>
 
-</table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('.table').DataTable({
+            responsive: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    </script>
+}

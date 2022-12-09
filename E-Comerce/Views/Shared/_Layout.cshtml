@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var hidden = "";
+
+    if (Convert.ToInt32(Session["Rol_Usuario"])==2)
+    {
+        hidden = "hidden";
+    }
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,7 +20,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="@Url.Action("Index", "InicioEComerce")">StarTech</a>
+        <a class="navbar-brand ps-3" href="#!">StarTech</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Espacio-->
@@ -36,37 +44,37 @@
             <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading sb-sidenav-menu-heading-color">Administración</div>
-                        <a class="nav-link" href="@Url.Action("Index", "Usuarios")">
+                        <div class="sb-sidenav-menu-heading sb-sidenav-menu-heading-color" @hidden >Administración</div>
+                        <a class="nav-link" href="@Url.Action("Index", "Usuarios")" @hidden >
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Usuarios
                         </a>
-                        <a class="nav-link" href="@Url.Action("Index", "Repartidor")">
+                        <a class="nav-link" href="@Url.Action("Index", "Repartidor")" @hidden >
                             <div class="sb-nav-link-icon"><i class="fa fa-motorcycle"></i></div>
                             Repartidores
                         </a>
-                        <a class="nav-link" href="@Url.Action("Index", "LugaresEntrega")">
+                        <a class="nav-link" href="@Url.Action("Index", "LugaresEntrega")" @hidden >
                             <div class="sb-nav-link-icon"><i class="fa fa-map-marker-alt"></i></div>
                             Lugares de Entrega
                         </a>
-                        <a class="nav-link" href="@Url.Action("Index", "Categoria")">
+                        <a class="nav-link" href="@Url.Action("Index", "Categoria")" @hidden >
                             <div class="sb-nav-link-icon"><i class="fa fa-store-alt"></i></div>
                             Categorias
                         </a>
-                        <a class="nav-link" href="@Url.Action("Index", "Proveedor")">
+                        <a class="nav-link" href="@Url.Action("Index", "Proveedor")" @hidden >
                             <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
                             Proveedores
                         </a>
-                        <a class="nav-link" href="@Url.Action("Index", "Producto")">
+                        <a class="nav-link" href="@Url.Action("Index", "Producto")" @hidden >
                             <div class="sb-nav-link-icon"><i class="fa fa-store"></i></div>
                             Productos
                         </a>
                         @* Opciones de compras en menu *@
-                        <a class="nav-link collapsed" href="@Url.Action("Index", "Compras")">
+                        <a class="nav-link collapsed" href="@Url.Action("Index", "Compras")" @hidden >
                             <div class="sb-nav-link-icon"><i class="fa fa-shopping-basket"></i></div>
                             Compras
                         </a>
-                        <a class="nav-link" href="@Url.Action("Index", "Informes")">
+                        <a class="nav-link" href="@Url.Action("Index", "Informes")" @hidden >
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
                             Informes
                         </a>
@@ -81,7 +89,7 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a href="@Url.Action("Index", "Ventas")" class="nav-link">Registrar Venta</a>
-                                @Html.ActionLink("Modificar Ventas", "Index", "ModificarVentas", null, new { @class = "nav-link" })
+                                <a href="@Url.Action("Index","ModificarVentas")" class="nav-link" @hidden >Modificar Ventas</a>
                             </nav>
                         </div>
                     </div>

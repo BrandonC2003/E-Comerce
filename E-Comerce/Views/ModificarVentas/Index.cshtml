@@ -74,13 +74,13 @@
                             @Html.DisplayFor(modelItem => item.Fecha)
                         </td>
                         <td>
-                            <a class="btn btn-outline-secondary" href="@Url.Action("Edit","ModificarVentas",new {id = item.ID_Venta})">
+                            <a class="btn btn-info" href="@Url.Action("Edit","ModificarVentas",new {id = item.ID_Venta})">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a class="btn btn-outline-secondary" href="@Url.Action("Details","ModificarVentas",new {id = item.ID_Venta})">
+                            <a class="btn btn-dark" href="@Url.Action("Details","ModificarVentas",new {id = item.ID_Venta})">
                                 <i class="fas fa-file"></i>
                             </a>
-                            <a class="btn btn-outline-secondary btnEliminarVenta" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_Venta">
+                            <a class="btn btn-danger btnEliminarVenta" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.ID_Venta">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>

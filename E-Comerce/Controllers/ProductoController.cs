@@ -12,6 +12,25 @@ namespace E_Comerce.Controllers
         // GET: Producto
         public ActionResult Index()
         {
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
             List<V_Producto> Lista = (from c in comerce.V_Producto
                                       select c).ToList();
             return View(Lista);
@@ -20,32 +39,68 @@ namespace E_Comerce.Controllers
         // GET: Producto/Details/5
         public ActionResult Details(int id)
         {
-            Productos objproductos = (from cp in comerce.Productos
-                                      where cp.ID_Producto == id
-                                      select cp).Single();
-            return View(objproductos);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Productos objproductos = (from cp in comerce.Productos
+                                              where cp.ID_Producto == id
+                                              select cp).Single();
+                    return View(objproductos);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
         
         // GET: Producto/Create
         public ActionResult Create()
         {
-            var listacate = (from c in comerce.Categorias
-                             select c).ToList();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    var listacate = (from c in comerce.Categorias
+                                     select c).ToList();
 
-            ViewBag.listacate = listacate;
+                    ViewBag.listacate = listacate;
 
-            var listaprov = (from c in comerce.Proveedores
-                             select c).ToList();
+                    var listaprov = (from c in comerce.Proveedores
+                                     select c).ToList();
 
-            ViewBag.listaprov = listaprov;
-            return View();
+                    ViewBag.listaprov = listaprov;
+                    return View();
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Producto/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection, Productos datos)
         {
-            datos.Usuario_Inserta = "rodrigo";
+            datos.Usuario_Inserta = Session["Usuario"].ToString(); ;
             datos.Fecha_Inserta = DateTime.Now;
 
             comerce.Productos.InsertOnSubmit(datos);
@@ -66,20 +121,38 @@ namespace E_Comerce.Controllers
         // GET: Producto/Edit/5
         public ActionResult Edit(int id)
         {
-            Productos objproductos = (from cp in comerce.Productos
-                                      where cp.ID_Producto == id
-                                      select cp).Single();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Productos objproductos = (from cp in comerce.Productos
+                                              where cp.ID_Producto == id
+                                              select cp).Single();
 
-            var listacate = (from c in comerce.Categorias
-                             select c).ToList();
+                    var listacate = (from c in comerce.Categorias
+                                     select c).ToList();
 
-            ViewBag.listacate = listacate;
+                    ViewBag.listacate = listacate;
 
-            var listaprov = (from c in comerce.Proveedores
-                             select c).ToList();
+                    var listaprov = (from c in comerce.Proveedores
+                                     select c).ToList();
 
-            ViewBag.listaprov = listaprov;
-            return View(objproductos);
+                    ViewBag.listaprov = listaprov;
+                    return View(objproductos);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Producto/Edit/5
@@ -88,7 +161,7 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                string usuario = "rodrigo";
+                string usuario = Session["Usuario"].ToString(); ;
                 comerce.SP_ACTUALIZAR_PRODUCTOS1(id, datos.ID_Categoria, datos.ID_Proveedor, datos.PrecioCompra, datos.PrecioVenta, datos.Descuento, datos.Imagen, datos.Descripcion, datos.cantidadDisponible, usuario);
                 comerce.SubmitChanges();
 
@@ -103,10 +176,28 @@ namespace E_Comerce.Controllers
         // GET: Producto/Delete/5
         public ActionResult Delete(int id)
         {
-            Productos objproductos = (from cp in comerce.Productos
-                                      where cp.ID_Producto == id
-                                      select cp).Single();
-            return View(objproductos);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Productos objproductos = (from cp in comerce.Productos
+                                              where cp.ID_Producto == id
+                                              select cp).Single();
+                    return View(objproductos);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Producto/Delete/5

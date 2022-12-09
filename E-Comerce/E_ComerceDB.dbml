@@ -110,7 +110,7 @@
   </Table>
   <Table Name="dbo.Rol" Member="Rol">
     <Type Name="Rol">
-      <Column Name="ID_Rol" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Rol" Storage="_Rol_Usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Rol" Member="Rol1" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Association Name="Rol_Usuarios" Member="Usuarios" ThisKey="ID_Rol" OtherKey="ID_Rol" Type="Usuarios" />
     </Type>
@@ -118,7 +118,7 @@
   <Table Name="dbo.Usuarios" Member="Usuarios">
     <Type Name="Usuarios">
       <Column Name="ID_Usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_Rol" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Rol" Storage="_Rol_Usuario" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CorreoElectronico" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -321,6 +321,22 @@
       <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vw_Usuario" Member="vw_Usuario">
+    <Type Name="vw_Usuario">
+      <Column Name="ID_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Rol" Storage="_Rol_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Rol" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="CorreoElectronico" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Usuario_Inserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Inserta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Id="FunctionId1" Name="dbo.sp_EditarDetalleVenta" Method="sp_EditarDetalleVenta">
     <Parameter Name="ID_DetalleVenta" Parameter="iD_DetalleVenta" Type="System.Int32" DbType="Int" />
     <Parameter Name="ID_Venta" Parameter="iD_Venta" Type="System.Int32" DbType="Int" />
@@ -366,11 +382,6 @@
       <Column Name="Usuario_Actualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Fecha_Actualiza" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.sp_RegistrarDetalleVenta" Method="sp_RegistrarDetalleVenta">
-    <Parameter Name="ID_Producto" Parameter="iD_Producto" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.sp_RegistrarVenta" Method="sp_RegistrarVenta">
     <Parameter Name="ID_Usuario" Parameter="iD_Usuario" Type="System.Int32" DbType="Int" />
@@ -543,7 +554,7 @@
     </ElementType>
   </Function>
   <Function Name="dbo.Sp_EditarUsuarioss" Method="Sp_EditarUsuarioss">
-    <Parameter Name="ID_Rol" Parameter="iD_Rol" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Rol_Usuario" Type="System.Int32" DbType="Int" />
     <Parameter Name="CorreoElectronico" Parameter="correoElectronico" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
@@ -608,6 +619,12 @@
     <Parameter Name="ID_Usuario" Parameter="iD_Usuario" Type="System.Int32" DbType="Int" />
     <Parameter Name="ID_Entrega" Parameter="iD_Entrega" Type="System.Int32" DbType="Int" />
     <Parameter Name="Usuario_Inserta" Parameter="usuario_Inserta" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_RegistrarDetalleVenta" Method="sp_RegistrarDetalleVenta">
+    <Parameter Name="ID_Producto" Parameter="iD_Producto" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UsuarioInserta" Parameter="usuarioInserta" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

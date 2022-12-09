@@ -14,14 +14,25 @@ namespace E_Comerce.Controllers
         // GET: LugaresEntrega
         public ActionResult Index()
         {
-            if (Session["Usuario"]!=null)
+            if (Session["Usuario"] != null)
             {
-                List<vw_LugaresEntrega> lugares = (from l in db.vw_LugaresEntrega select l).ToList();
-                return View(lugares);
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<vw_LugaresEntrega> lugares = (from l in db.vw_LugaresEntrega select l).ToList();
+                    return View(lugares);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
             }
             else
             {
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Tienda");
             }
         }
 
@@ -30,23 +41,34 @@ namespace E_Comerce.Controllers
         {
             if (Session["Usuario"] != null)
             {
-                List<Departamentos> dep = (from d in db.Departamentos select d).ToList();
-                ViewBag.Departamentos = dep;
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<Departamentos> dep = (from d in db.Departamentos select d).ToList();
+                    ViewBag.Departamentos = dep;
 
-                List<SelectRepartidor> rep = (from r in db.Repartidores
-                                              select new SelectRepartidor
-                                              {
-                                                  Id = r.ID_Repartidor,
-                                                  Name = r.Nombre + " " + r.Apellido
-                                              }).ToList();
+                    List<SelectRepartidor> rep = (from r in db.Repartidores
+                                                  select new SelectRepartidor
+                                                  {
+                                                      Id = r.ID_Repartidor,
+                                                      Name = r.Nombre + " " + r.Apellido
+                                                  }).ToList();
 
-                ViewBag.Repartidores = rep;
+                    ViewBag.Repartidores = rep;
 
-                return View();
+                    return View();
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Tienda");
             }
         }
 
@@ -85,25 +107,36 @@ namespace E_Comerce.Controllers
         {
             if (Session["Usuario"] != null)
             {
-                Lugares_Entrega le = (from l in db.Lugares_Entrega where l.ID_Entrega==id select l).Single();
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Lugares_Entrega le = (from l in db.Lugares_Entrega where l.ID_Entrega == id select l).Single();
 
-                List<Departamentos> dep = (from d in db.Departamentos select d).ToList();
-                ViewBag.Departamentos = dep;
+                    List<Departamentos> dep = (from d in db.Departamentos select d).ToList();
+                    ViewBag.Departamentos = dep;
 
-                List<SelectRepartidor> rep = (from r in db.Repartidores
-                                              select new SelectRepartidor
-                                              {
-                                                  Id = r.ID_Repartidor,
-                                                  Name = r.Nombre + " " + r.Apellido
-                                              }).ToList();
+                    List<SelectRepartidor> rep = (from r in db.Repartidores
+                                                  select new SelectRepartidor
+                                                  {
+                                                      Id = r.ID_Repartidor,
+                                                      Name = r.Nombre + " " + r.Apellido
+                                                  }).ToList();
 
-                ViewBag.Repartidores = rep;
+                    ViewBag.Repartidores = rep;
 
-                return View(le);
+                    return View(le);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Tienda");
             }
         }
 
@@ -129,13 +162,24 @@ namespace E_Comerce.Controllers
         {
             if (Session["Usuario"] != null)
             {
-                Lugares_Entrega le = (from l in db.Lugares_Entrega where l.ID_Entrega == id select l).Single();
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Lugares_Entrega le = (from l in db.Lugares_Entrega where l.ID_Entrega == id select l).Single();
 
-                return View(le);
+                    return View(le);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Tienda");
             }
         }
 

@@ -13,29 +13,100 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas
         public ActionResult Index()
         {
-            List<vw_Venta> lista = (from dv in ventas.vw_Venta select dv ).ToList();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<vw_Venta> lista = (from dv in ventas.vw_Venta select dv).ToList();
 
-            return View(lista);
+                    return View(lista);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         public ActionResult DetaislVenta()
         {
-
-            return View();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    return View();
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
         // GET: ModificarVentas/Details/5
         public ActionResult Details(int id)
         {
-            List<vw_DetalleVenta> obj = (from dv in ventas.vw_DetalleVenta where dv.ID_Venta==id select dv).ToList();
-            Ventas objVenta = (from v in ventas.Ventas where v.ID_Venta==id select v).Single();
-            ViewBag.ListV = objVenta;
-            return View(obj);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<vw_DetalleVenta> obj = (from dv in ventas.vw_DetalleVenta where dv.ID_Venta == id select dv).ToList();
+                    Ventas objVenta = (from v in ventas.Ventas where v.ID_Venta == id select v).Single();
+                    ViewBag.ListV = objVenta;
+                    return View(obj);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         public ActionResult DetailsVenta(int id)
         {
-            vw_DetalleVenta obj = (from i in ventas.vw_DetalleVenta where i.ID_DetalleVenta==id select i).Single();
-            return View(obj);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    vw_DetalleVenta obj = (from i in ventas.vw_DetalleVenta where i.ID_DetalleVenta == id select i).Single();
+                    return View(obj);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // GET: ModificarVentas/Create
@@ -62,18 +133,54 @@ namespace E_Comerce.Controllers
 
         // GET: ModificarVentas/Edit/5
         public ActionResult Edit(int id)
-        {   
-            List<vw_DetalleVenta> obj = (from dv in ventas.vw_DetalleVenta where dv.ID_Venta == id select dv).ToList();
-            return View(obj);
+        {
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<vw_DetalleVenta> obj = (from dv in ventas.vw_DetalleVenta where dv.ID_Venta == id select dv).ToList();
+                    return View(obj);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         public ActionResult EditarDetalle(int id)
         {
-            DetalleVenta obj = (from dt in ventas.DetalleVenta where dt.ID_DetalleVenta == id select dt).Single();
-            List<Productos> lista = (from p in ventas.Productos select p).ToList();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    DetalleVenta obj = (from dt in ventas.DetalleVenta where dt.ID_DetalleVenta == id select dt).Single();
+                    List<Productos> lista = (from p in ventas.Productos select p).ToList();
 
-            ViewBag.lista = lista;
-            return View(obj);
+                    ViewBag.lista = lista;
+                    return View(obj);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
         // POST: ModificarVentas/Edit/5
         [HttpPost]
@@ -81,7 +188,7 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                string usuario = "BrandonCC";
+                string usuario = Session["Usuario"].ToString(); ;
                 ventas.sp_EditarDetalleVenta(id, dtVenta.ID_Venta, dtVenta.ID_Producto, dtVenta.Cantidad, usuario);
                 ventas.SubmitChanges();
 
@@ -95,9 +202,27 @@ namespace E_Comerce.Controllers
 
         public ActionResult EliminarVenta(int id)
         {
-            Ventas obj = (from v in ventas.Ventas where v.ID_Venta == id select v).First();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Ventas obj = (from v in ventas.Ventas where v.ID_Venta == id select v).First();
 
-            return View(obj);
+                    return View(obj);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         [HttpPost]
@@ -117,8 +242,26 @@ namespace E_Comerce.Controllers
         // GET: ModificarVentas/Delete/5
         public ActionResult Delete(int id)
         {
-            DetalleVenta obj = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta == id select dv).First();
-            return View(obj);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    DetalleVenta obj = (from dv in ventas.DetalleVenta where dv.ID_DetalleVenta == id select dv).First();
+                    return View(obj);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: ModificarVentas/Delete/5

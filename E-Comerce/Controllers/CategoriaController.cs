@@ -14,26 +14,80 @@ namespace E_Comerce.Controllers
         // GET: Categoria
         public ActionResult Index()
         {
-            List<Categorias> Lista = (from c in comerce.Categorias
-                                      select c).ToList();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<Categorias> Lista = (from c in comerce.Categorias
+                                              select c).ToList();
 
-            return View(Lista);
+                    return View(Lista);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // GET: Categoria/Details/5 ------------------------------------------------
         public ActionResult Details(int id)
         {
-            Categorias objCategoria = (from ca in comerce.Categorias
-                                       where ca.ID_Categoria == id
-                                       select ca).Single();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Categorias objCategoria = (from ca in comerce.Categorias
+                                               where ca.ID_Categoria == id
+                                               select ca).Single();
 
-            return View(objCategoria);
+                    return View(objCategoria);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // GET: Categoria/Create ---------------------------------------------------
         public ActionResult Create()
         {
-            return View();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    return View();
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Categoria/Create
@@ -43,7 +97,7 @@ namespace E_Comerce.Controllers
             try
             {
 
-                string usuario = "Fasuncion";
+                string usuario = Session["Usuario"].ToString();
 
                 comerce.InsertarCategorias(datos.Categoria, datos.Descripcion, usuario);
 
@@ -63,11 +117,29 @@ namespace E_Comerce.Controllers
         // GET: Categoria/Edit/5 --------------------------------------------------------
         public ActionResult Edit(int id)
         {
-            Categorias objCategoria = (from ca in comerce.Categorias
-                                       where ca.ID_Categoria == id
-                                       select ca).Single();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Categorias objCategoria = (from ca in comerce.Categorias
+                                               where ca.ID_Categoria == id
+                                               select ca).Single();
 
-            return View(objCategoria);
+                    return View(objCategoria);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Categoria/Edit/5
@@ -78,7 +150,7 @@ namespace E_Comerce.Controllers
             {
                 // TODO: Add update logic here
 
-                string usuario = "Fasuncion";
+                string usuario = Session["Usuario"].ToString(); ;
 
                 comerce.EditarCategorias(id, datos.Categoria, datos.Descripcion, usuario); //procedimiento almacenado 
 
@@ -95,11 +167,29 @@ namespace E_Comerce.Controllers
         // GET: Categoria/Delete/5 ---------------------------------------------------------
         public ActionResult Delete(int id)
         {
-            Categorias objCategoria = (from ca in comerce.Categorias
-                                       where ca.ID_Categoria == id
-                                       select ca).Single();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Categorias objCategoria = (from ca in comerce.Categorias
+                                               where ca.ID_Categoria == id
+                                               select ca).Single();
 
-            return View(objCategoria);
+                    return View(objCategoria);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Categoria/Delete/5
