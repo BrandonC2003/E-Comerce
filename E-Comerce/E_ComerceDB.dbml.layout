@@ -237,5 +237,11 @@
         <classShapeMoniker Id="d3630568-59c4-41dd-9a73-22fd1faaa911" />
       </nodes>
     </associationConnector>
+    <classShape Id="7f4522e7-2f58-40a8-be5f-fa9210c85713" absoluteBounds="4.125, 1.375, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/E_ComerceDBDataContext/vw_Facturacion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="090c55f9-eb21-4b6c-adba-e3040e8307a2" absoluteBounds="4.14, 1.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

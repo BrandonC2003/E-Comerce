@@ -1,0 +1,88 @@
+﻿@model IEnumerable<E_Comerce.vw_DetalleVenta>
+
+@{
+    ViewBag.Title = "ConfirmacionCompra";
+    Layout = "~/Views/Shared/LayoutCarrito.cshtml";
+}
+
+
+<div class="row mt-5 pt-5 p-2">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-details mr-2">
+
+                        <div class="container h-100 py-5">
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col-10">
+
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <h3 class="fw-normal mb-0 text-black">Confirmacion de Compra</h3>
+                                    </div>
+                                    <div class="alert-success">Tu orden ha sido procesada exitosamente</div>
+                                    <table class="Tabla" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ID_Venta)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.NombreProducto)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.cantidad)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Precio)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.descuento)
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.ID_Venta)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.NombreProducto)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.cantidad)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Precio)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.descuento)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+
+                                    <div class="card text-center rounded-3 px-2 mr-8">
+                                        Total de carrito de Compra: $@ViewBag.Total
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-body row text-center">
+                                            <a href="@Url.Action("ImprimirFactura", "Carrito", new {ID=ViewBag.ListV.ID_Venta})" class="btn btn-danger"><i class=" fa fa-pdf"></i> Imprimir Factura</a>
+                                            <a href="@Url.Action("Index","Tienda")" class="btn btn-outline-danger"> <i class="fa fa-arrow-alt-circle-left"></i> Seguir comprando</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

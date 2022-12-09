@@ -292,6 +292,14 @@ namespace E_Comerce
 			}
 		}
 		
+		public System.Data.Linq.Table<vw_Facturacion> vw_Facturacion
+		{
+			get
+			{
+				return this.GetTable<vw_Facturacion>();
+			}
+		}
+		
 		private void InsertVentas(Ventas obj)
 		{
 			this.sp_EditarDetalleVenta(default(System.Nullable<int>), ((System.Nullable<int>)(obj.ID_Venta)), default(System.Nullable<int>), default(System.Nullable<int>), default(string));
@@ -528,17 +536,18 @@ namespace E_Comerce
 			return ((ISingleResult<sp_EliminarLugaresEntregaResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_RegistrarVentaCliente")]
-		public int sp_RegistrarVentaCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Entrega", DbType="Int")] System.Nullable<int> iD_Entrega, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Inserta", DbType="VarChar(50)")] string usuario_Inserta)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Usuario, iD_Entrega, usuario_Inserta);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_RegistrarDetalleVenta")]
 		public int sp_RegistrarDetalleVenta([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Producto", DbType="Int")] System.Nullable<int> iD_Producto, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Cantidad", DbType="Int")] System.Nullable<int> cantidad, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UsuarioInserta", DbType="VarChar(50)")] string usuarioInserta)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Producto, cantidad, usuarioInserta);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_RegistrarVentaCliente")]
+		public int sp_RegistrarVentaCliente([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Usuario", DbType="Int")] System.Nullable<int> iD_Usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_Entrega", DbType="Int")] System.Nullable<int> iD_Entrega, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Usuario_Inserta", DbType="VarChar(50)")] string usuario_Inserta, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> idGenerado)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD_Usuario, iD_Entrega, usuario_Inserta, idGenerado);
+			idGenerado = ((System.Nullable<int>)(result.GetParameterValue(3)));
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -6504,6 +6513,159 @@ namespace E_Comerce
 				if ((this._Fecha_Actualiza != value))
 				{
 					this._Fecha_Actualiza = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vw_Facturacion")]
+	public partial class vw_Facturacion
+	{
+		
+		private int _ID_DetalleVenta;
+		
+		private System.Nullable<int> _ID_Venta;
+		
+		private System.Nullable<int> _Cantidad;
+		
+		private string _Descripcion;
+		
+		private System.Nullable<decimal> _PrecioVenta;
+		
+		private System.Nullable<decimal> _Descuento;
+		
+		private System.Nullable<decimal> _Importe;
+		
+		private System.Nullable<decimal> _DescuentoTotal;
+		
+		public vw_Facturacion()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_DetalleVenta", DbType="Int NOT NULL")]
+		public int ID_DetalleVenta
+		{
+			get
+			{
+				return this._ID_DetalleVenta;
+			}
+			set
+			{
+				if ((this._ID_DetalleVenta != value))
+				{
+					this._ID_DetalleVenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Venta", DbType="Int")]
+		public System.Nullable<int> ID_Venta
+		{
+			get
+			{
+				return this._ID_Venta;
+			}
+			set
+			{
+				if ((this._ID_Venta != value))
+				{
+					this._ID_Venta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
+		public System.Nullable<int> Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this._Cantidad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(50)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this._Descripcion = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrecioVenta", DbType="Money")]
+		public System.Nullable<decimal> PrecioVenta
+		{
+			get
+			{
+				return this._PrecioVenta;
+			}
+			set
+			{
+				if ((this._PrecioVenta != value))
+				{
+					this._PrecioVenta = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descuento", DbType="Money")]
+		public System.Nullable<decimal> Descuento
+		{
+			get
+			{
+				return this._Descuento;
+			}
+			set
+			{
+				if ((this._Descuento != value))
+				{
+					this._Descuento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Importe", DbType="Money")]
+		public System.Nullable<decimal> Importe
+		{
+			get
+			{
+				return this._Importe;
+			}
+			set
+			{
+				if ((this._Importe != value))
+				{
+					this._Importe = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DescuentoTotal", DbType="Money")]
+		public System.Nullable<decimal> DescuentoTotal
+		{
+			get
+			{
+				return this._DescuentoTotal;
+			}
+			set
+			{
+				if ((this._DescuentoTotal != value))
+				{
+					this._DescuentoTotal = value;
 				}
 			}
 		}

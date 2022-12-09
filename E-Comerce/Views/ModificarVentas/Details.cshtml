@@ -35,10 +35,12 @@
         </div>
         <div class="card col-sm-2">
             <div class="card-body text-center">
-                <a href="@Url.Action("Index")" class="btn btn-secondary" style="width:90%">
-                    Volver
+                <a href="@Url.Action("Index")" class="btn btn-dark" style="width:90%">
+                    <i class="fa fa-arrow-alt-circle-left"></i> Volver
                 </a>
-                <a href="#" class="btn btn-danger" style="width:90%">Imprimir</a>
+                <a href="@Url.Action("ImprimirFactura", "ModificarVentas", new {ID=  ViewBag.ListV.ID_Venta})" class="btn btn-danger" style="width:90%">
+                    <i class="fa fa-file-pdf"></i> Imprimir
+                </a>
             </div>
         </div>
     </div>
@@ -97,6 +99,14 @@
             </tbody>
 
         </table>
+    </div>
+    <div class="card-footer row">
+        <div class="col-sm-6 alert-light">
+            Precio del envio: $@ViewBag.MontoEntrega.ToString("0.00")
+        </div>
+        <div class="col-sm-6 alert-light">
+            Monto de la compra: @ViewBag.PrecioCompra.ToString("0.00")
+        </div>
     </div>
 </div>
 @section scripts{

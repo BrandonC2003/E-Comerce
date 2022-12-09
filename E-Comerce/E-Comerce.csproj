@@ -47,6 +47,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -157,6 +160,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
     <Content Include="Connected Services\ServiceReference1\E_Comerce.ServiceReference1.CambiarClaveResponse.datasource">
@@ -366,6 +370,10 @@
     <Content Include="Global.asax" />
     <Content Include="Imagenes\Logo E-Comerce.png" />
     <Content Include="Imagenes\fondoHeadInicio.jpg" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -616,6 +624,9 @@
     <Content Include="Views\LugaresEntrega\Edit.cshtml" />
     <Content Include="Views\LugaresEntrega\Delete.cshtml" />
     <Content Include="Views\Carrito\SeleccionarEntrega.cshtml" />
+    <Content Include="Views\ModificarVentas\GenerarVista.cshtml" />
+    <Content Include="Views\Carrito\GenerarVista.cshtml" />
+    <Content Include="Views\Carrito\ConfirmacionCompra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
