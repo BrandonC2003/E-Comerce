@@ -53,13 +53,10 @@
                             @Html.DisplayFor(modelItem => item.MontoEntrega)
                         </td>
                         <td>
-                            <a class="btn btn-dark" href="@Url.Action("Details", "Producto", new { id = item.ID_Entrega})">
-                                <i class="fa fa-book"></i>
-                            </a>
-                            <a class="btn btn-info" href="@Url.Action("Edit", "Producto", new { id = item.ID_Entrega})">
+                            <a class="btn btn-info" href="@Url.Action("Edit", "LugaresEntrega", new { id = item.ID_Entrega})">
                                 <i class="fa fa-pen"></i>
                             </a>
-                            <a class="btn btn-danger" href="@Url.Action("Delete", "Producto", new { id = item.ID_Entrega})">
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "LugaresEntrega", new { id = item.ID_Entrega})">
                                 <i class="fa fa-trash-alt"></i>
                             </a>
                         </td>

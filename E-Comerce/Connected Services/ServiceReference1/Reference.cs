@@ -131,7 +131,7 @@ namespace E_Comerce.ServiceReference1 {
             set {
                 if ((this.ID_RolField.Equals(value) != true)) {
                     this.ID_RolField = value;
-                    this.RaisePropertyChanged("ID_Rol");
+                    this.RaisePropertyChanged("Rol_Usuario");
                 }
             }
         }

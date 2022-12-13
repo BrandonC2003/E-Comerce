@@ -1,0 +1,144 @@
+﻿@model IEnumerable<E_Comerce.vw_Facturacion>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "GenerarVista";
+    Layout = null;
+}
+
+<div class="container">
+
+    <div class="row align-items-center">
+        <div class="col-sm-3">
+            <h1 class="float-start">FACTURA</h1>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-3">
+            <img src="https://www.mundodulce95.com/img/cms/tienda_ico.png" class="float-end" style="width:100px; height:100px" />
+            <p class="fw-bolder">StarTech.</p>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <p class="fw-bold">San Salvador, El Salvador.</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <h3 style="color:rgb(0, 12, 78);">FACTURAR A</h3>
+            <p class="text-break fw-bold">
+                @ViewBag.NombreUsuario
+            </p>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-3">
+            <h3 style="color:rgb(0, 12, 78);">N° DE FACTURA</h3>
+            <p class="text-break fw-bold">
+                @ViewBag.ListV.ID_Venta.ToString("000000")
+            </p>
+        </div>
+        <div class="col-sm-3">
+            <h3 style="color:rgb(0, 12, 78);">FECHA</h3>
+            <p class="text-break fw-bold">
+                @ViewBag.ListV.Fecha_Inserta.ToString("dd/MM/yyyy")
+            </p>
+        </div>
+    </div>
+    <br />
+    <table class="table table-borderless">
+        <thead class="border-bottom border-top border-danger">
+            <tr>
+                <th>
+                    CANT.
+                </th>
+                <th>
+                    DESCRIPCION
+                </th>
+                <th>
+                    PRECIO UNITARIO
+                </th>
+                <th>
+                    DESCUENTO
+                </th>
+                <th>
+                    IMPORTE
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        $ @Html.DisplayFor(modelItem => item.PrecioVenta)
+                    </td>
+                    <td>
+                        $ @Html.DisplayFor(modelItem => item.Descuento)
+                    </td>
+                    <td>
+                        $ @Html.DisplayFor(modelItem => item.Importe)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <th>
+                    Subtotal
+                </th>
+                <td>
+                    $ @ViewBag.PrecioCompra.ToString("0.00")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <th>
+                    Envio
+                </th>
+                <td>
+                    $ @ViewBag.MontoEntrega.ToString("0.00")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <th class="fs-5">
+                    TOTAL
+                </th>
+                <th class="fs-5">
+                    $ @ViewBag.ListV.PrecioTotal.ToString("0.00")
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <div class="row text-center">
+        <span style="color: rgb(0, 12, 78);" class="fs-2 fw-bold">GRACIAS POR SU COMPRA!</span>
+    </div>
+</div>

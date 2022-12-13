@@ -17,7 +17,7 @@
     <div class="mb-3 row">
         <label class="form-label col-md-2">Repartidor</label>
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ID_Repartidor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.ID_Repartidor, new SelectList(ViewBag.Repartidores,"Id","Name"), new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ID_Repartidor, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -52,7 +52,11 @@
 
     <div class="mb-3 row">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <a class="btn btn-dark" href="@Url.Action("Index")">
+                <i class="fa fa-arrow-circle-left"></i>
+                volver
+            </a>
+            <input type="submit" value="Guardar" class="btn btn-warning" />
         </div>
     </div>
 </div>
@@ -61,7 +65,7 @@
 @section Scripts{
     <script>
         var cboDepartamento = document.getElementById("Departamento");
-        cboDepartamento.addEventListener("Change", Refresh);
+        cboDepartamento.addEventListener("change", Refresh);
         Refresh();
         function Refresh() {
             fetch("@Url.Content("~/LugaresEntrega/LlenarMun")" + "?id=" + cboDepartamento.value)
@@ -72,6 +76,15 @@
                 })
                 .then(function (data) {
                     console.log(data);
+                    cbo = document.getElementById("ID_Municipio");
+                    cbo.innerHTML = "";
+                    data.forEach(function (element) {
+                        let op = document.createElement("option");
+                        op.appendChild(document.createTextNode(element.Name));
+                        op.value = element.Id;
+
+                        cbo.appendChild(op);
+                    })
                 })
             
         }

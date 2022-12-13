@@ -11,7 +11,7 @@
                 Lista de compras
             </div>
             <div class="col-6 d-md-flex justify-content-md-end">
-                <a class="btn btn-primary" href="@Url.Action("Nuevacompra", "Compras")">
+                <a class="btn btn-success" href="@Url.Action("Nuevacompra", "Compras")">
                     <i class="fa fa-plus-circle"></i>
                     Nueva compra
                 </a>
@@ -63,7 +63,7 @@
                             @*<a class="btnEditar btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.Id">
                                 <i class="fas fa-edit"></i>
                             </a>*@
-                            <a class="btn btn-outline-secondary" href="@Url.Action("Details", "Compras", new { id = item.Id })">
+                            <a class="btn btn-dark" href="@Url.Action("Details", "Compras", new { id = item.Id })">
                                 <i class="fa fa-file"></i>
                             </a>
                             @*<a class="btnEliminar btnDetailles btn btn-outline-secondary" href="#ModalDetalleVenta" data-bs-toggle="modal" data-id="@item.Id">

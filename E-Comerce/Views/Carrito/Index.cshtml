@@ -22,7 +22,12 @@
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <h3 class="fw-normal mb-0 text-black">Productos agregados</h3>
                                     </div>
-
+                                    @if (ViewBag.Total == "0.00")
+                                    {
+                                        <div class="alert-light">
+                                            Tu carrito de compras esta vacio.
+                                        </div>
+                                    }
                                     @foreach (var item in Model)
                                     {
 
@@ -64,8 +69,22 @@
 
                                     <div class="card">
                                         <div class="card-body row text-center">
-                                            <div id="paypal-button-container"></div>
-                                            @*<button type="button" class="btn btn-warning btn-block btn-lg">Pagar</button>*@
+                                            @if (Session["ID_Entrega"] != null && Session["Monto"] != null)
+                                            {
+                                                <div id="paypal-button-container"></div>
+                                            }
+                                            else
+                                            {
+
+                                                if (ViewBag.Total == "0.00")
+                                                {
+                                                    <a class="page-link" href="@Url.Action("Index","Tienda")">Ver productos</a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="btn btn-warning btn-block btn-lg" href="@Url.Action("SeleccionarEntrega")">Seleccionar entrega</a>
+                                                }
+                                            }
                                         </div>
                                     </div>
 
@@ -86,29 +105,28 @@
                 shape: 'pill',
                 label:'pay'
             },
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units:[{
-                        amount: {
-                            value: @ViewBag.Total 
-                        }
-                    }]
-                });
-            },
-            onApprove: function (data,actions) {
-                actions.order.capture().then(function (detalles) {
-                    console.log(detalles)
-                    window.location.href="@Url.Action("Index","Tienda")"
-                });
-            },
-            onCancel: function (data) {
-                alert("Pago cancelado")
-                console.log(data)
-            }
-        }).render("#paypal-button-container");
-    </script>    
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units:[{
+                    amount: {
+                        value: @ViewBag.Total
+                    }
+                }]
+            });
+        },
+        onApprove: function (data,actions) {
+            actions.order.capture().then(function (detalles) {
+                console.log(detalles)
+                window.location.href="@Url.Action("FinalizarCompra","Carrito")"
+            });
+        },
+        onCancel: function (data) {
+            alert("Pago cancelado")
+            console.log(data)
+        }
+    }).render("#paypal-button-container");
+    </script>
 }
-
 
 
 

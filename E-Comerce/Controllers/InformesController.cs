@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 using System.Web.Mvc;
@@ -11,12 +12,30 @@ namespace E_Comerce.Controllers
         // GET: Informes
         public ActionResult Index()
         {
-            List<SP_RetornarVentasResult> rv = (from v in informe.SP_RetornarVentas() select v).ToList();
-            ViewBag.RetorV = rv;
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<SP_RetornarVentasResult> rv = (from v in informe.SP_RetornarVentas() select v).ToList();
+                    ViewBag.RetorV = rv;
 
-            List<sp_ProMasVResult> pmv = (from c in informe.sp_ProMasV() select c).ToList();
+                    List<sp_ProMasVResult> pmv = (from c in informe.sp_ProMasV() select c).ToList();
 
-            return View(pmv);
+                    return View(pmv);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
         public ActionResult Grafico()
         {

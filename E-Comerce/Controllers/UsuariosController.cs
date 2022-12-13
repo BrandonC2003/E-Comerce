@@ -14,32 +14,86 @@ namespace E_Comerce.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
+            if (Session["Usuario"]!=null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<vw_Usuario> lista = (from u in E_ComerceDB.vw_Usuario
+                                              select u).ToList();
 
-            List<Usuarios> lista = (from u in E_ComerceDB.Usuarios
-                                            select u).ToList();
-
-            return View(lista);
+                    return View(lista);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // GET: Usuarios/Details/5
         public ActionResult Details(int id)
         {
-            Usuarios objUsuarios= (from u in E_ComerceDB.Usuarios
-                                   where u.ID_Usuario ==id
-                                    select u).Single();
 
-            return View(objUsuarios);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
+                                            where u.ID_Usuario == id
+                                            select u).Single();
+
+                    return View(objUsuarios);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // GET: Usuarios/Create
         public ActionResult Create()
         {
-            var rol = (from r in E_ComerceDB.Rol
-                       select r).ToList();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    var rol = (from r in E_ComerceDB.Rol
+                               select r).ToList();
 
-            ViewBag.rol = rol;
+                    ViewBag.rol = rol;
 
-            return View();
+                    return View();
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Usuarios/Create
@@ -49,7 +103,7 @@ namespace E_Comerce.Controllers
             try
             {
                 datos.Fecha_Inserta = DateTime.Now;
-                datos.Usuario_Inserta = "admin";
+                datos.Usuario_Inserta = Session["Usuario"].ToString();
 
                 E_ComerceDB.Usuarios.InsertOnSubmit(datos);
                 E_ComerceDB.SubmitChanges();
@@ -67,15 +121,33 @@ namespace E_Comerce.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int id)
         {
-            var rol = (from r in E_ComerceDB.Rol
-                       select r).ToList();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    var rol = (from r in E_ComerceDB.Rol
+                               select r).ToList();
 
-            ViewBag.rol = rol;
+                    ViewBag.rol = rol;
 
-            Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
-                                    where u.ID_Usuario == id
-                                    select u).Single();
-            return View(objUsuarios);
+                    Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
+                                            where u.ID_Usuario == id
+                                            select u).Single();
+                    return View(objUsuarios);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Usuarios/Edit/5
@@ -86,7 +158,7 @@ namespace E_Comerce.Controllers
             {
                 // TODO: Add update logic here
 
-                //string Usuario = "admin";
+                datos.Usuario = Session["Usuario"].ToString();
                 E_ComerceDB.Sp_EditarUsuarioss(datos.ID_Rol,datos.CorreoElectronico, datos.Usuario, datos.Nombre, datos.Apellido,datos.Clave,id);
                
 
@@ -107,10 +179,28 @@ namespace E_Comerce.Controllers
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int id)
         {
-            Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
-                                    where u.ID_Usuario == id
-                                    select u).Single();
-            return View(objUsuarios);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
+                                            where u.ID_Usuario == id
+                                            select u).Single();
+                    return View(objUsuarios);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Usuarios/Delete/5
@@ -119,9 +209,6 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                
-
-                // TODO: Add delete logic here
                 Usuarios objUsuarios = (from u in E_ComerceDB.Usuarios
                                         where u.ID_Usuario == id
                                         select u).Single();

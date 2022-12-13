@@ -14,24 +14,77 @@ namespace E_Comerce.Controllers
         // GET: Proveedor
         public ActionResult Index()
         {
-            List<Proveedores> Listaproveedor = (from p in dbproveedor.Proveedores select p).ToList();
-            return View(Listaproveedor);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<Proveedores> Listaproveedor = (from p in dbproveedor.Proveedores select p).ToList();
+                    return View(Listaproveedor);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // GET: Proveedor/Details/5
         public ActionResult Details(int id)
         {
-
-            Vw_Proveedor dtll = (from dp in dbproveedor.Vw_Proveedor
-                                 where dp.ID_Proveedor == id
-                                 select dp).Single();
-            return View(dtll);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Vw_Proveedor dtll = (from dp in dbproveedor.Vw_Proveedor
+                                         where dp.ID_Proveedor == id
+                                         select dp).Single();
+                    return View(dtll);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // GET: Proveedor/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    return View();
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Proveedor/Create
@@ -40,7 +93,7 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                var usu = "jmartinez";
+                var usu = Session["Usuario"].ToString(); ;
 
                 // TODO: Add insert logic here
 
@@ -58,11 +111,29 @@ namespace E_Comerce.Controllers
         // GET: Proveedor/Edit/5
         public ActionResult Edit(int id)
         {
-            Proveedores editProveedor = (from p in dbproveedor.Proveedores
-                                         where p.ID_Proveedor == id
-                                         select p).Single();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Proveedores editProveedor = (from p in dbproveedor.Proveedores
+                                                 where p.ID_Proveedor == id
+                                                 select p).Single();
 
-            return View(editProveedor);
+                    return View(editProveedor);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Proveedor/Edit/5
@@ -71,7 +142,7 @@ namespace E_Comerce.Controllers
         {
             try
             {
-                var usuario = "jmartinez";
+                var usuario = Session["Usuario"].ToString(); ;
                 // TODO: Add update logic here
 
                 dbproveedor.SP_ActualizarProveedor(id, datos.NombreEmpresa, datos.Telefono, usuario);
@@ -88,10 +159,28 @@ namespace E_Comerce.Controllers
         // GET: Proveedor/Delete/5
         public ActionResult Delete(int id)
         {
-            var dell = (from d in dbproveedor.Proveedores
-                        where d.ID_Proveedor == id
-                        select d).First();
-            return View(dell);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    var dell = (from d in dbproveedor.Proveedores
+                                where d.ID_Proveedor == id
+                                select d).First();
+                    return View(dell);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // POST: Proveedor/Delete/5

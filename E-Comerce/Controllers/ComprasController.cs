@@ -21,32 +21,86 @@ namespace E_Comerce.Controllers
         // GET: Compras
         public ActionResult Index()
         {
-            List<V_Compras> listaCompras = (from p in E_ComerceDB.V_Compras
-                                          select p).ToList(); 
-            return View(listaCompras);
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    List<V_Compras> listaCompras = (from p in E_ComerceDB.V_Compras
+                                                    select p).ToList();
+                    return View(listaCompras);
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
         // GET: Compras/Details/5
         public ActionResult Details(int id)
         {
-            Session["Compra"] = null;
-            if (Session["Compra"] == null)
+            if (Session["Usuario"] != null)
             {
-                List<V_DetalleCompra> detcompra = (from p in E_ComerceDB.V_DetalleCompra
-                                                   where p.ID_Compra == id
-                                                   select p).ToList();
-                V_Compras Compra = (from c in E_ComerceDB.V_Compras 
-                               where c.Id == id 
-                               select c).Single();
-                Session["Compra"] = detcompra;
-                return View(Compra);
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    Session["Compra"] = null;
+                    if (Session["Compra"] == null)
+                    {
+                        List<V_DetalleCompra> detcompra = (from p in E_ComerceDB.V_DetalleCompra
+                                                           where p.ID_Compra == id
+                                                           select p).ToList();
+                        V_Compras Compra = (from c in E_ComerceDB.V_Compras
+                                            where c.Id == id
+                                            select c).Single();
+                        Session["Compra"] = detcompra;
+                        return View(Compra);
+                    }
+                    return RedirectToAction("Index", "Compras");
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
             }
-            return RedirectToAction("Index", "Compras");
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
 
         // GET: Compras/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Usuario"] != null)
+            {
+                if (Convert.ToInt32(Session["Rol_Usuario"]) == 1)
+                {
+                    return View();
+                }
+                else if (Convert.ToInt32(Session["Rol_Usuario"]) == 2)
+                {
+                    return RedirectToAction("Index", "Ventas");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Tienda");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tienda");
+            }
         }
         public ActionResult Nuevacompra()
         {

@@ -12,6 +12,7 @@ C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Debug\WCFLogin.csproj.AssemblyRef
 C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Debug\WCFLogin.csproj.CoreCompileInputs.cache
 C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Debug\WCFLogin.dll
 C:\Users\brand\Downloads\WCFLogin\WCFLogin\obj\Debug\WCFLogin.pdb
+<<<<<<< HEAD
 C:\Users\islal\Source\Repos\E-Comerce\WCFLogin\bin\WCFLogin.dll.config
 C:\Users\islal\Source\Repos\E-Comerce\WCFLogin\bin\WCFLogin.dll
 C:\Users\islal\Source\Repos\E-Comerce\WCFLogin\bin\WCFLogin.pdb
@@ -19,3 +20,12 @@ C:\Users\islal\Source\Repos\E-Comerce\WCFLogin\obj\Debug\WCFLogin.csproj.Assembl
 C:\Users\islal\Source\Repos\E-Comerce\WCFLogin\obj\Debug\WCFLogin.csproj.CoreCompileInputs.cache
 C:\Users\islal\Source\Repos\E-Comerce\WCFLogin\obj\Debug\WCFLogin.dll
 C:\Users\islal\Source\Repos\E-Comerce\WCFLogin\obj\Debug\WCFLogin.pdb
+=======
+C:\Users\brand\OneDrive\Escritorio\Proyecto E-Comerce\E-Comerce\WCFLogin\bin\WCFLogin.dll.config
+C:\Users\brand\OneDrive\Escritorio\Proyecto E-Comerce\E-Comerce\WCFLogin\bin\WCFLogin.dll
+C:\Users\brand\OneDrive\Escritorio\Proyecto E-Comerce\E-Comerce\WCFLogin\bin\WCFLogin.pdb
+C:\Users\brand\OneDrive\Escritorio\Proyecto E-Comerce\E-Comerce\WCFLogin\obj\Debug\WCFLogin.csproj.AssemblyReference.cache
+C:\Users\brand\OneDrive\Escritorio\Proyecto E-Comerce\E-Comerce\WCFLogin\obj\Debug\WCFLogin.csproj.CoreCompileInputs.cache
+C:\Users\brand\OneDrive\Escritorio\Proyecto E-Comerce\E-Comerce\WCFLogin\obj\Debug\WCFLogin.dll
+C:\Users\brand\OneDrive\Escritorio\Proyecto E-Comerce\E-Comerce\WCFLogin\obj\Debug\WCFLogin.pdb
+>>>>>>> fc139f9099e8e15191e1601c7a1eefd506b645b2

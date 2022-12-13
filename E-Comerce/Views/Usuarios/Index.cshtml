@@ -1,4 +1,4 @@
-﻿@model IEnumerable<E_Comerce.Usuarios>
+﻿@model IEnumerable<E_Comerce.vw_Usuario>
 
 @{
     ViewBag.Title = "Index";
@@ -23,7 +23,7 @@
 
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.ID_Rol)
+                        @Html.DisplayNameFor(model => model.Rol)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.CorreoElectronico)
@@ -58,7 +58,7 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ID_Rol)
+                            @Html.DisplayFor(modelItem => item.Rol)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CorreoElectronico)
