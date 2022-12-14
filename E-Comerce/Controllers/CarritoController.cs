@@ -201,8 +201,7 @@ namespace E_Comerce.Controllers
                                   select e).Single();
 
                 ViewBag.MontoEntrega = montoEnvio.MontoEntrega;
-
-                ViewBag.PrecioCompra = objVenta.PrecioTotal - montoEnvio.MontoEntrega;
+                ViewBag.PrecioCompra = objVenta.PrecioTotal + montoEnvio.MontoEntrega;
                 Session["ID_Venta"] = null;
                 return View(obj);
             }
